@@ -1,0 +1,122 @@
+[
+  {
+    "id": "WRK-1001",
+    "title": "Server 2 RAM & Storage Capacity Upgrade",
+    "description": "Upgrade DDR4 RAM from 32GB to 64GB and mount 2TB NVMe SSD for ERP database backup.",
+    "category": "Maintenance",
+    "priority": "High",
+    "status": "In Progress",
+    "progress": 65,
+    "assignedTo": "Mr. Ramesh (IT Admin)",
+    "department": "IT Infrastructure",
+    "estimatedHours": 8,
+    "actualHours": 5.5,
+    "linkedTicketId": "TK-1003",
+    "targetDate": "2026-09-18",
+    "createdAt": "2026-09-10 10:00:00",
+    "updatedAt": "2026-09-15 14:30:00",
+    "updates": [
+      {
+        "id": "UPD-1",
+        "timestamp": "2026-09-10 10:00:00",
+        "actor": "Mr. Ramesh (IT Admin)",
+        "notes": "Work item created for scheduled hardware upgrade during weekend window.",
+        "progress": 0,
+        "hoursSpent": 0,
+        "status": "Pending"
+      },
+      {
+        "id": "UPD-2",
+        "timestamp": "2026-09-12 11:15:00",
+        "actor": "Mr. Ramesh (IT Admin)",
+        "notes": "Received 64GB DDR4 ECC RAM modules from vendor. Verified compatibility.",
+        "progress": 30,
+        "hoursSpent": 2,
+        "status": "In Progress"
+      },
+      {
+        "id": "UPD-3",
+        "timestamp": "2026-09-15 14:30:00",
+        "actor": "Mr. Ramesh (IT Admin)",
+        "notes": "Physical installation completed on Rack 2. Memory diagnostic check passed with zero errors.",
+        "progress": 65,
+        "hoursSpent": 3.5,
+        "status": "In Progress"
+      }
+    ]
+  },
+  {
+    "id": "WRK-1002",
+    "title": "Quarterly Network Firewall Audit & Patch Update",
+    "description": "Perform security audit on main Fortinet firewall, update firmware to v7.4.2, and prune unused NAT rules.",
+    "category": "Access & Security",
+    "priority": "Urgent",
+    "status": "Pending",
+    "progress": 0,
+    "assignedTo": "Mr. Selvin (Junior)",
+    "department": "IT Security",
+    "estimatedHours": 12,
+    "actualHours": 0,
+    "linkedTicketId": "",
+    "targetDate": "2026-09-20",
+    "createdAt": "2026-09-14 09:30:00",
+    "updatedAt": "2026-09-14 09:30:00",
+    "updates": [
+      {
+        "id": "UPD-1",
+        "timestamp": "2026-09-14 09:30:00",
+        "actor": "Mr. Selvin (Junior)",
+        "notes": "Work item assigned. Awaiting change management window approval.",
+        "progress": 0,
+        "hoursSpent": 0,
+        "status": "Pending"
+      }
+    ]
+  },
+  {
+    "id": "WRK-1003",
+    "title": "Deploy 10 Workstations for Marketing Team",
+    "description": "Assemble Dell OptiPlex towers, install Windows 11 Pro, Adobe Creative Cloud, and join domain sujan.local.",
+    "category": "System Setup",
+    "priority": "Medium",
+    "status": "Completed",
+    "progress": 100,
+    "assignedTo": "Mr. Selvin (Junior)",
+    "department": "Marketing",
+    "estimatedHours": 16,
+    "actualHours": 14,
+    "linkedTicketId": "TK-1001",
+    "targetDate": "2026-09-12",
+    "createdAt": "2026-09-08 08:00:00",
+    "updatedAt": "2026-09-12 17:00:00",
+    "updates": [
+      {
+        "id": "UPD-1",
+        "timestamp": "2026-09-08 08:00:00",
+        "actor": "Mr. Selvin (Junior)",
+        "notes": "Workstation boxes unboxed and labeled.",
+        "progress": 10,
+        "hoursSpent": 2,
+        "status": "In Progress"
+      },
+      {
+        "id": "UPD-2",
+        "timestamp": "2026-09-10 16:20:00",
+        "actor": "Mr. Selvin (Junior)",
+        "notes": "OS image deployed on all 10 PCs. Domain join successful.",
+        "progress": 70,
+        "hoursSpent": 8,
+        "status": "In Progress"
+      },
+      {
+        "id": "UPD-3",
+        "timestamp": "2026-09-12 17:00:00",
+        "actor": "Mr. Selvin (Junior)",
+        "notes": "All 10 systems installed at Marketing desks with dual monitor setups. Sign-off completed.",
+        "progress": 100,
+        "hoursSpent": 4,
+        "status": "Completed"
+      }
+    ]
+  }
+]

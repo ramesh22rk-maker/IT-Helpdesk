@@ -1,0 +1,2650 @@
+[
+  {
+    "id": "ACT-10330",
+    "timestamp": "2026-09-25 15:21:50",
+    "ticketId": "TK-1111",
+    "action": "TICKET_CREATED",
+    "actor": "Manjunathan",
+    "details": "Created ticket 'Finsys issue' (Software / Low Priority)"
+  },
+  {
+    "id": "ACT-10329",
+    "timestamp": "2026-09-25 15:21:08",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Selvin",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10328",
+    "timestamp": "2026-09-25 15:20:41",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10327",
+    "timestamp": "2026-09-25 15:20:18",
+    "ticketId": "TK-1110",
+    "action": "TICKET_CREATED",
+    "actor": "-",
+    "details": "Created ticket 'System issue' (Hardware / High Priority)"
+  },
+  {
+    "id": "ACT-10326",
+    "timestamp": "2026-09-25 15:08:24",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Selvin",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10325",
+    "timestamp": "2026-09-25 15:07:28",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Selvin",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10324",
+    "timestamp": "2026-09-25 12:47:37",
+    "ticketId": "TK-1109",
+    "action": "TICKET_CREATED",
+    "actor": "Lithwin",
+    "details": "Created ticket 'Sale order issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10323",
+    "timestamp": "2026-09-25 11:04:55",
+    "ticketId": "TK-1108",
+    "action": "TICKET_CREATED",
+    "actor": "Production",
+    "details": "Created ticket 'Mail issue' (Email & Services / High Priority)"
+  },
+  {
+    "id": "ACT-10322",
+    "timestamp": "2026-09-25 11:03:38",
+    "ticketId": "TK-1107",
+    "action": "TICKET_CREATED",
+    "actor": "Joseph",
+    "details": "Created ticket 'Invoice cancel' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10321",
+    "timestamp": "2026-09-25 10:17:28",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Selvin",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10320",
+    "timestamp": "2026-09-24 17:55:14",
+    "ticketId": "TK-1106",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1106 as Closed. "
+  },
+  {
+    "id": "ACT-10319",
+    "timestamp": "2026-09-24 17:55:07",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10318",
+    "timestamp": "2026-09-24 17:54:51",
+    "ticketId": "TK-1106",
+    "action": "TICKET_CREATED",
+    "actor": "Devi",
+    "details": "Created ticket 'Vendor code' (Software / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10317",
+    "timestamp": "2026-09-24 17:54:18",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10316",
+    "timestamp": "2026-09-24 17:54:05",
+    "ticketId": "TK-1105",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1105 as Resolved. "
+  },
+  {
+    "id": "ACT-10315",
+    "timestamp": "2026-09-24 17:40:25",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10314",
+    "timestamp": "2026-09-24 17:24:44",
+    "ticketId": "TK-1105",
+    "action": "TICKET_CREATED",
+    "actor": "Muniyandi",
+    "details": "Created ticket 'FG transfer entry' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10313",
+    "timestamp": "2026-09-24 17:23:11",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10312",
+    "timestamp": "2026-09-24 16:55:09",
+    "ticketId": "TK-1104",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1104 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10311",
+    "timestamp": "2026-09-24 16:55:01",
+    "ticketId": "TK-1103",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1103 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10310",
+    "timestamp": "2026-09-24 16:54:53",
+    "ticketId": "TK-1102",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1102 as Resolved. "
+  },
+  {
+    "id": "ACT-10309",
+    "timestamp": "2026-09-24 16:54:35",
+    "ticketId": "TK-1101",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1101 as Resolved. "
+  },
+  {
+    "id": "ACT-10308",
+    "timestamp": "2026-09-24 16:54:28",
+    "ticketId": "TK-1100",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1100 as Closed. "
+  },
+  {
+    "id": "ACT-10307",
+    "timestamp": "2026-09-24 16:54:23",
+    "ticketId": "TK-1099",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1099 as Resolved. "
+  },
+  {
+    "id": "ACT-10306",
+    "timestamp": "2026-09-24 16:54:00",
+    "ticketId": "TK-1098",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1098 as Resolved. "
+  },
+  {
+    "id": "ACT-10305",
+    "timestamp": "2026-09-24 16:53:52",
+    "ticketId": "TK-1097",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1097 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10304",
+    "timestamp": "2026-09-24 16:53:47",
+    "ticketId": "TK-1096",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1096 as Closed. "
+  },
+  {
+    "id": "ACT-10303",
+    "timestamp": "2026-09-24 16:53:41",
+    "ticketId": "TK-1095",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1095 as Resolved. "
+  },
+  {
+    "id": "ACT-10302",
+    "timestamp": "2026-09-24 16:53:35",
+    "ticketId": "TK-1094",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1094 as Closed. "
+  },
+  {
+    "id": "ACT-10301",
+    "timestamp": "2026-09-24 16:53:30",
+    "ticketId": "TK-1093",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1093 as Closed. "
+  },
+  {
+    "id": "ACT-10300",
+    "timestamp": "2026-09-24 16:50:48",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10299",
+    "timestamp": "2026-09-24 16:49:34",
+    "ticketId": "TK-1104",
+    "action": "TICKET_CREATED",
+    "actor": "swetha",
+    "details": "Created ticket 'Vendor mail creation' (Email & Services / Medium Priority)"
+  },
+  {
+    "id": "ACT-10298",
+    "timestamp": "2026-09-24 16:48:09",
+    "ticketId": "TK-1103",
+    "action": "TICKET_CREATED",
+    "actor": "Manjunathan",
+    "details": "Created ticket 'Opening stock issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10297",
+    "timestamp": "2026-09-24 16:46:53",
+    "ticketId": "TK-1102",
+    "action": "TICKET_CREATED",
+    "actor": "Sakthivel",
+    "details": "Created ticket 'Credit note entry issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10296",
+    "timestamp": "2026-09-24 16:45:28",
+    "ticketId": "TK-1101",
+    "action": "TICKET_CREATED",
+    "actor": "Devi",
+    "details": "Created ticket 'Excel query' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10295",
+    "timestamp": "2026-09-24 16:44:45",
+    "ticketId": "TK-1100",
+    "action": "TICKET_CREATED",
+    "actor": "Production",
+    "details": "Created ticket 'Mouse and hardware fault' (Hardware / Low Priority)"
+  },
+  {
+    "id": "ACT-10294",
+    "timestamp": "2026-09-24 16:44:05",
+    "ticketId": "TK-1099",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'Item code creation' (Software / Medium Priority)"
+  },
+  {
+    "id": "ACT-10293",
+    "timestamp": "2026-09-24 16:43:26",
+    "ticketId": "TK-1098",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'Entry' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10292",
+    "timestamp": "2026-09-24 16:42:53",
+    "ticketId": "TK-1097",
+    "action": "TICKET_CREATED",
+    "actor": "Lithwin",
+    "details": "Created ticket 'Laptop' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10291",
+    "timestamp": "2026-09-24 16:42:07",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10290",
+    "timestamp": "2026-09-24 16:31:13",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10289",
+    "timestamp": "2026-09-24 16:00:20",
+    "ticketId": "TK-1096",
+    "action": "TICKET_CREATED",
+    "actor": "Balamurugan",
+    "details": "Created ticket 'Invoice issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10288",
+    "timestamp": "2026-09-24 15:58:34",
+    "ticketId": "TK-1095",
+    "action": "TICKET_CREATED",
+    "actor": "Lithwin",
+    "details": "Created ticket 'Disk full issue' (Hardware / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10287",
+    "timestamp": "2026-09-24 12:08:59",
+    "ticketId": "TK-1094",
+    "action": "TICKET_CREATED",
+    "actor": "Balamurugan",
+    "details": "Created ticket 'Direct stock' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10286",
+    "timestamp": "2026-09-24 10:48:22",
+    "ticketId": "TK-1093",
+    "action": "TICKET_CREATED",
+    "actor": "Surya",
+    "details": "Created ticket 'Direct stock' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10285",
+    "timestamp": "2026-09-24 10:47:41",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10284",
+    "timestamp": "2026-09-22 18:12:49",
+    "ticketId": "TK-1092",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1092 as Resolved. "
+  },
+  {
+    "id": "ACT-10283",
+    "timestamp": "2026-09-22 18:12:44",
+    "ticketId": "TK-1092",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1092 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10282",
+    "timestamp": "2026-09-22 18:12:37",
+    "ticketId": "TK-1091",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1091 as Resolved. "
+  },
+  {
+    "id": "ACT-10281",
+    "timestamp": "2026-09-22 18:12:29",
+    "ticketId": "TK-1090",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1090 as Closed. "
+  },
+  {
+    "id": "ACT-10280",
+    "timestamp": "2026-09-22 18:12:25",
+    "ticketId": "TK-1089",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1089 as Resolved. "
+  },
+  {
+    "id": "ACT-10279",
+    "timestamp": "2026-09-22 18:12:20",
+    "ticketId": "TK-1088",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1088 from In Progress to Open"
+  },
+  {
+    "id": "ACT-10278",
+    "timestamp": "2026-09-22 18:12:16",
+    "ticketId": "TK-1088",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1088 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10277",
+    "timestamp": "2026-09-22 18:12:01",
+    "ticketId": "TK-1087",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1087 as Resolved. "
+  },
+  {
+    "id": "ACT-10276",
+    "timestamp": "2026-09-22 18:11:57",
+    "ticketId": "TK-1086",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1086 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10275",
+    "timestamp": "2026-09-22 18:11:51",
+    "ticketId": "TK-1085",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1085 as Closed. "
+  },
+  {
+    "id": "ACT-10274",
+    "timestamp": "2026-09-22 18:11:44",
+    "ticketId": "TK-1084",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1084 as Closed. "
+  },
+  {
+    "id": "ACT-10273",
+    "timestamp": "2026-09-22 18:11:37",
+    "ticketId": "TK-1083",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1083 as Resolved. "
+  },
+  {
+    "id": "ACT-10272",
+    "timestamp": "2026-09-22 18:11:32",
+    "ticketId": "TK-1082",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1082 as Closed. "
+  },
+  {
+    "id": "ACT-10271",
+    "timestamp": "2026-09-22 18:11:25",
+    "ticketId": "TK-1081",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1081 as Closed. "
+  },
+  {
+    "id": "ACT-10270",
+    "timestamp": "2026-09-22 18:11:18",
+    "ticketId": "TK-1080",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1080 as Resolved. "
+  },
+  {
+    "id": "ACT-10269",
+    "timestamp": "2026-09-22 18:11:12",
+    "ticketId": "TK-1079",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1079 as Resolved. "
+  },
+  {
+    "id": "ACT-10268",
+    "timestamp": "2026-09-22 18:11:03",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10267",
+    "timestamp": "2026-09-22 18:10:31",
+    "ticketId": "TK-1092",
+    "action": "TICKET_CREATED",
+    "actor": "Joseph",
+    "details": "Created ticket 'Mail issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10266",
+    "timestamp": "2026-09-22 18:09:29",
+    "ticketId": "TK-1091",
+    "action": "TICKET_CREATED",
+    "actor": "NPD",
+    "details": "Created ticket 'Item code creation' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10265",
+    "timestamp": "2026-09-22 18:08:40",
+    "ticketId": "TK-1090",
+    "action": "TICKET_CREATED",
+    "actor": "Priyanka",
+    "details": "Created ticket 'System shift' (Hardware / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10264",
+    "timestamp": "2026-09-22 18:07:55",
+    "ticketId": "TK-1089",
+    "action": "TICKET_CREATED",
+    "actor": "Priyanka",
+    "details": "Created ticket 'Backup' (Email & Services / High Priority)"
+  },
+  {
+    "id": "ACT-10263",
+    "timestamp": "2026-09-22 18:07:18",
+    "ticketId": "TK-1088",
+    "action": "TICKET_CREATED",
+    "actor": "-",
+    "details": "Created ticket 'Production entry issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10262",
+    "timestamp": "2026-09-22 18:06:25",
+    "ticketId": "TK-1087",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'TKML' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10261",
+    "timestamp": "2026-09-22 18:05:13",
+    "ticketId": "TK-1086",
+    "action": "TICKET_CREATED",
+    "actor": "PROD",
+    "details": "Created ticket 'Finsys Barcode' (Software / Medium Priority)"
+  },
+  {
+    "id": "ACT-10260",
+    "timestamp": "2026-09-22 18:00:26",
+    "ticketId": "TK-1085",
+    "action": "TICKET_CREATED",
+    "actor": "Balamurugan",
+    "details": "Created ticket 'Finsys issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10259",
+    "timestamp": "2026-09-22 17:59:49",
+    "ticketId": "TK-1084",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'Finsys issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10258",
+    "timestamp": "2026-09-22 17:59:19",
+    "ticketId": "TK-1083",
+    "action": "TICKET_CREATED",
+    "actor": "Yukta",
+    "details": "Created ticket 'TDS issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10257",
+    "timestamp": "2026-09-22 17:58:43",
+    "ticketId": "TK-1082",
+    "action": "TICKET_CREATED",
+    "actor": "Chandrasekar",
+    "details": "Created ticket 'Backup' (Hardware / High Priority)"
+  },
+  {
+    "id": "ACT-10256",
+    "timestamp": "2026-09-22 17:57:35",
+    "ticketId": "TK-1081",
+    "action": "TICKET_CREATED",
+    "actor": "Selvakumar",
+    "details": "Created ticket 'Mail issue' (Email & Services / Medium Priority)"
+  },
+  {
+    "id": "ACT-10255",
+    "timestamp": "2026-09-22 17:56:40",
+    "ticketId": "TK-1080",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'Mail issue' (Email & Services / Medium Priority)"
+  },
+  {
+    "id": "ACT-10254",
+    "timestamp": "2026-09-22 17:50:53",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10253",
+    "timestamp": "2026-09-22 17:50:31",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10252",
+    "timestamp": "2026-09-22 12:42:52",
+    "ticketId": "TK-1079",
+    "action": "TICKET_CREATED",
+    "actor": "Priyanka",
+    "details": "Created ticket 'OS corruption' (Hardware / High Priority)"
+  },
+  {
+    "id": "ACT-10251",
+    "timestamp": "2026-09-22 12:41:53",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10250",
+    "timestamp": "2026-09-21 18:09:46",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10249",
+    "timestamp": "2026-09-21 17:35:21",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10248",
+    "timestamp": "2026-09-21 17:35:03",
+    "ticketId": "TK-1078",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1078 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10247",
+    "timestamp": "2026-09-21 17:34:58",
+    "ticketId": "TK-1077",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1077 as Resolved. "
+  },
+  {
+    "id": "ACT-10246",
+    "timestamp": "2026-09-21 17:34:52",
+    "ticketId": "TK-1076",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1076 as Resolved. "
+  },
+  {
+    "id": "ACT-10245",
+    "timestamp": "2026-09-21 17:34:47",
+    "ticketId": "TK-1075",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1075 as Closed. "
+  },
+  {
+    "id": "ACT-10244",
+    "timestamp": "2026-09-21 17:34:40",
+    "ticketId": "TK-1074",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1074 as Resolved. "
+  },
+  {
+    "id": "ACT-10243",
+    "timestamp": "2026-09-21 17:34:33",
+    "ticketId": "TK-1073",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1073 as Closed. "
+  },
+  {
+    "id": "ACT-10242",
+    "timestamp": "2026-09-21 17:34:24",
+    "ticketId": "TK-1072",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1072 as Closed. "
+  },
+  {
+    "id": "ACT-10241",
+    "timestamp": "2026-09-21 17:34:14",
+    "ticketId": "TK-1071",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1071 as Resolved. "
+  },
+  {
+    "id": "ACT-10240",
+    "timestamp": "2026-09-21 17:34:07",
+    "ticketId": "TK-1070",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1070 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10239",
+    "timestamp": "2026-09-21 17:34:01",
+    "ticketId": "TK-1069",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1069 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10238",
+    "timestamp": "2026-09-21 17:33:42",
+    "ticketId": "TK-1068",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1068 as Resolved. "
+  },
+  {
+    "id": "ACT-10237",
+    "timestamp": "2026-09-21 17:33:32",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10236",
+    "timestamp": "2026-09-21 17:32:59",
+    "ticketId": "TK-1078",
+    "action": "TICKET_CREATED",
+    "actor": "Sadheesh",
+    "details": "Created ticket 'Mail issue' (Email & Services / High Priority)"
+  },
+  {
+    "id": "ACT-10235",
+    "timestamp": "2026-09-21 17:32:03",
+    "ticketId": "TK-1077",
+    "action": "TICKET_CREATED",
+    "actor": "Mixing",
+    "details": "Created ticket 'Net issue' (Network / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10234",
+    "timestamp": "2026-09-21 17:31:14",
+    "ticketId": "TK-1076",
+    "action": "TICKET_CREATED",
+    "actor": "Lab",
+    "details": "Created ticket 'Mail config' (Email & Services / High Priority)"
+  },
+  {
+    "id": "ACT-10233",
+    "timestamp": "2026-09-21 17:30:17",
+    "ticketId": "TK-1075",
+    "action": "TICKET_CREATED",
+    "actor": "Balamurugan",
+    "details": "Created ticket 'Stock' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10232",
+    "timestamp": "2026-09-21 17:29:36",
+    "ticketId": "TK-1074",
+    "action": "TICKET_CREATED",
+    "actor": "Ansari",
+    "details": "Created ticket 'Mail config' (Email & Services / Medium Priority)"
+  },
+  {
+    "id": "ACT-10231",
+    "timestamp": "2026-09-21 17:28:27",
+    "ticketId": "TK-1073",
+    "action": "TICKET_CREATED",
+    "actor": "Priyanka",
+    "details": "Created ticket 'Backup' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10230",
+    "timestamp": "2026-09-21 17:27:40",
+    "ticketId": "TK-1072",
+    "action": "TICKET_CREATED",
+    "actor": "Chandrasekar",
+    "details": "Created ticket 'Backup' (Hardware / High Priority)"
+  },
+  {
+    "id": "ACT-10229",
+    "timestamp": "2026-09-21 17:26:37",
+    "ticketId": "TK-1071",
+    "action": "TICKET_CREATED",
+    "actor": "Manjunathan",
+    "details": "Created ticket 'Finsys issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10228",
+    "timestamp": "2026-09-21 17:25:46",
+    "ticketId": "TK-1070",
+    "action": "TICKET_CREATED",
+    "actor": "Yukta",
+    "details": "Created ticket 'Finsys issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10227",
+    "timestamp": "2026-09-21 17:24:09",
+    "ticketId": "TK-1069",
+    "action": "TICKET_CREATED",
+    "actor": "Ram",
+    "details": "Created ticket 'Finsys issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10226",
+    "timestamp": "2026-09-21 17:23:10",
+    "ticketId": "TK-1068",
+    "action": "TICKET_CREATED",
+    "actor": "Manjunathan",
+    "details": "Created ticket 'Net issue' (Network / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10225",
+    "timestamp": "2026-09-21 17:07:00",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Selvin",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10224",
+    "timestamp": "2026-09-19 18:16:08",
+    "ticketId": "TK-1067",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1067 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10223",
+    "timestamp": "2026-09-19 18:16:02",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10222",
+    "timestamp": "2026-09-19 17:54:03",
+    "ticketId": "TK-1067",
+    "action": "TICKET_CREATED",
+    "actor": "Sindhu",
+    "details": "Created ticket 'Vendor code creation' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10221",
+    "timestamp": "2026-09-19 17:53:18",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10220",
+    "timestamp": "2026-09-19 17:52:49",
+    "ticketId": "TK-1066",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1066 as Closed. "
+  },
+  {
+    "id": "ACT-10219",
+    "timestamp": "2026-09-19 17:52:45",
+    "ticketId": "TK-1065",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1065 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10218",
+    "timestamp": "2026-09-19 17:52:41",
+    "ticketId": "TK-1064",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1064 as Resolved. "
+  },
+  {
+    "id": "ACT-10217",
+    "timestamp": "2026-09-19 17:52:34",
+    "ticketId": "TK-1063",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1063 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10216",
+    "timestamp": "2026-09-19 17:52:29",
+    "ticketId": "TK-1062",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1062 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10215",
+    "timestamp": "2026-09-19 17:52:22",
+    "ticketId": "TK-1061",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1061 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10214",
+    "timestamp": "2026-09-19 17:52:14",
+    "ticketId": "TK-1060",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1060 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10213",
+    "timestamp": "2026-09-19 17:51:33",
+    "ticketId": "TK-1059",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1059 as Closed. "
+  },
+  {
+    "id": "ACT-10212",
+    "timestamp": "2026-09-19 17:51:25",
+    "ticketId": "TK-1058",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1058 as Closed. "
+  },
+  {
+    "id": "ACT-10211",
+    "timestamp": "2026-09-19 17:51:16",
+    "ticketId": "TK-1057",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1057 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10210",
+    "timestamp": "2026-09-19 17:50:56",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10209",
+    "timestamp": "2026-09-19 17:50:32",
+    "ticketId": "TK-1066",
+    "action": "TICKET_CREATED",
+    "actor": "Muthukutty",
+    "details": "Created ticket 'Keyboard' (Hardware / Low Priority)"
+  },
+  {
+    "id": "ACT-10208",
+    "timestamp": "2026-09-19 17:49:38",
+    "ticketId": "TK-1065",
+    "action": "TICKET_CREATED",
+    "actor": "Selvakumar",
+    "details": "Created ticket 'Software and Zoom' (Software / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10207",
+    "timestamp": "2026-09-19 17:47:16",
+    "ticketId": "TK-1064",
+    "action": "TICKET_CREATED",
+    "actor": "Balamurugan",
+    "details": "Created ticket 'Direct stock' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10206",
+    "timestamp": "2026-09-19 17:46:20",
+    "ticketId": "TK-1063",
+    "action": "TICKET_CREATED",
+    "actor": "COMMON",
+    "details": "Created ticket 'Onedrive' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10205",
+    "timestamp": "2026-09-19 17:45:28",
+    "ticketId": "TK-1062",
+    "action": "TICKET_CREATED",
+    "actor": "COMMON",
+    "details": "Created ticket 'Email issue' (Email & Services / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10204",
+    "timestamp": "2026-09-19 17:44:31",
+    "ticketId": "TK-1061",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'Airtel dongle' (Network / High Priority)"
+  },
+  {
+    "id": "ACT-10203",
+    "timestamp": "2026-09-19 17:43:42",
+    "ticketId": "TK-1060",
+    "action": "TICKET_CREATED",
+    "actor": "HR",
+    "details": "Created ticket 'HR system' (Hardware / High Priority)"
+  },
+  {
+    "id": "ACT-10202",
+    "timestamp": "2026-09-19 17:42:52",
+    "ticketId": "TK-1059",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'Airtel' (Network / Medium Priority)"
+  },
+  {
+    "id": "ACT-10201",
+    "timestamp": "2026-09-19 17:42:16",
+    "ticketId": "TK-1058",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'Airtel' (Network / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10200",
+    "timestamp": "2026-09-19 17:41:11",
+    "ticketId": "TK-1057",
+    "action": "TICKET_CREATED",
+    "actor": "Muthukutty",
+    "details": "Created ticket 'System corrupt' (Hardware / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10199",
+    "timestamp": "2026-09-19 17:40:22",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10198",
+    "timestamp": "2026-09-19 17:40:06",
+    "ticketId": "TK-1052",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1052 as Closed. "
+  },
+  {
+    "id": "ACT-10197",
+    "timestamp": "2026-09-19 17:40:00",
+    "ticketId": "TK-1053",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1053 as Resolved. "
+  },
+  {
+    "id": "ACT-10196",
+    "timestamp": "2026-09-19 17:39:55",
+    "ticketId": "TK-1054",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1054 as Closed. "
+  },
+  {
+    "id": "ACT-10195",
+    "timestamp": "2026-09-19 17:39:48",
+    "ticketId": "TK-1055",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1055 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10194",
+    "timestamp": "2026-09-19 17:39:42",
+    "ticketId": "TK-1056",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1056 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10193",
+    "timestamp": "2026-09-19 17:39:15",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10192",
+    "timestamp": "2026-09-19 17:14:20",
+    "ticketId": "TK-1056",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'Email configuration' (Email & Services / High Priority)"
+  },
+  {
+    "id": "ACT-10191",
+    "timestamp": "2026-09-19 17:13:33",
+    "ticketId": "TK-1055",
+    "action": "TICKET_CREATED",
+    "actor": "Annamalai",
+    "details": "Created ticket 'Mixing system' (Hardware / High Priority)"
+  },
+  {
+    "id": "ACT-10190",
+    "timestamp": "2026-09-19 17:12:32",
+    "ticketId": "TK-1054",
+    "action": "TICKET_CREATED",
+    "actor": "HR",
+    "details": "Created ticket 'Linkedin' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10189",
+    "timestamp": "2026-09-19 17:11:39",
+    "ticketId": "TK-1053",
+    "action": "TICKET_CREATED",
+    "actor": "IT regular",
+    "details": "Created ticket 'AIRTEL' (Network / High Priority)"
+  },
+  {
+    "id": "ACT-10188",
+    "timestamp": "2026-09-19 17:10:47",
+    "ticketId": "TK-1052",
+    "action": "TICKET_CREATED",
+    "actor": "IT Regular",
+    "details": "Created ticket 'CCTV' (Access & Security / Medium Priority)"
+  },
+  {
+    "id": "ACT-10187",
+    "timestamp": "2026-09-19 17:10:04",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10186",
+    "timestamp": "2026-09-18 17:27:05",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10185",
+    "timestamp": "2026-09-18 17:23:04",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "selvin",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10184",
+    "timestamp": "2026-09-18 17:22:45",
+    "ticketId": "TK-1051",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1051 as Resolved. "
+  },
+  {
+    "id": "ACT-10183",
+    "timestamp": "2026-09-18 17:22:40",
+    "ticketId": "TK-1050",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1050 as Resolved. "
+  },
+  {
+    "id": "ACT-10182",
+    "timestamp": "2026-09-18 17:22:23",
+    "ticketId": "TK-1049",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1049 as Closed. "
+  },
+  {
+    "id": "ACT-10181",
+    "timestamp": "2026-09-18 17:22:17",
+    "ticketId": "TK-1049",
+    "action": "TICKET_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Updated ticket TK-1049"
+  },
+  {
+    "id": "ACT-10180",
+    "timestamp": "2026-09-18 17:22:12",
+    "ticketId": "TK-1048",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1048 as Closed. "
+  },
+  {
+    "id": "ACT-10179",
+    "timestamp": "2026-09-18 17:22:07",
+    "ticketId": "TK-1048",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1048 as Resolved. "
+  },
+  {
+    "id": "ACT-10178",
+    "timestamp": "2026-09-18 17:22:01",
+    "ticketId": "TK-1047",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1047 as Resolved. "
+  },
+  {
+    "id": "ACT-10177",
+    "timestamp": "2026-09-18 17:21:55",
+    "ticketId": "TK-1046",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1046 as Closed. "
+  },
+  {
+    "id": "ACT-10176",
+    "timestamp": "2026-09-18 17:21:37",
+    "ticketId": "TK-1045",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1045 as Closed. "
+  },
+  {
+    "id": "ACT-10175",
+    "timestamp": "2026-09-18 17:21:26",
+    "ticketId": "TK-1044",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1044 as Closed. "
+  },
+  {
+    "id": "ACT-10174",
+    "timestamp": "2026-09-18 17:21:20",
+    "ticketId": "TK-1043",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1043 as Resolved. "
+  },
+  {
+    "id": "ACT-10173",
+    "timestamp": "2026-09-18 17:21:11",
+    "ticketId": "TK-1042",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1042 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10172",
+    "timestamp": "2026-09-18 17:21:07",
+    "ticketId": "TK-1041",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1041 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10171",
+    "timestamp": "2026-09-18 17:21:00",
+    "ticketId": "TK-1040",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1040 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10170",
+    "timestamp": "2026-09-18 17:20:44",
+    "ticketId": "TK-1031",
+    "action": "TICKET_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Updated ticket TK-1031"
+  },
+  {
+    "id": "ACT-10169",
+    "timestamp": "2026-09-18 17:20:38",
+    "ticketId": "TK-1029",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1029 as Resolved. "
+  },
+  {
+    "id": "ACT-10168",
+    "timestamp": "2026-09-18 17:20:12",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10167",
+    "timestamp": "2026-09-18 17:19:34",
+    "ticketId": "TK-1051",
+    "action": "TICKET_CREATED",
+    "actor": "Purchase",
+    "details": "Created ticket 'Vendor code creation' (Software / Medium Priority)"
+  },
+  {
+    "id": "ACT-10166",
+    "timestamp": "2026-09-18 17:18:13",
+    "ticketId": "TK-1050",
+    "action": "TICKET_CREATED",
+    "actor": "Selvakumar",
+    "details": "Created ticket 'Mail bouncing' (Email & Services / High Priority)"
+  },
+  {
+    "id": "ACT-10165",
+    "timestamp": "2026-09-18 17:16:52",
+    "ticketId": "TK-1049",
+    "action": "TICKET_CREATED",
+    "actor": "Ramesh & Selvin",
+    "details": "Created ticket '5S' (General IT Doubt / High Priority)"
+  },
+  {
+    "id": "ACT-10164",
+    "timestamp": "2026-09-18 17:15:57",
+    "ticketId": "TK-1048",
+    "action": "TICKET_CREATED",
+    "actor": "Store",
+    "details": "Created ticket 'Printer' (Hardware / Medium Priority)"
+  },
+  {
+    "id": "ACT-10163",
+    "timestamp": "2026-09-18 17:15:06",
+    "ticketId": "TK-1047",
+    "action": "TICKET_CREATED",
+    "actor": "Priyanka",
+    "details": "Created ticket 'Teams' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10162",
+    "timestamp": "2026-09-18 17:14:30",
+    "ticketId": "TK-1046",
+    "action": "TICKET_CREATED",
+    "actor": "Chandrasekar",
+    "details": "Created ticket 'New laptop' (Hardware / High Priority)"
+  },
+  {
+    "id": "ACT-10161",
+    "timestamp": "2026-09-18 17:13:45",
+    "ticketId": "TK-1045",
+    "action": "TICKET_CREATED",
+    "actor": "Mary",
+    "details": "Created ticket 'Mail Configuration' (Email & Services / Medium Priority)"
+  },
+  {
+    "id": "ACT-10160",
+    "timestamp": "2026-09-18 17:07:36",
+    "ticketId": "TK-1044",
+    "action": "TICKET_CREATED",
+    "actor": "Balamurugan",
+    "details": "Created ticket 'Direct stock' (Software / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10159",
+    "timestamp": "2026-09-18 17:02:45",
+    "ticketId": "TK-1043",
+    "action": "TICKET_CREATED",
+    "actor": "Annamalai",
+    "details": "Created ticket 'Word ,excel' (Email & Services / Medium Priority)"
+  },
+  {
+    "id": "ACT-10158",
+    "timestamp": "2026-09-18 17:01:35",
+    "ticketId": "TK-1042",
+    "action": "TICKET_CREATED",
+    "actor": "Murugan",
+    "details": "Created ticket 'System corrupt' (Hardware / High Priority)"
+  },
+  {
+    "id": "ACT-10157",
+    "timestamp": "2026-09-18 17:00:02",
+    "ticketId": "TK-1041",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'Mail configuration' (Email & Services / Medium Priority)"
+  },
+  {
+    "id": "ACT-10156",
+    "timestamp": "2026-09-18 16:58:51",
+    "ticketId": "TK-1040",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'CCTV' (Access & Security / Medium Priority)"
+  },
+  {
+    "id": "ACT-10155",
+    "timestamp": "2026-09-18 16:57:08",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Selvin",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10154",
+    "timestamp": "2026-09-18 16:56:37",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10153",
+    "timestamp": "2026-09-18 16:23:20",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10152",
+    "timestamp": "2026-09-17 17:48:40",
+    "ticketId": "TK-1039",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1039 as Resolved. "
+  },
+  {
+    "id": "ACT-10151",
+    "timestamp": "2026-09-17 17:48:26",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10150",
+    "timestamp": "2026-09-17 17:47:37",
+    "ticketId": "TK-1039",
+    "action": "TICKET_CREATED",
+    "actor": "Muniraj",
+    "details": "Created ticket 'Mail doubt' (Email & Services / High Priority)"
+  },
+  {
+    "id": "ACT-10149",
+    "timestamp": "2026-09-17 17:45:53",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10148",
+    "timestamp": "2026-09-17 17:26:20",
+    "ticketId": "TK-1029",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1029 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10147",
+    "timestamp": "2026-09-17 17:25:07",
+    "ticketId": "TK-1038",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1038 as Resolved. "
+  },
+  {
+    "id": "ACT-10146",
+    "timestamp": "2026-09-17 17:25:02",
+    "ticketId": "TK-1037",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1037 as Closed. "
+  },
+  {
+    "id": "ACT-10145",
+    "timestamp": "2026-09-17 17:24:52",
+    "ticketId": "TK-1036",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1036 as Resolved. "
+  },
+  {
+    "id": "ACT-10144",
+    "timestamp": "2026-09-17 17:24:46",
+    "ticketId": "TK-1035",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1035 as Resolved. "
+  },
+  {
+    "id": "ACT-10143",
+    "timestamp": "2026-09-17 17:24:40",
+    "ticketId": "TK-1034",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1034 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10142",
+    "timestamp": "2026-09-17 17:24:33",
+    "ticketId": "TK-1033",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1033 as Resolved. "
+  },
+  {
+    "id": "ACT-10141",
+    "timestamp": "2026-09-17 17:24:21",
+    "ticketId": "TK-1032",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1032 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10140",
+    "timestamp": "2026-09-17 17:24:15",
+    "ticketId": "TK-1031",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1031 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10139",
+    "timestamp": "2026-09-17 17:24:06",
+    "ticketId": "TK-1030",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1030 as Resolved. "
+  },
+  {
+    "id": "ACT-10138",
+    "timestamp": "2026-09-17 17:23:46",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10137",
+    "timestamp": "2026-09-17 17:22:30",
+    "ticketId": "TK-1038",
+    "action": "TICKET_CREATED",
+    "actor": "Venkatesan",
+    "details": "Created ticket 'Mail issue checked' (Email & Services / High Priority)"
+  },
+  {
+    "id": "ACT-10136",
+    "timestamp": "2026-09-17 17:20:48",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10135",
+    "timestamp": "2026-09-17 17:19:28",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10134",
+    "timestamp": "2026-09-17 17:18:27",
+    "ticketId": "TK-1037",
+    "action": "TICKET_CREATED",
+    "actor": "Dispatch",
+    "details": "Created ticket 'Stock updation done as per requested' (Software / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10133",
+    "timestamp": "2026-09-17 17:16:55",
+    "ticketId": "TK-1036",
+    "action": "TICKET_CREATED",
+    "actor": "REGULAR",
+    "details": "Created ticket 'Mail bouncing issue checked' (Email & Services / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10132",
+    "timestamp": "2026-09-17 17:15:39",
+    "ticketId": "TK-1035",
+    "action": "TICKET_CREATED",
+    "actor": "Dispatch",
+    "details": "Created ticket 'Eway bill portal configuration - Done' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10131",
+    "timestamp": "2026-09-17 17:14:30",
+    "ticketId": "TK-1034",
+    "action": "TICKET_CREATED",
+    "actor": "REGULAR",
+    "details": "Created ticket 'Server storage inspection done' (Hardware / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10130",
+    "timestamp": "2026-09-17 17:13:07",
+    "ticketId": "TK-1033",
+    "action": "TICKET_CREATED",
+    "actor": "Lithwin",
+    "details": "Created ticket 'Slow system- Resolved' (Hardware / High Priority)"
+  },
+  {
+    "id": "ACT-10129",
+    "timestamp": "2026-09-17 17:12:01",
+    "ticketId": "TK-1032",
+    "action": "TICKET_CREATED",
+    "actor": "REGULAR",
+    "details": "Created ticket 'Signature configuration' (Access & Security / High Priority)"
+  },
+  {
+    "id": "ACT-10128",
+    "timestamp": "2026-09-17 17:11:28",
+    "ticketId": "TK-1031",
+    "action": "TICKET_CREATED",
+    "actor": "REGULAR",
+    "details": "Created ticket 'Mail configuration' (Access & Security / High Priority)"
+  },
+  {
+    "id": "ACT-10127",
+    "timestamp": "2026-09-17 17:10:31",
+    "ticketId": "TK-1030",
+    "action": "TICKET_CREATED",
+    "actor": "PPC",
+    "details": "Created ticket 'PPC SFG BOM updation done' (Software / Medium Priority)"
+  },
+  {
+    "id": "ACT-10126",
+    "timestamp": "2026-09-17 17:09:35",
+    "ticketId": "TK-1029",
+    "action": "TICKET_CREATED",
+    "actor": "HR",
+    "details": "Created ticket 'New Laptop Configuration' (Hardware / Medium Priority)"
+  },
+  {
+    "id": "ACT-10125",
+    "timestamp": "2026-09-17 17:08:09",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10124",
+    "timestamp": "2026-09-17 17:07:34",
+    "ticketId": "TK-1028",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1028 as Resolved. "
+  },
+  {
+    "id": "ACT-10123",
+    "timestamp": "2026-09-17 17:07:23",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10122",
+    "timestamp": "2026-09-17 16:53:07",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10121",
+    "timestamp": "2026-09-17 16:41:14",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10120",
+    "timestamp": "2026-09-17 16:41:01",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10119",
+    "timestamp": "2026-09-17 16:39:54",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "user",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10118",
+    "timestamp": "2026-09-15 17:38:34",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "selvin",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10117",
+    "timestamp": "2026-09-09 17:46:14",
+    "ticketId": "TK-1028",
+    "action": "TICKET_CREATED",
+    "actor": "RK Ramesh",
+    "details": "Created ticket 'selvin and test' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10116",
+    "timestamp": "2026-09-07 18:02:30",
+    "ticketId": "TK-1018",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1018 as Closed. "
+  },
+  {
+    "id": "ACT-10115",
+    "timestamp": "2026-09-07 18:02:26",
+    "ticketId": "TK-1019",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1019 as Closed. "
+  },
+  {
+    "id": "ACT-10114",
+    "timestamp": "2026-09-07 18:02:21",
+    "ticketId": "TK-1020",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1020 as Closed. "
+  },
+  {
+    "id": "ACT-10113",
+    "timestamp": "2026-09-07 18:02:17",
+    "ticketId": "TK-1021",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1021 as Closed. "
+  },
+  {
+    "id": "ACT-10112",
+    "timestamp": "2026-09-07 18:02:13",
+    "ticketId": "TK-1022",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1022 as Closed. "
+  },
+  {
+    "id": "ACT-10111",
+    "timestamp": "2026-09-07 18:02:09",
+    "ticketId": "TK-1022",
+    "action": "TICKET_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Updated ticket TK-1022"
+  },
+  {
+    "id": "ACT-10110",
+    "timestamp": "2026-09-07 18:02:05",
+    "ticketId": "TK-1023",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1023 as Closed. "
+  },
+  {
+    "id": "ACT-10109",
+    "timestamp": "2026-09-07 18:01:58",
+    "ticketId": "TK-1024",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1024 as Closed. "
+  },
+  {
+    "id": "ACT-10108",
+    "timestamp": "2026-09-07 18:01:51",
+    "ticketId": "TK-1025",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1025 as Closed. "
+  },
+  {
+    "id": "ACT-10107",
+    "timestamp": "2026-09-07 18:01:47",
+    "ticketId": "TK-1026",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1026 as Closed. "
+  },
+  {
+    "id": "ACT-10106",
+    "timestamp": "2026-09-07 18:01:43",
+    "ticketId": "TK-1026",
+    "action": "TICKET_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Updated ticket TK-1026"
+  },
+  {
+    "id": "ACT-10105",
+    "timestamp": "2026-09-07 18:01:40",
+    "ticketId": "TK-1026",
+    "action": "TICKET_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Updated ticket TK-1026"
+  },
+  {
+    "id": "ACT-10104",
+    "timestamp": "2026-09-07 18:01:36",
+    "ticketId": "TK-1027",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1027 as Closed. "
+  },
+  {
+    "id": "ACT-10103",
+    "timestamp": "2026-09-07 18:01:22",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10102",
+    "timestamp": "2026-09-07 17:50:56",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "sarah",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10101",
+    "timestamp": "2026-09-07 17:50:17",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "selvin",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10100",
+    "timestamp": "2026-09-07 17:38:20",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Sarah",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10099",
+    "timestamp": "2026-09-07 17:38:20",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "John",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10098",
+    "timestamp": "2026-09-07 17:38:20",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10097",
+    "timestamp": "2026-09-07 17:38:20",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10096",
+    "timestamp": "2026-09-07 12:57:27",
+    "ticketId": "TK-1027",
+    "action": "TICKET_CREATED",
+    "actor": "Ravi Kumar",
+    "details": "Created ticket 'Wi-Fi is not connecting on my Dell workstation' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10095",
+    "timestamp": "2026-09-07 12:08:26",
+    "ticketId": "TK-1026",
+    "action": "TICKET_CREATED",
+    "actor": "\"Selvin",
+    "details": "Created ticket 'net slow\"' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10094",
+    "timestamp": "2026-09-05 17:47:12",
+    "ticketId": "TK-1025",
+    "action": "TICKET_CREATED",
+    "actor": "RK Ramesh",
+    "details": "Created ticket 'Vendor code creation' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10093",
+    "timestamp": "2026-09-05 17:23:19",
+    "ticketId": "TK-1024",
+    "action": "TICKET_CREATED",
+    "actor": "Ravi Kumar",
+    "details": "Created ticket 'Wi-Fi is not connecting on my Dell workstation' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10092",
+    "timestamp": "2026-09-05 17:21:11",
+    "ticketId": "TK-1023",
+    "action": "TICKET_CREATED",
+    "actor": "Ravi Kumar",
+    "details": "Created ticket 'Wi-Fi is not connecting on my Dell workstation' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10091",
+    "timestamp": "2026-09-05 17:21:00",
+    "ticketId": "TK-1022",
+    "action": "TICKET_CREATED",
+    "actor": "Ravi Kumar",
+    "details": "Created ticket 'Wi-Fi is not connecting on my Dell workstation' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10090",
+    "timestamp": "2026-09-05 15:46:49",
+    "ticketId": "TK-1021",
+    "action": "TICKET_CREATED",
+    "actor": "Ravi Kumar",
+    "details": "Created ticket 'Wi-Fi is not connecting on my Dell workstation' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10089",
+    "timestamp": "2026-09-05 15:42:26",
+    "ticketId": "TK-1020",
+    "action": "TICKET_CREATED",
+    "actor": "Ravi Kumar",
+    "details": "Created ticket 'Wi-Fi is not connecting on my Dell workstation' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10088",
+    "timestamp": "2026-09-05 15:42:13",
+    "ticketId": "TK-1019",
+    "action": "TICKET_CREATED",
+    "actor": "Ravi Kumar",
+    "details": "Created ticket 'Wi - Fi is not connecting on my Dell workstation' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10087",
+    "timestamp": "2026-09-05 12:49:43",
+    "ticketId": "TK-1017",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1017 as Closed. "
+  },
+  {
+    "id": "ACT-10086",
+    "timestamp": "2026-09-05 12:49:36",
+    "ticketId": "TK-1016",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1016 as Resolved. "
+  },
+  {
+    "id": "ACT-10085",
+    "timestamp": "2026-09-05 12:46:44",
+    "ticketId": "TK-1018",
+    "action": "TICKET_CREATED",
+    "actor": "✨അപ്പു🥰",
+    "details": "Created ticket '..... it' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10084",
+    "timestamp": "2026-09-04 17:11:21",
+    "ticketId": "TK-1017",
+    "action": "TICKET_CREATED",
+    "actor": "Selvin",
+    "details": "Created ticket 'Laptop screen flickering continuously' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10083",
+    "timestamp": "2026-09-04 15:48:33",
+    "ticketId": "TK-1015",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1015 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10082",
+    "timestamp": "2026-09-04 15:19:46",
+    "ticketId": "TK-1016",
+    "action": "TICKET_CREATED",
+    "actor": "Ramesh User",
+    "details": "Created ticket 'My desktop PC power supply fan is making loud noise and s...' (General IT Support / Medium Priority)"
+  },
+  {
+    "id": "ACT-10081",
+    "timestamp": "2026-09-04 15:07:41",
+    "ticketId": "TK-1014",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1014 as Resolved. "
+  },
+  {
+    "id": "ACT-10080",
+    "timestamp": "2026-09-04 13:41:25",
+    "ticketId": "TK-1015",
+    "action": "TICKET_CREATED",
+    "actor": "RK Ramesh",
+    "details": "Created ticket '...' (Hardware (PC, Laptop, Monitor, Keyboard) / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10079",
+    "timestamp": "2026-09-04 13:38:20",
+    "ticketId": "TK-1015",
+    "action": "TICKET_DELETED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Deleted ticket TK-1015 ('....')"
+  },
+  {
+    "id": "ACT-10078",
+    "timestamp": "2026-09-04 13:38:03",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10077",
+    "timestamp": "2026-09-04 13:37:16",
+    "ticketId": "TK-1015",
+    "action": "TICKET_CREATED",
+    "actor": "Shruti kumari ✝️",
+    "details": "Created ticket '....' (Hardware (PC, Laptop, Monitor, Keyboard) / High Priority)"
+  },
+  {
+    "id": "ACT-10076",
+    "timestamp": "2026-09-04 12:55:44",
+    "ticketId": "TK-1014",
+    "action": "TICKET_CREATED",
+    "actor": "John Doe (Marketing)",
+    "details": "Created ticket 'Wireless internet dropping every 5 mins in Marketing conf...' (Network (Wi-Fi, LAN, Internet connection) / High Priority)"
+  },
+  {
+    "id": "ACT-10075",
+    "timestamp": "2026-09-03 17:10:31",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Annamalai N",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10074",
+    "timestamp": "2026-09-03 17:07:34",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Annamalai N",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10073",
+    "timestamp": "2026-09-03 16:57:17",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Annamalai N",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10072",
+    "timestamp": "2026-09-03 16:54:06",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Annamalai N",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10071",
+    "timestamp": "2026-09-03 16:00:57",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Annamalai N",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10070",
+    "timestamp": "2026-09-03 15:57:49",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10069",
+    "timestamp": "2026-09-03 15:46:21",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10068",
+    "timestamp": "2026-09-03 15:39:13",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10067",
+    "timestamp": "2026-09-03 15:37:35",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10066",
+    "timestamp": "2026-09-03 14:59:13",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10065",
+    "timestamp": "2026-09-03 14:58:51",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10064",
+    "timestamp": "2026-09-03 14:43:35",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10063",
+    "timestamp": "2026-09-03 11:43:41",
+    "ticketId": "TK-1014",
+    "action": "TICKET_DELETED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Deleted ticket TK-1014 ('1111')"
+  },
+  {
+    "id": "ACT-10062",
+    "timestamp": "2026-09-03 11:42:21",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10061",
+    "timestamp": "2026-09-03 11:35:56",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10060",
+    "timestamp": "2026-09-03 11:35:41",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10059",
+    "timestamp": "2026-09-03 11:30:41",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10058",
+    "timestamp": "2026-09-03 11:30:07",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10057",
+    "timestamp": "2026-09-03 10:30:31",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10056",
+    "timestamp": "2026-09-03 10:30:18",
+    "ticketId": "TK-1014",
+    "action": "TICKET_CREATED",
+    "actor": "Standard User",
+    "details": "Created ticket '1111' (Software / Low Priority)"
+  },
+  {
+    "id": "ACT-10055",
+    "timestamp": "2026-09-03 10:30:07",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10054",
+    "timestamp": "2026-09-03 10:26:26",
+    "ticketId": "TK-1013",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Marked ticket TK-1013 as Resolved. "
+  },
+  {
+    "id": "ACT-10053",
+    "timestamp": "2026-09-03 10:26:07",
+    "ticketId": "TK-1013",
+    "action": "TICKET_CREATED",
+    "actor": "Standard User",
+    "details": "Created ticket 'live check' (Software / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10052",
+    "timestamp": "2026-09-03 10:25:39",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10051",
+    "timestamp": "2026-09-03 10:23:33",
+    "ticketId": "TK-1012",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Marked ticket TK-1012 as Resolved. "
+  },
+  {
+    "id": "ACT-10050",
+    "timestamp": "2026-09-03 10:23:06",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10049",
+    "timestamp": "2026-09-03 10:22:50",
+    "ticketId": "TK-1012",
+    "action": "TICKET_CREATED",
+    "actor": "Standard User",
+    "details": "Created ticket 'example' (Software / Medium Priority)"
+  },
+  {
+    "id": "ACT-10048",
+    "timestamp": "2026-09-03 10:22:15",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10047",
+    "timestamp": "2026-09-02 17:56:44",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10046",
+    "timestamp": "2026-09-02 17:55:41",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10045",
+    "timestamp": "2026-09-02 17:13:14",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10044",
+    "timestamp": "2026-09-02 17:10:44",
+    "ticketId": "TK-1011",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Marked ticket TK-1011 as Closed. "
+  },
+  {
+    "id": "ACT-10043",
+    "timestamp": "2026-09-02 17:10:27",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10042",
+    "timestamp": "2026-09-02 17:04:33",
+    "ticketId": "AUTH",
+    "action": "USER_APPROVED",
+    "actor": "IT Admin",
+    "details": "Approved user account 'user' (Standard User)"
+  },
+  {
+    "id": "ACT-10041",
+    "timestamp": "2026-09-02 17:04:23",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10040",
+    "timestamp": "2026-09-02 17:03:28",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10039",
+    "timestamp": "2026-09-02 17:01:59",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "David Brown",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10038",
+    "timestamp": "2026-09-02 17:01:59",
+    "ticketId": "AUTH",
+    "action": "USER_APPROVED",
+    "actor": "IT Admin",
+    "details": "Approved user account 'david.b' (David Brown)"
+  },
+  {
+    "id": "ACT-10037",
+    "timestamp": "2026-09-02 17:01:59",
+    "ticketId": "AUTH",
+    "action": "USER_REGISTERED",
+    "actor": "David Brown",
+    "details": "Signed up for account (USER) - Status: Pending Approval"
+  },
+  {
+    "id": "ACT-10036",
+    "timestamp": "2026-09-02 16:33:38",
+    "ticketId": "TK-1010",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Marked ticket TK-1010 as Closed. "
+  },
+  {
+    "id": "ACT-10035",
+    "timestamp": "2026-09-02 16:23:27",
+    "ticketId": "TK-1011",
+    "action": "TICKET_CREATED",
+    "actor": "Standard User",
+    "details": "Created ticket 'finsys problem' (Software / Medium Priority)"
+  },
+  {
+    "id": "ACT-10034",
+    "timestamp": "2026-09-02 16:22:57",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10033",
+    "timestamp": "2026-09-02 16:22:35",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10032",
+    "timestamp": "2026-09-02 16:22:27",
+    "ticketId": "TK-1009",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Marked ticket TK-1009 as Resolved. "
+  },
+  {
+    "id": "ACT-10031",
+    "timestamp": "2026-09-02 16:21:58",
+    "ticketId": "TK-1010",
+    "action": "TICKET_CREATED",
+    "actor": "Sarah Jenkins",
+    "details": "Created ticket 'net slow' (Software / Urgent Priority)"
+  },
+  {
+    "id": "ACT-10030",
+    "timestamp": "2026-09-02 16:21:16",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Sarah Jenkins",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10029",
+    "timestamp": "2026-09-02 15:55:38",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10028",
+    "timestamp": "2026-09-02 15:55:31",
+    "ticketId": "TK-1009",
+    "action": "TICKET_CREATED",
+    "actor": "Sarah Jenkins",
+    "details": "Created ticket 'abcd' (Software / Medium Priority)"
+  },
+  {
+    "id": "ACT-10027",
+    "timestamp": "2026-09-02 15:55:22",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Sarah Jenkins",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10026",
+    "timestamp": "2026-09-02 15:52:37",
+    "ticketId": "TK-1008",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Marked ticket TK-1008 as Resolved. Resolution: done"
+  },
+  {
+    "id": "ACT-10025",
+    "timestamp": "2026-09-02 15:50:52",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10024",
+    "timestamp": "2026-09-02 15:50:40",
+    "ticketId": "TK-1008",
+    "action": "TICKET_CREATED",
+    "actor": "Standard User",
+    "details": "Created ticket 'check abc' (Software / Medium Priority)"
+  },
+  {
+    "id": "ACT-10023",
+    "timestamp": "2026-09-02 15:50:13",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Standard User",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10022",
+    "timestamp": "2026-09-02 15:45:05",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Sarah Jenkins",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10021",
+    "timestamp": "2026-09-02 15:44:36",
+    "ticketId": "TK-1006",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Marked ticket TK-1006 as Resolved. "
+  },
+  {
+    "id": "ACT-10020",
+    "timestamp": "2026-09-02 15:44:01",
+    "ticketId": "TK-1007",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Marked ticket TK-1007 as Resolved. "
+  },
+  {
+    "id": "ACT-10019",
+    "timestamp": "2026-09-02 15:43:50",
+    "ticketId": "TK-1005",
+    "action": "TICKET_UPDATED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Updated ticket TK-1005"
+  },
+  {
+    "id": "ACT-10018",
+    "timestamp": "2026-09-02 15:43:43",
+    "ticketId": "TK-1004",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Marked ticket TK-1004 as Closed. "
+  },
+  {
+    "id": "ACT-10017",
+    "timestamp": "2026-09-02 15:43:35",
+    "ticketId": "TK-1003",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Marked ticket TK-1003 as Closed. "
+  },
+  {
+    "id": "ACT-10016",
+    "timestamp": "2026-09-02 15:43:25",
+    "ticketId": "TK-1003",
+    "action": "TICKET_UPDATED",
+    "actor": "David Kim (IT Specialist)",
+    "details": "Updated ticket TK-1003"
+  },
+  {
+    "id": "ACT-10015",
+    "timestamp": "2026-09-02 15:43:11",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10014",
+    "timestamp": "2026-09-02 15:42:47",
+    "ticketId": "TK-1007",
+    "action": "TICKET_CREATED",
+    "actor": "Sarah Jenkins",
+    "details": "Created ticket 'net not working' (Network / Medium Priority)"
+  },
+  {
+    "id": "ACT-10013",
+    "timestamp": "2026-09-02 15:42:05",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Sarah Jenkins",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10012",
+    "timestamp": "2026-09-02 15:41:04",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Sarah Jenkins",
+    "details": "Logged into system as role [USER]"
+  },
+  {
+    "id": "ACT-10011",
+    "timestamp": "2026-09-02 15:41:04",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "IT Support Admin",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-1001",
+    "timestamp": "2026-09-01 09:15:22",
+    "ticketId": "TK-1001",
+    "action": "TICKET_CREATED",
+    "actor": "Sarah Jenkins",
+    "details": "Created ticket 'Cannot connect to office Wi-Fi network (Secure-Corporate)'"
+  },
+  {
+    "id": "ACT-1002",
+    "timestamp": "2026-09-01 09:30:00",
+    "ticketId": "TK-1001",
+    "action": "AGENT_ASSIGNED",
+    "actor": "System",
+    "details": "Assigned ticket TK-1001 to David Kim (Network Lead)"
+  },
+  {
+    "id": "ACT-1003",
+    "timestamp": "2026-09-01 11:45:00",
+    "ticketId": "TK-1001",
+    "action": "TICKET_RESOLVED",
+    "actor": "David Kim",
+    "details": "Marked TK-1001 as Resolved. Resolution: Re-configured wireless access point channel bandwidth."
+  },
+  {
+    "id": "ACT-1004",
+    "timestamp": "2026-09-01 10:30:10",
+    "ticketId": "TK-1002",
+    "action": "TICKET_CREATED",
+    "actor": "Alex Rivera",
+    "details": "Created ticket 'Need VPN access set up for remote work approval'"
+  },
+  {
+    "id": "ACT-1005",
+    "timestamp": "2026-09-01 14:20:15",
+    "ticketId": "TK-1002",
+    "action": "TICKET_RESOLVED",
+    "actor": "Anita Patel",
+    "details": "Marked TK-1002 as Resolved. Resolution: Provisioned OpenVPN config file."
+  },
+  {
+    "id": "ACT-1006",
+    "timestamp": "2026-09-02 08:45:00",
+    "ticketId": "TK-1003",
+    "action": "TICKET_CREATED",
+    "actor": "Michael Chang",
+    "details": "Created ticket 'Dual monitor display flickering on workstation'"
+  },
+  {
+    "id": "ACT-1007",
+    "timestamp": "2026-09-02 10:15:00",
+    "ticketId": "TK-1003",
+    "action": "STATUS_UPDATED",
+    "actor": "Robert Vance",
+    "details": "Changed status of TK-1003 to In Progress"
+  },
+  {
+    "id": "ACT-1008",
+    "timestamp": "2026-09-02 11:10:05",
+    "ticketId": "TK-1004",
+    "action": "TICKET_CREATED",
+    "actor": "Elena Rostova",
+    "details": "Created ticket 'Outlook Desktop application crashing on startup'"
+  },
+  {
+    "id": "ACT-1009",
+    "timestamp": "2026-09-02 13:00:40",
+    "ticketId": "TK-1005",
+    "action": "TICKET_CREATED",
+    "actor": "James Wilson",
+    "details": "Created ticket 'Password reset for ERP Accounting Portal'"
+  },
+  {
+    "id": "ACT-10010",
+    "timestamp": "2026-09-02 13:25:00",
+    "ticketId": "TK-1005",
+    "action": "TICKET_RESOLVED",
+    "actor": "Anita Patel",
+    "details": "Marked TK-1005 as Resolved. Resolution: Temporary password link dispatched."
+  },
+  {
+    "id": "ACT-1011",
+    "timestamp": "2026-09-02 14:05:18",
+    "ticketId": "TK-1006",
+    "action": "TICKET_CREATED",
+    "actor": "Priya Sharma",
+    "details": "Created ticket 'Request for Python development environment setup'"
+  }
+]

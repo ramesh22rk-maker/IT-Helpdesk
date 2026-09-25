@@ -1,0 +1,13 @@
+[
+  {
+    "id": "USR-ADMIN",
+    "username": "Admin.rk",
+    "password": "admin@rk06",
+    "name": "Mr. Ramesh (IT Admin)",
+    "role": "admin",
+    "email": "rk.ramesh@sujanindustries.com",
+    "department": "IT",
+    "approved": true,
+    "status": "Approved"
+  }
+]
