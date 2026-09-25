@@ -1,5 +1,45 @@
 [
   {
+    "id": "ACT-10335",
+    "timestamp": "2026-09-25 15:55:12",
+    "ticketId": "TK-1116",
+    "action": "TICKET_CREATED",
+    "actor": "Anantha meena",
+    "details": "Created ticket 'BOM updation' (Software / Medium Priority)"
+  },
+  {
+    "id": "ACT-10334",
+    "timestamp": "2026-09-25 15:52:58",
+    "ticketId": "TK-1115",
+    "action": "TICKET_CREATED",
+    "actor": "Manjunathan",
+    "details": "Created ticket 'Stock issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10333",
+    "timestamp": "2026-09-25 15:52:15",
+    "ticketId": "TK-1114",
+    "action": "TICKET_CREATED",
+    "actor": "Mary",
+    "details": "Created ticket 'MRR issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10332",
+    "timestamp": "2026-09-25 15:51:30",
+    "ticketId": "TK-1113",
+    "action": "TICKET_CREATED",
+    "actor": "Quality",
+    "details": "Created ticket 'Finsys issue' (Software / High Priority)"
+  },
+  {
+    "id": "ACT-10331",
+    "timestamp": "2026-09-25 15:50:42",
+    "ticketId": "TK-1112",
+    "action": "TICKET_CREATED",
+    "actor": "PPC",
+    "details": "Created ticket 'Finsys issue' (Software / Medium Priority)"
+  },
+  {
     "id": "ACT-10330",
     "timestamp": "2026-09-25 15:21:50",
     "ticketId": "TK-1111",
