@@ -5,10 +5,10 @@ import {
   BarChart3, 
   History, 
   LayoutDashboard, 
-  LogOut,
-  Search,
-  Wifi,
-  CheckSquare
+  LogOut, 
+  Search, 
+  Globe, 
+  CheckSquare 
 } from 'lucide-react';
 import logoImg from '../assets/logo.webp';
 
@@ -121,23 +121,21 @@ export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout 
         {/* LAN IP Badge, User Profile & Logout */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
           
-          {lanInfo.lanIP && (
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              padding: '0.35rem 0.75rem',
-              background: '#dcfce7',
-              border: '1px solid #bbf7d0',
-              borderRadius: '999px',
-              fontSize: '0.75rem',
-              color: '#15803d',
-              fontWeight: 700
-            }} title={`Share this link with your 50 LAN PCs: ${lanInfo.lanURL}`}>
-              <Wifi size={13} />
-              <span>LAN: {lanInfo.lanIP}:5000</span>
-            </div>
-          )}
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            padding: '0.35rem 0.75rem',
+            background: '#dcfce7',
+            border: '1px solid #bbf7d0',
+            borderRadius: '999px',
+            fontSize: '0.75rem',
+            color: '#15803d',
+            fontWeight: 700
+          }} title="SIHPL Helpdesk is live on Render Cloud">
+            <Globe size={13} />
+            <span>Cloud Live</span>
+          </div>
 
           <div style={{
             display: 'flex',

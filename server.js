@@ -284,14 +284,16 @@ app.delete('/api/work-items/:id', (req, res) => {
 });
 
 app.get('/api/health', (req, res) => {
-  const lanIP = getLocalLANIP();
   res.json({ 
     status: 'OK', 
     timestamp: new Date().toISOString(),
-    lanIP,
-    lanURL: `http://${lanIP}:${PORT}`
+    cloud: true,
+    host: process.env.RENDER_EXTERNAL_HOSTNAME || req.headers.host || 'Render Cloud'
   });
 });
+
+// Serve public static assets
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve static compiled frontend in production
 const distPath = path.join(__dirname, 'dist');
@@ -303,14 +305,7 @@ if (fs.existsSync(distPath)) {
 }
 
 app.listen(PORT, HOST, () => {
-  const lanIP = getLocalLANIP();
-  const hostname = os.hostname();
-
   console.log(`=============================================================`);
-  console.log(` 🎧 SIHPL HELPDESK SERVER RUNNING FOR COMPANY LAN (50+ PCS)`);
-  console.log(`-------------------------------------------------------------`);
-  console.log(` 📍 Localhost Access (This PC) : http://localhost:${PORT}`);
-  console.log(` 🌐 Company LAN Access (Other PCs): http://${lanIP}:${PORT}`);
-  console.log(` 💻 Computer Hostname Link      : http://${hostname}:${PORT}`);
+  console.log(` 🚀 SIHPL HELPDESK SERVER RUNNING ON CLOUD (PORT: ${PORT})`);
   console.log(`=============================================================`);
 });
