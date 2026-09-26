@@ -12,7 +12,7 @@ export function generateManagementPDFReport(stats, tickets, activities, dateRang
   doc.setTextColor(255, 255, 255);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(20);
-  doc.text('IT HELPDESK MANAGEMENT REPORT', 14, 17);
+  doc.text('SIHPL HELPDESK MANAGEMENT REPORT', 14, 17);
 
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');

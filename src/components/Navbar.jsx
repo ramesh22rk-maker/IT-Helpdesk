@@ -76,7 +76,7 @@ export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout 
             />
           </div>
           <div>
-            <h1 style={{ fontSize: '1.25rem', fontWeight: 800, lineHeight: 1.1, color: '#0f172a' }}>IT HELPDESK</h1>
+            <h1 style={{ fontSize: '1.25rem', fontWeight: 800, lineHeight: 1.1, color: '#0f172a' }}>SIHPL Helpdesk</h1>
             <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>
               {isAdmin ? 'Company LAN Operations Portal' : 'User IT Support Portal'}
             </span>

@@ -13,25 +13,20 @@ let botStatus = {
   lastUpdated: new Date().toISOString()
 };
 
-// Company Department Options
+// Company Department Options (SIHPL)
 export const DEPARTMENTS = [
-  "PRODUCTION AGM",
-  "ACCOUNTS",
+  "ACC",
   "NPD",
   "PMD",
-  "HRD",
   "QAD",
-  "SALES",
-  "PRODUCTION",
-  "MIXING",
-  "IT",
   "PURCHASE",
+  "MIXING",
   "MARKETING",
   "MMD",
   "PPC",
   "SCM",
-  "COO",
-  "STORE"
+  "STORE",
+  "PRODUCTION"
 ];
 
 // Category Options

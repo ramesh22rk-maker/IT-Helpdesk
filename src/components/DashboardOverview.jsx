@@ -45,7 +45,7 @@ export default function DashboardOverview({ stats, tickets, activities, setActiv
           </div>
 
           <h2 style={{ fontSize: '2rem', fontWeight: 800, lineHeight: 1.2, marginBottom: '0.5rem', color: '#0f172a' }}>
-            IT Operations & Management Overview
+            SIHPL IT Operations & Management Overview
           </h2>
 
           <p style={{ color: '#64748b', fontSize: '0.975rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>

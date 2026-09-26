@@ -21,9 +21,8 @@ const SAVED_PROFILE_KEY = 'it_helpdesk_saved_profile';
 export const COMMON_ISSUE_CARDS = [
   {
     id: 'Finsys issue',
-    title: 'Finsys Issue',
+    title: 'Finsys issue',
     category: 'Finsys issue',
-    desc: 'ERP, billing, vouchers & reports',
     icon: Database,
     color: '#4f46e5',
     iconBg: '#e0e7ff',
@@ -31,20 +30,12 @@ export const COMMON_ISSUE_CARDS = [
     cardBg: '#f5f3ff',
     cardGlow: 'rgba(79, 70, 229, 0.2)',
     defaultPriority: 'High',
-    placeholder: 'e.g. Getting error while opening sales invoice or voucher entry in Finsys...',
-    presets: [
-      'Finsys voucher entry error',
-      'Sales billing print issue',
-      'Finsys login / authentication error',
-      'Finsys report generation stuck',
-      'Finsys client slow / crashing'
-    ]
+    placeholder: 'Describe your Finsys issue...'
   },
   {
     id: 'Internet issue',
-    title: 'Internet Issue',
+    title: 'Internet issue',
     category: 'Internet issue',
-    desc: 'Wi-Fi, LAN cable & slow browsing',
     icon: Wifi,
     color: '#0284c7',
     iconBg: '#e0f2fe',
@@ -52,20 +43,12 @@ export const COMMON_ISSUE_CARDS = [
     cardBg: '#f0f9ff',
     cardGlow: 'rgba(2, 132, 199, 0.2)',
     defaultPriority: 'High',
-    placeholder: 'e.g. LAN cable connected but showing No Internet on workstation...',
-    presets: [
-      'Wi-Fi disconnected / Not connecting',
-      'LAN cable not detecting network',
-      'Extremely slow internet speed',
-      'Cannot access company local server',
-      'Frequent disconnection'
-    ]
+    placeholder: 'Describe your Internet / Wi-Fi issue...'
   },
   {
     id: 'E-mail issue',
-    title: 'E-mail Issue',
+    title: 'E-mail issue',
     category: 'E-mail issue',
-    desc: 'Outlook, mailbox full & sending',
     icon: Mail,
     color: '#059669',
     iconBg: '#d1fae5',
@@ -73,20 +56,12 @@ export const COMMON_ISSUE_CARDS = [
     cardBg: '#f0fdf4',
     cardGlow: 'rgba(5, 150, 105, 0.2)',
     defaultPriority: 'Medium',
-    placeholder: 'e.g. Outlook repeatedly prompts for password and emails stuck in Outbox...',
-    presets: [
-      'Outlook crashing / Not opening',
-      'Emails stuck in Outbox (Not sending)',
-      'Mailbox storage full alert',
-      'Outlook password prompt / Sync error',
-      'Need new email ID or alias configuration'
-    ]
+    placeholder: 'Describe your E-mail / Outlook issue...'
   },
   {
     id: 'Hardware issue',
-    title: 'Hardware Issue',
+    title: 'Hardware issue',
     category: 'Hardware issue',
-    desc: 'PC, printer, monitor & accessories',
     icon: Cpu,
     color: '#d97706',
     iconBg: '#fef3c7',
@@ -94,20 +69,12 @@ export const COMMON_ISSUE_CARDS = [
     cardBg: '#fffbeb',
     cardGlow: 'rgba(217, 119, 6, 0.2)',
     defaultPriority: 'Medium',
-    placeholder: 'e.g. HP LaserJet printer showing paper jam / Monitor display flickering...',
-    presets: [
-      'Printer paper jam / Offline error',
-      'Monitor display blank or flickering',
-      'Keyboard / Mouse not working',
-      'System hanging / Computer not turning ON',
-      'UPS battery / Power supply issue'
-    ]
+    placeholder: 'Describe your PC, Printer, or Hardware issue...'
   },
   {
     id: 'Others',
     title: 'Others',
     category: 'Others',
-    desc: 'Software install, doubts & general IT',
     icon: Sparkles,
     color: '#7c3aed',
     iconBg: '#ede9fe',
@@ -115,35 +82,24 @@ export const COMMON_ISSUE_CARDS = [
     cardBg: '#faf5ff',
     cardGlow: 'rgba(124, 58, 237, 0.2)',
     defaultPriority: 'Low',
-    placeholder: 'e.g. Requesting installation of Adobe PDF reader or general IT query...',
-    presets: [
-      'Software installation request',
-      'Antivirus / Security alert query',
-      'Data backup assistance',
-      'Folder / Share drive access request',
-      'General IT doubt / Support'
-    ]
+    placeholder: 'Describe your issue or request...'
   }
 ];
 
+// Exact 12 requested departments
 export const COMPANY_DEPARTMENTS = [
-  'PRODUCTION AGM',
-  'ACCOUNTS',
+  'ACC',
   'NPD',
   'PMD',
-  'HRD',
   'QAD',
-  'SALES',
-  'PRODUCTION',
-  'MIXING',
-  'IT',
   'PURCHASE',
+  'MIXING',
   'MARKETING',
   'MMD',
   'PPC',
   'SCM',
-  'COO',
-  'STORE'
+  'STORE',
+  'PRODUCTION'
 ];
 
 export default function TicketSubmission({ currentUser, onTicketSubmitted, setActiveTab }) {
@@ -151,6 +107,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
   const [rememberProfile, setRememberProfile] = useState(true);
   const [hasSavedProfile, setHasSavedProfile] = useState(false);
 
+  // Email is explicitly BLANK and NOT autofilled
   const [formData, setFormData] = useState({
     requesterName: '',
     department: '',
@@ -165,7 +122,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
   const [submittedTicket, setSubmittedTicket] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
 
-  // Step 1 - C: Load saved profile from localStorage on mount
+  // Load saved Name & Department from localStorage (Email remains blank)
   useEffect(() => {
     try {
       const saved = localStorage.getItem(SAVED_PROFILE_KEY);
@@ -176,7 +133,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
           ...prev,
           requesterName: parsed.requesterName || prev.requesterName || (currentUser?.role !== 'admin' ? currentUser?.name : '') || '',
           department: parsed.department || prev.department || (currentUser?.role !== 'admin' ? currentUser?.department : '') || '',
-          email: parsed.email || prev.email || (currentUser?.role !== 'admin' ? currentUser?.email : '') || ''
+          email: '' // Keep email strictly blank for user to enter if they wish
         }));
         return;
       }
@@ -189,7 +146,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
         ...prev,
         requesterName: currentUser.name || '',
         department: currentUser.department || '',
-        email: currentUser.email || ''
+        email: ''
       }));
     }
   }, [currentUser]);
@@ -203,18 +160,10 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
     }));
   };
 
-  const handlePresetClick = (presetTitle) => {
-    setFormData(prev => ({
-      ...prev,
-      title: presetTitle
-    }));
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
 
-    // If user changes category dropdown manually, sync selectedCardId
     if (name === 'category') {
       const matchedCard = COMMON_ISSUE_CARDS.find(c => c.category === value);
       if (matchedCard) {
@@ -244,26 +193,24 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
     e.preventDefault();
     setErrorMsg('');
 
-    // Basic required check to ensure IT gets actionable info
     const reqName = formData.requesterName.trim() || currentUser?.name || 'Anonymous User';
     const dept = formData.department || currentUser?.department || 'General';
     const title = formData.title.trim();
     const desc = formData.description.trim();
 
     if (!title && !desc) {
-      setErrorMsg('Please enter a brief Issue Summary or Description before submitting.');
+      setErrorMsg('Please enter a brief Subject or Problem Description before submitting.');
       return;
     }
 
     setIsSubmitting(true);
 
-    // Save profile to localStorage if remember is enabled
+    // Save Name and Department (NOT email) to localStorage if remember is enabled
     if (rememberProfile) {
       try {
         const profileToSave = {
           requesterName: reqName,
-          department: dept,
-          email: formData.email.trim()
+          department: dept
         };
         localStorage.setItem(SAVED_PROFILE_KEY, JSON.stringify(profileToSave));
         setHasSavedProfile(true);
@@ -275,7 +222,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
     const payload = {
       requesterName: reqName,
       department: dept,
-      email: formData.email.trim() || currentUser?.email || '',
+      email: formData.email.trim(), // Optional
       category: formData.category || 'Others',
       priority: formData.priority || 'Medium',
       title: title || `${formData.category} reported by ${reqName}`,
@@ -292,9 +239,10 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
 
       if (data.success) {
         setSubmittedTicket(data.data);
-        // Retain user profile details for subsequent tickets while resetting issue-specific fields
+        // Reset issue-specific fields while keeping name/dept
         setFormData(prev => ({
           ...prev,
+          email: '', // clear email after submission
           title: '',
           description: ''
         }));
@@ -304,7 +252,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
       }
     } catch (err) {
       console.error(err);
-      setErrorMsg('Error connecting to IT Helpdesk backend server.');
+      setErrorMsg('Error connecting to SIHPL Helpdesk backend server.');
     } finally {
       setIsSubmitting(false);
     }
@@ -348,7 +296,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
               textAlign: 'left'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Ticket Tracking Number:</span>
+                <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Ticket Number:</span>
                 <span style={{ fontWeight: 800, color: 'var(--accent-primary)', fontSize: '1.15rem' }}>
                   {submittedTicket.id}
                 </span>
@@ -405,23 +353,19 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
         
         {/* Header */}
         <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '1.5rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
-            <div>
-              <h2 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#0f172a' }}>Raise IT Support Ticket</h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginTop: '0.2rem' }}>
-                Select your issue type below to quickly submit your problem to IT Support.
-              </p>
-            </div>
-          </div>
+          <h2 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#0f172a' }}>Raise IT Support Ticket</h2>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginTop: '0.2rem' }}>
+            Select your issue type below to quickly submit your problem to IT Support.
+          </p>
         </div>
 
-        {/* Step 1 - C: Profile Auto-Save Memory Bar */}
+        {/* Profile Auto-Save Memory Bar */}
         {hasSavedProfile && (
           <div className="profile-memory-bar">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <Check size={16} color="#16a34a" />
               <span>
-                Your profile is remembered (<strong>{formData.requesterName || 'User'}</strong> • {formData.department || 'General'}).
+                Remembered: <strong>{formData.requesterName || 'User'}</strong> ({formData.department || 'General'}).
               </span>
             </div>
             <button
@@ -439,12 +383,12 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
                 gap: '0.25rem'
               }}
             >
-              <RotateCcw size={12} /> Clear saved info
+              <RotateCcw size={12} /> Clear
             </button>
           </div>
         )}
 
-        {/* Step 1 - A: 1-Click Common Issue Quick Cards */}
+        {/* Select Issue Type (Quick Cards - Title ONLY, no description, no presets) */}
         <div style={{ marginBottom: '1.5rem' }}>
           <label style={{
             fontSize: '0.875rem',
@@ -453,7 +397,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
             display: 'block',
             marginBottom: '0.65rem'
           }}>
-            1. Select Issue Type (1-Click Selection)
+            Select Issue Type
           </label>
 
           <div className="quick-issue-grid">
@@ -471,7 +415,8 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
                     '--card-bg': card.cardBg,
                     '--card-glow': card.cardGlow,
                     '--icon-bg': card.iconBg,
-                    '--icon-color': card.iconColor
+                    '--icon-color': card.iconColor,
+                    padding: '0.85rem 0.65rem'
                   }}
                 >
                   {isSelected && (
@@ -479,33 +424,13 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
                       <Check size={12} strokeWidth={3} />
                     </div>
                   )}
-                  <div className="quick-card-icon-box">
-                    <Icon size={22} />
+                  <div className="quick-card-icon-box" style={{ width: '40px', height: '40px', marginBottom: '0.45rem' }}>
+                    <Icon size={20} />
                   </div>
-                  <div className="quick-card-title">{card.title}</div>
-                  <div className="quick-card-desc">{card.desc}</div>
+                  <div className="quick-card-title" style={{ fontSize: '0.9rem', marginBottom: 0 }}>{card.title}</div>
                 </div>
               );
             })}
-          </div>
-
-          {/* Quick Preset Subject Chips for the Selected Issue */}
-          <div style={{ background: '#f8fafc', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
-            <span style={{ fontSize: '0.775rem', fontWeight: 600, color: '#475569' }}>
-              💡 Common {currentCard.title} presets (Click to auto-fill subject):
-            </span>
-            <div className="quick-preset-chips" style={{ marginBottom: 0 }}>
-              {currentCard.presets.map((preset, idx) => (
-                <button
-                  type="button"
-                  key={idx}
-                  onClick={() => handlePresetClick(preset)}
-                  className={`quick-chip ${formData.title === preset ? 'active-chip' : ''}`}
-                >
-                  {preset}
-                </button>
-              ))}
-            </div>
           </div>
         </div>
 
@@ -558,21 +483,22 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
                 onChange={handleChange}
                 className="form-control"
               >
-                <option value="">-- Select Your Department --</option>
+                <option value="">-- Select Department --</option>
                 {COMPANY_DEPARTMENTS.map(d => <option key={d} value={d}>{d}</option>)}
               </select>
             </div>
 
+            {/* Email is completely optional and blank */}
             <div className="form-group">
               <label>
-                <Mail size={15} /> Email Address <span style={{ color: '#94a3b8', fontSize: '0.75rem' }}>(For notifications)</span>
+                <Mail size={15} /> Email Address <span style={{ color: '#94a3b8', fontSize: '0.75rem' }}>(Optional)</span>
               </label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="e.g. user@sujanindustries.com"
+                placeholder="Enter email (Optional)"
                 className="form-control"
               />
             </div>
@@ -598,6 +524,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
               </select>
             </div>
 
+            {/* Urgency Level: Just titles low, medium, high, urgent */}
             <div className="form-group">
               <label>
                 <ShieldAlert size={15} /> Urgency Level
@@ -608,16 +535,16 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
                 onChange={handleChange}
                 className="form-control"
               >
-                <option value="Low">Low - General inquiry / Non-urgent</option>
-                <option value="Medium">Medium - Standard operational issue</option>
-                <option value="High">High - Impairing work performance</option>
-                <option value="Urgent">Urgent - Work completely stopped</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Urgent">Urgent</option>
               </select>
             </div>
 
           </div>
 
-          {/* Subject / Issue Title */}
+          {/* Subject */}
           <div className="form-group" style={{ marginTop: '0.25rem' }}>
             <label>
               Subject / Short Summary <span style={{ color: '#dc2626' }}>*</span>
@@ -627,7 +554,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
               name="title"
               value={formData.title}
               onChange={handleChange}
-              placeholder={currentCard.presets[0] || 'Brief summary of the problem'}
+              placeholder="e.g. Wi-Fi disconnected / Finsys voucher error"
               className="form-control"
             />
           </div>
@@ -635,7 +562,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
           {/* Detailed Problem Description */}
           <div className="form-group">
             <label>
-              Detailed Description of IT Problem <span style={{ color: '#94a3b8', fontSize: '0.75rem' }}>(Optional details)</span>
+              Detailed Description of IT Problem <span style={{ color: '#94a3b8', fontSize: '0.75rem' }}>(Optional)</span>
             </label>
             <textarea
               name="description"
@@ -657,7 +584,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
               style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: 'var(--accent-primary)' }}
             />
             <label htmlFor="rememberProfileCheckbox" style={{ cursor: 'pointer', margin: 0, fontWeight: 500 }}>
-              Remember my Name and Department on this computer for faster submissions
+              Remember my Name and Department on this computer
             </label>
           </div>
 

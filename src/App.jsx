@@ -189,7 +189,7 @@ export default function App() {
         color: 'var(--text-muted)',
         fontSize: '0.825rem'
       }}>
-        IT Helpdesk System • Logged in as <strong>{currentUser.name}</strong> ({currentUser.role.toUpperCase()}) • LAN Access Live
+        SIHPL Helpdesk System • Logged in as <strong>{currentUser.name}</strong> ({currentUser.role.toUpperCase()}) • LAN Access Live
       </footer>
 
       {/* Floating WhatsApp Ticket Bot Launcher Button */}

@@ -14,24 +14,25 @@ export const EMAIL_CONFIG = {
   // IT HOD Email Address
   itHodEmail: 'rk.ramesh@sujanindustries.com',
 
-  // Company Department HOD Email Mapping for Sujan Industries
+  // Company Department HOD Email Mapping for Sujan Industries (SIHPL)
   departmentHODs: {
+    'ACC': ['gopalanprasad@sujanindustries.com'],
     'ACCOUNTS': ['gopalanprasad@sujanindustries.com'],
     'NPD': ['sigamani.s@sujanindustries.com', 'venkatesan.n@sujanindustries.com'],
     'PMD': ['annamalai.n@sujanindustries.com'],
-    'HRD': ['sanjay.anand@sujanindustries.com'],
     'QAD': ['qad@sujanindustries.com'],
-    'SALES': ['sales@sujanindustries.com'],
-    'PRODUCTION': ['production@sujanindustries.com'],
-    'MIXING': ['head.rnd@sujanindustries.com'],
-    'IT': ['rk.ramesh@sujanindustries.com'],
     'PURCHASE': ['joseph.c@sujanindustries.com'],
+    'MIXING': ['head.rnd@sujanindustries.com'],
     'MARKETING': ['marketing3.hosur@sujanindustries.com'],
     'MMD': ['vignesh.n@sujanindustries.com'],
     'PPC': ['ppc@sujanindustries.com'],
-    'PRODUCTION AGM': ['production.agm@sujanindustries.com'],
     'SCM': ['scm@sujanindustries.com'],
-    'COO': ['coo@sujanindustries.com'],
-    'STORE': ['store@sujanindustries.com']
+    'STORE': ['store@sujanindustries.com'],
+    'PRODUCTION': ['production@sujanindustries.com'],
+    'HRD': ['sanjay.anand@sujanindustries.com'],
+    'SALES': ['sales@sujanindustries.com'],
+    'IT': ['rk.ramesh@sujanindustries.com'],
+    'PRODUCTION AGM': ['production.agm@sujanindustries.com'],
+    'COO': ['coo@sujanindustries.com']
   }
 };

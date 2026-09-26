@@ -74,7 +74,7 @@ export default function AuthScreen({ onLoginSuccess }) {
               onError={(e) => { e.target.src = '/logo.webp'; }}
             />
           </div>
-          <h1 style={{ fontSize: '1.75rem', fontWeight: 800 }}>IT HELPDESK SYSTEM</h1>
+          <h1 style={{ fontSize: '1.75rem', fontWeight: 800 }}>SIHPL HELPDESK</h1>
           <p style={{ color: '#64748b', fontSize: '0.875rem', marginTop: '0.25rem' }}>
             Company LAN Operations & User Support Portal
           </p>

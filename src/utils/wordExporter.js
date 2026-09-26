@@ -16,7 +16,7 @@ export function downloadTicketsWord(tickets, filename = 'IT_Tickets_Report.doc')
     <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
     <head>
       <meta charset='utf-8'>
-      <title>IT Tickets Report</title>
+      <title>SIHPL Helpdesk - IT Tickets Report</title>
       <style>
         body { font-family: Arial, sans-serif; font-size: 11pt; color: #1e293b; }
         h2 { color: #4f46e5; margin-bottom: 12px; }
@@ -27,7 +27,7 @@ export function downloadTicketsWord(tickets, filename = 'IT_Tickets_Report.doc')
       </style>
     </head>
     <body>
-      <h2>IT Tickets Report</h2>
+      <h2>SIHPL Helpdesk - IT Tickets Report</h2>
       <table>
         <thead>
           <tr>
