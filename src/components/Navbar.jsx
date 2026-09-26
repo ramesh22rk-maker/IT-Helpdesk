@@ -51,34 +51,74 @@ export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout 
     <header className="glass-panel" style={{ padding: '0.85rem 1.5rem', marginBottom: '1.75rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
         
-        {/* Brand Image Logo */}
+        {/* Brand Image Logo & Title Section */}
         <div 
           onClick={() => setActiveTab(isAdmin ? 'dashboard' : 'submit')} 
-          style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}
+          className="brand-container"
+          style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', cursor: 'pointer', userSelect: 'none' }}
+          title="SIHPL IT Helpdesk"
         >
-          <div style={{
-            height: '44px',
-            padding: '2px 8px',
-            borderRadius: '10px',
+          <div className="brand-logo-box" style={{
+            height: '46px',
+            padding: '3px 10px',
+            borderRadius: '12px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
             border: '1px solid #cbd5e1',
-            background: '#ffffff'
+            background: '#ffffff',
+            transition: 'all 0.2s ease'
           }}>
             <img 
               src={logoImg} 
               alt="Sujan Industries Logo" 
-              style={{ height: '36px', maxWidth: '160px', objectFit: 'contain' }}
+              style={{ height: '36px', maxWidth: '165px', objectFit: 'contain' }}
               onError={(e) => { e.target.src = '/logo.webp'; }}
             />
           </div>
-          <div>
-            <h1 style={{ fontSize: '1.25rem', fontWeight: 800, lineHeight: 1.1, color: '#0f172a' }}>SIHPL Helpdesk</h1>
-            <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>
-              {isAdmin ? 'Company LAN Operations Portal' : 'User IT Support Portal'}
-            </span>
+
+          {/* Elegant Divider */}
+          <div style={{
+            height: '30px',
+            width: '1.5px',
+            background: '#cbd5e1',
+            borderRadius: '999px',
+            opacity: 0.8
+          }} />
+
+          {/* Titles: SIHPL on top, IT Helpdesk below */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <h1 style={{ 
+              fontSize: '1.35rem', 
+              fontWeight: 900, 
+              lineHeight: 1.05, 
+              color: '#0f172a',
+              letterSpacing: '0.04em',
+              margin: 0
+            }}>
+              SIHPL
+            </h1>
+            <div style={{ 
+              fontSize: '0.8rem', 
+              fontWeight: 700, 
+              color: '#4f46e5',
+              letterSpacing: '0.05em',
+              lineHeight: 1.2,
+              marginTop: '2px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem'
+            }}>
+              <span>IT Helpdesk</span>
+              <span style={{
+                display: 'inline-block',
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: '#10b981'
+              }} />
+            </div>
           </div>
         </div>
 
