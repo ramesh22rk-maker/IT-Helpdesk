@@ -57,21 +57,20 @@ export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout 
           style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}
         >
           <div style={{
-            width: '42px',
-            height: '42px',
+            height: '44px',
+            padding: '2px 8px',
             borderRadius: '10px',
-            overflow: 'hidden',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 4px 14px rgba(79, 70, 229, 0.25)',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
             border: '1px solid #cbd5e1',
             background: '#ffffff'
           }}>
             <img 
               src={logoImg} 
-              alt="IT Helpdesk Logo" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              alt="Sujan Industries Logo" 
+              style={{ height: '36px', maxWidth: '160px', objectFit: 'contain' }}
               onError={(e) => { e.target.src = '/logo.webp'; }}
             />
           </div>

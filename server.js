@@ -25,8 +25,6 @@ import {
   getWorkStats
 } from './db.js';
 import { sendTicketNotificationEmail } from './mailer.js';
-import { getWhatsAppStatus, processIncomingWhatsAppMessage } from './whatsappService.js';
-import { initWhatsAppBot } from './whatsappBot.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -295,47 +293,6 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// WhatsApp Integration Endpoints
-app.get('/api/whatsapp/status', (req, res) => {
-  const status = getWhatsAppStatus();
-  res.json({ success: true, data: status });
-});
-
-app.post('/api/whatsapp/simulate', async (req, res) => {
-  const { senderId = '919876543210', senderName = 'WhatsApp Test User', messageText } = req.body;
-  if (!messageText) {
-    return res.status(400).json({ success: false, message: 'messageText is required' });
-  }
-
-  const result = await processIncomingWhatsAppMessage({ senderId, senderName, messageText });
-  if (result && typeof result === 'object') {
-    res.json({
-      success: true,
-      replyText: result.replyText || result.toString(),
-      buttons: result.buttons || null,
-      step: result.step || null
-    });
-  } else {
-    res.json({ success: true, replyText: result, buttons: null });
-  }
-});
-
-app.post('/api/whatsapp/webhook', async (req, res) => {
-  // Webhook for Meta WhatsApp Business API / Twilio
-  const senderId = req.body.From || req.body.senderId || req.body.from;
-  const senderName = req.body.ProfileName || req.body.senderName || senderId;
-  const messageText = req.body.Body || req.body.messageText || req.body.text;
-
-  if (!senderId || !messageText) {
-    return res.status(400).json({ success: false, message: 'Invalid webhook payload format' });
-  }
-
-  const result = await processIncomingWhatsAppMessage({ senderId, senderName, messageText });
-  const replyText = result && typeof result === 'object' ? (result.replyText || result.toString()) : result;
-  const buttons = result && typeof result === 'object' ? result.buttons : null;
-  res.json({ success: true, replyText, buttons });
-});
-
 // Serve static compiled frontend in production
 const distPath = path.join(__dirname, 'dist');
 if (fs.existsSync(distPath)) {
@@ -350,13 +307,10 @@ app.listen(PORT, HOST, () => {
   const hostname = os.hostname();
 
   console.log(`=============================================================`);
-  console.log(` 🎧 IT HELPDESK SERVER RUNNING FOR COMPANY LAN (50+ PCS)`);
+  console.log(` 🎧 SIHPL HELPDESK SERVER RUNNING FOR COMPANY LAN (50+ PCS)`);
   console.log(`-------------------------------------------------------------`);
   console.log(` 📍 Localhost Access (This PC) : http://localhost:${PORT}`);
   console.log(` 🌐 Company LAN Access (Other PCs): http://${lanIP}:${PORT}`);
   console.log(` 💻 Computer Hostname Link      : http://${hostname}:${PORT}`);
   console.log(`=============================================================`);
-
-  // Initialize WhatsApp Bot asynchronously
-  initWhatsAppBot();
 });

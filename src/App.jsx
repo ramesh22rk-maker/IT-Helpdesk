@@ -8,8 +8,6 @@ import ManagementReports from './components/ManagementReports';
 import ActivityLog from './components/ActivityLog';
 import UserTicketHistory from './components/UserTicketHistory';
 import WorkTracker from './components/WorkTracker';
-import WhatsAppChatModal from './components/WhatsAppChatModal';
-import { MessageSquare } from 'lucide-react';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(() => {
@@ -22,7 +20,6 @@ export default function App() {
   const [stats, setStats] = useState(null);
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isWhatsAppModalOpen, setIsWhatsAppModalOpen] = useState(false);
 
   const handleLoginSuccess = (user) => {
     setCurrentUser(user);
@@ -109,7 +106,7 @@ export default function App() {
             fontSize: '1.1rem',
             color: 'var(--text-muted)'
           }}>
-            Connecting to IT Helpdesk server...
+            Connecting to SIHPL Helpdesk server...
           </div>
         ) : (
           <>
@@ -191,25 +188,6 @@ export default function App() {
       }}>
         SIHPL Helpdesk System • Logged in as <strong>{currentUser.name}</strong> ({currentUser.role.toUpperCase()}) • LAN Access Live
       </footer>
-
-      {/* Floating WhatsApp Ticket Bot Launcher Button */}
-      <button
-        onClick={() => setIsWhatsAppModalOpen(true)}
-        className="fixed bottom-6 right-6 z-40 bg-emerald-600 hover:bg-emerald-500 text-white p-3.5 rounded-full shadow-2xl flex items-center gap-2 font-bold transition-all hover:scale-105 active:scale-95 group border border-emerald-400/40"
-        title="Raise Ticket via WhatsApp Bot"
-      >
-        <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-          <MessageSquare className="w-4 h-4 text-white" />
-        </div>
-        <span className="text-sm pr-1">WhatsApp Ticket Bot</span>
-        <span className="w-2.5 h-2.5 rounded-full bg-emerald-300 animate-ping" />
-      </button>
-
-      {/* WhatsApp Chat Modal */}
-      <WhatsAppChatModal
-        isOpen={isWhatsAppModalOpen}
-        onClose={() => setIsWhatsAppModalOpen(false)}
-      />
 
     </div>
   );

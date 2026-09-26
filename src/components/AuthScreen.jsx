@@ -55,22 +55,22 @@ export default function AuthScreen({ onLoginSuccess }) {
         {/* Company Image Logo */}
         <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
           <div style={{
-            width: '90px',
-            height: '90px',
-            borderRadius: '20px',
-            margin: '0 auto 1rem auto',
-            overflow: 'hidden',
+            width: '220px',
+            height: '70px',
+            borderRadius: '14px',
+            margin: '0 auto 1.25rem auto',
+            padding: '6px 12px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 8px 25px rgba(79, 70, 229, 0.2)',
-            border: '2px solid #e2e8f0',
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.06)',
+            border: '1px solid #e2e8f0',
             background: '#ffffff'
           }}>
             <img 
               src={logoImg} 
-              alt="IT Helpdesk Logo" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              alt="Sujan Industries Logo" 
+              style={{ maxHeight: '55px', maxWidth: '100%', objectFit: 'contain' }}
               onError={(e) => { e.target.src = '/logo.webp'; }}
             />
           </div>
