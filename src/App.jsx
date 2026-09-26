@@ -113,6 +113,15 @@ export default function App() {
           </div>
         ) : (
           <>
+            {/* Common Raise IT Ticket Tab for both roles */}
+            {activeTab === 'submit' && (
+              <TicketSubmission
+                currentUser={currentUser}
+                onTicketSubmitted={fetchData}
+                setActiveTab={setActiveTab}
+              />
+            )}
+
             {/* Common Work Tracker Tab for both roles */}
             {activeTab === 'work-tracker' && (
               <WorkTracker
@@ -124,14 +133,6 @@ export default function App() {
             {/* User View Tabs */}
             {!isAdmin && (
               <>
-                {activeTab === 'submit' && (
-                  <TicketSubmission
-                    currentUser={currentUser}
-                    onTicketSubmitted={fetchData}
-                    setActiveTab={setActiveTab}
-                  />
-                )}
-
                 {activeTab === 'my-tickets' && (
                   <UserTicketHistory
                     user={currentUser}

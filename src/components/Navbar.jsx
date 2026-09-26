@@ -32,6 +32,7 @@ export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout 
   const adminNavItems = [
     { id: 'dashboard', label: 'Overview', icon: LayoutDashboard },
     { id: 'tickets', label: 'All Tickets Queue', icon: ListFilter, badge: stats?.open || 0 },
+    { id: 'submit', label: 'Raise IT Ticket', icon: PlusCircle },
     { id: 'work-tracker', label: 'Work Tracker & Updates', icon: CheckSquare },
     { id: 'reports', label: 'Management Reports & Analytics', icon: BarChart3 },
     { id: 'activity', label: 'Activity Audit Log', icon: History }

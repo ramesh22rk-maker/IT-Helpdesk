@@ -14,7 +14,7 @@ export default function TicketQueue({ tickets, onRefreshTickets }) {
   const [endDate, setEndDate] = useState('');
   const [selectedTicket, setSelectedTicket] = useState(null);
 
-  const categories = ['All', 'Software', 'Hardware', 'Network', 'Access & Security', 'Email & Services', 'General IT Doubt'];
+  const categories = ['All', 'Finsys issue', 'Internet issue', 'E-mail issue', 'Hardware issue', 'Others'];
   const priorities = ['All', 'Low', 'Medium', 'High', 'Urgent'];
   const statuses = ['All', 'Open', 'In Progress', 'Resolved', 'Closed'];
 

@@ -1,5 +1,157 @@
 [
   {
+    "id": "ACT-10354",
+    "timestamp": "2026-09-25 17:57:05",
+    "ticketId": "TK-1120",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1120 as Resolved. "
+  },
+  {
+    "id": "ACT-10353",
+    "timestamp": "2026-09-25 17:57:01",
+    "ticketId": "TK-1119",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1119 as Closed. "
+  },
+  {
+    "id": "ACT-10352",
+    "timestamp": "2026-09-25 17:56:33",
+    "ticketId": "TK-1118",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1118 as Resolved. "
+  },
+  {
+    "id": "ACT-10351",
+    "timestamp": "2026-09-25 17:56:27",
+    "ticketId": "TK-1117",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1117 as Closed. "
+  },
+  {
+    "id": "ACT-10350",
+    "timestamp": "2026-09-25 17:56:18",
+    "ticketId": "TK-1115",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1115 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10349",
+    "timestamp": "2026-09-25 17:56:12",
+    "ticketId": "TK-1116",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1116 as Resolved. "
+  },
+  {
+    "id": "ACT-10348",
+    "timestamp": "2026-09-25 17:56:07",
+    "ticketId": "TK-1114",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1114 as Resolved. "
+  },
+  {
+    "id": "ACT-10347",
+    "timestamp": "2026-09-25 17:56:02",
+    "ticketId": "TK-1113",
+    "action": "STATUS_UPDATED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Changed status of TK-1113 from Open to In Progress"
+  },
+  {
+    "id": "ACT-10346",
+    "timestamp": "2026-09-25 17:55:53",
+    "ticketId": "TK-1112",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1112 as Resolved. "
+  },
+  {
+    "id": "ACT-10345",
+    "timestamp": "2026-09-25 17:55:48",
+    "ticketId": "TK-1111",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1111 as Resolved. "
+  },
+  {
+    "id": "ACT-10344",
+    "timestamp": "2026-09-25 17:55:41",
+    "ticketId": "TK-1110",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1110 as Resolved. "
+  },
+  {
+    "id": "ACT-10343",
+    "timestamp": "2026-09-25 17:55:34",
+    "ticketId": "TK-1109",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1109 as Closed. "
+  },
+  {
+    "id": "ACT-10342",
+    "timestamp": "2026-09-25 17:55:30",
+    "ticketId": "TK-1108",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1108 as Resolved. "
+  },
+  {
+    "id": "ACT-10341",
+    "timestamp": "2026-09-25 17:55:24",
+    "ticketId": "TK-1107",
+    "action": "TICKET_RESOLVED",
+    "actor": "Mr. Ramesh (HOD/Manager)",
+    "details": "Marked ticket TK-1107 as Closed. "
+  },
+  {
+    "id": "ACT-10340",
+    "timestamp": "2026-09-25 17:55:03",
+    "ticketId": "AUTH",
+    "action": "USER_LOGIN",
+    "actor": "Mr. Ramesh (IT Admin)",
+    "details": "Logged into system as role [ADMIN]"
+  },
+  {
+    "id": "ACT-10339",
+    "timestamp": "2026-09-25 17:54:47",
+    "ticketId": "TK-1120",
+    "action": "TICKET_CREATED",
+    "actor": "IT REGULAR",
+    "details": "Created ticket 'Mail monitoring' (Email & Services / High Priority)"
+  },
+  {
+    "id": "ACT-10338",
+    "timestamp": "2026-09-25 17:45:44",
+    "ticketId": "TK-1119",
+    "action": "TICKET_CREATED",
+    "actor": "Venkatesan",
+    "details": "Created ticket 'Mail configuration' (Email & Services / Medium Priority)"
+  },
+  {
+    "id": "ACT-10337",
+    "timestamp": "2026-09-25 17:45:01",
+    "ticketId": "TK-1118",
+    "action": "TICKET_CREATED",
+    "actor": "Lithwin",
+    "details": "Created ticket 'System laging' (Hardware / High Priority)"
+  },
+  {
+    "id": "ACT-10336",
+    "timestamp": "2026-09-25 17:43:59",
+    "ticketId": "TK-1117",
+    "action": "TICKET_CREATED",
+    "actor": "Vignesh",
+    "details": "Created ticket 'Mail configuration' (Email & Services / High Priority)"
+  },
+  {
     "id": "ACT-10335",
     "timestamp": "2026-09-25 15:55:12",
     "ticketId": "TK-1116",

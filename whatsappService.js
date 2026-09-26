@@ -36,12 +36,11 @@ export const DEPARTMENTS = [
 
 // Category Options
 export const CATEGORIES = [
-  "Hardware (PC, Laptop, Monitor, Keyboard)",
-  "Software (Outlook, ERP, Windows, Office)",
-  "Network (Wi-Fi, LAN, Internet connection)",
-  "Access & Security (Password Reset, VPN)",
-  "Printer & Scanner (Paper Jam, Toner, Network)",
-  "General IT Support"
+  "Finsys issue",
+  "Internet issue",
+  "E-mail issue",
+  "Hardware issue",
+  "Others"
 ];
 
 // Priority Options
@@ -311,13 +310,23 @@ export async function processIncomingWhatsAppMessage({ senderId, senderName, mes
       }
     }
 
-    const title = description.length > 60 ? description.substring(0, 57) + '...' : description;
+    let detectedCategory = "Others";
+    const lowerDesc = description.toLowerCase();
+    if (lowerDesc.includes('finsys') || lowerDesc.includes('voucher') || lowerDesc.includes('billing') || lowerDesc.includes('erp')) {
+      detectedCategory = "Finsys issue";
+    } else if (lowerDesc.includes('internet') || lowerDesc.includes('wifi') || lowerDesc.includes('wi-fi') || lowerDesc.includes('lan') || lowerDesc.includes('network')) {
+      detectedCategory = "Internet issue";
+    } else if (lowerDesc.includes('mail') || lowerDesc.includes('outlook') || lowerDesc.includes('inbox') || lowerDesc.includes('outbox')) {
+      detectedCategory = "E-mail issue";
+    } else if (lowerDesc.includes('hardware') || lowerDesc.includes('printer') || lowerDesc.includes('mouse') || lowerDesc.includes('keyboard') || lowerDesc.includes('monitor') || lowerDesc.includes('pc') || lowerDesc.includes('laptop')) {
+      detectedCategory = "Hardware issue";
+    }
 
     // Create the ticket in DB
     const newTicket = createTicket({
       title,
       description,
-      category: "General IT Support",
+      category: detectedCategory,
       priority: "Medium",
       requesterName,
       department: session.department,
