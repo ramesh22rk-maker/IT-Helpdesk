@@ -86,20 +86,22 @@ export const COMMON_ISSUE_CARDS = [
   }
 ];
 
-// Exact 12 requested departments
+// Company Departments listing
 export const COMPANY_DEPARTMENTS = [
   'ACC',
+  'HRD',
+  'IT',
+  'MARKETING',
+  'MIXING',
+  'MMD',
   'NPD',
   'PMD',
-  'QAD',
-  'PURCHASE',
-  'MIXING',
-  'MARKETING',
-  'MMD',
   'PPC',
+  'PRODUCTION',
+  'PURCHASE',
+  'QAD',
   'SCM',
-  'STORE',
-  'PRODUCTION'
+  'STORE'
 ];
 
 export default function TicketSubmission({ currentUser, onTicketSubmitted, setActiveTab }) {
