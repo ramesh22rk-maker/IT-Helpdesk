@@ -61,9 +61,9 @@ export default function WorkTracker({ currentUser, onWorkItemChanged }) {
   const [updateHoursSpent, setUpdateHoursSpent] = useState('1');
   const [submittingUpdate, setSubmittingUpdate] = useState(false);
 
-  const fetchWorkItems = async () => {
+  const fetchWorkItems = async (isInitial = false) => {
     try {
-      setLoading(true);
+      if (isInitial) setLoading(true);
       const [itemsRes, statsRes] = await Promise.all([
         fetch('/api/work-items'),
         fetch('/api/work-items/stats')
@@ -76,13 +76,13 @@ export default function WorkTracker({ currentUser, onWorkItemChanged }) {
     } catch (err) {
       console.error('Error fetching work items:', err);
     } finally {
-      setLoading(false);
+      if (isInitial) setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchWorkItems();
-    const interval = setInterval(fetchWorkItems, 5000);
+    fetchWorkItems(true);
+    const interval = setInterval(() => fetchWorkItems(false), 5000);
     return () => clearInterval(interval);
   }, []);
 

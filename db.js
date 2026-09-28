@@ -1,21 +1,25 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import pg from 'pg';
+import { MongoClient } from 'mongodb';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DATA_DIR = path.join(__dirname, 'data');
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 const TICKETS_FILE = path.join(DATA_DIR, 'tickets.json');
 const ACTIVITY_FILE = path.join(DATA_DIR, 'activity.json');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
+const WORK_ITEMS_FILE = path.join(DATA_DIR, 'work_items.json');
 
 // Ensure data directory exists
 if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
-function formatDate(date = new Date()) {
+// Format local date string (YYYY-MM-DD HH:mm:ss)
+export function formatDate(date = new Date()) {
   const d = new Date(date);
   const pad = (n) => String(n).padStart(2, '0');
   const year = d.getFullYear();
@@ -27,7 +31,7 @@ function formatDate(date = new Date()) {
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
-// Company IT Admin: Admin.rk
+// Company IT Admin default credentials
 const defaultUsers = [
   {
     id: "USR-ADMIN",
@@ -230,308 +234,6 @@ const defaultActivity = [
   }
 ];
 
-function readJSONFile(filePath, defaultContent) {
-  try {
-    if (!fs.existsSync(filePath)) {
-      fs.writeFileSync(filePath, JSON.stringify(defaultContent, null, 2), 'utf-8');
-      return defaultContent;
-    }
-    const content = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(content);
-  } catch (err) {
-    console.error(`Error reading ${filePath}:`, err);
-    return defaultContent;
-  }
-}
-
-function writeJSONFile(filePath, data) {
-  try {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
-    return true;
-  } catch (err) {
-    console.error(`Error writing ${filePath}:`, err);
-    return false;
-  }
-}
-
-export function getAllUsers() {
-  return readJSONFile(USERS_FILE, defaultUsers);
-}
-
-export function authenticateUser(username, password) {
-  const cleanUsername = (username || '').trim();
-  const cleanPassword = (password || '').trim();
-
-  if (!cleanUsername) {
-    return { success: false, message: 'Username / Name is required' };
-  }
-
-  // Admin Login: Username must be 'Admin.rk' or 'admin.rk' and password 'admin@rk06'
-  if (cleanUsername.toLowerCase() === 'admin.rk') {
-    if (cleanPassword === 'admin@rk06') {
-      const adminUser = {
-        id: "USR-ADMIN",
-        username: "Admin.rk",
-        name: "Mr. Ramesh (IT Admin)",
-        role: "admin",
-        email: "rk.ramesh@sujanindustries.com",
-        department: "IT"
-      };
-
-      logActivity({
-        ticketId: "AUTH",
-        action: "USER_LOGIN",
-        actor: adminUser.name,
-        details: `Logged into system as role [ADMIN]`
-      });
-
-      return { success: true, user: adminUser };
-    } else {
-      return { success: false, message: 'Invalid username or password' };
-    }
-  }
-
-  // User Login: Any entered name with password 'user@123'
-  if (cleanPassword === 'user@123') {
-    const users = getAllUsers();
-    let existingUser = users.find(u => 
-      u.username.toLowerCase() === cleanUsername.toLowerCase() ||
-      u.name.toLowerCase() === cleanUsername.toLowerCase()
-    );
-
-    let userObj;
-    if (existingUser) {
-      const { password: _, ...rest } = existingUser;
-      userObj = rest;
-    } else {
-      userObj = {
-        id: `USR-${Date.now().toString().slice(-6)}`,
-        username: cleanUsername,
-        name: cleanUsername,
-        role: "user",
-        email: `${cleanUsername.toLowerCase().replace(/[^a-z0-9]/g, '') || 'user'}@sujanindustries.com`,
-        department: "General"
-      };
-    }
-
-    logActivity({
-      ticketId: "AUTH",
-      action: "USER_LOGIN",
-      actor: userObj.name,
-      details: `Logged into system as role [USER]`
-    });
-
-    return { success: true, user: userObj };
-  }
-
-  return { success: false, message: 'Invalid username or password' };
-}
-
-// Ticket Management Methods
-export function getAllTickets() {
-  return readJSONFile(TICKETS_FILE, defaultTickets);
-}
-
-export function getUserTickets(userEmail, userName) {
-  const tickets = getAllTickets();
-  const emailLower = (userEmail || '').toLowerCase().trim();
-  const nameLower = (userName || '').toLowerCase().trim();
-
-  return tickets.filter(t => 
-    (emailLower && t.email && t.email.toLowerCase().trim() === emailLower) ||
-    (nameLower && t.requesterName && t.requesterName.toLowerCase().trim() === nameLower)
-  );
-}
-
-export function getTicketById(id) {
-  const tickets = getAllTickets();
-  return tickets.find(t => t.id.toLowerCase() === id.toLowerCase().trim()) || null;
-}
-
-export function createTicket(ticketData) {
-  const tickets = getAllTickets();
-  
-  let nextNum = 1001;
-  if (tickets.length > 0) {
-    const ids = tickets.map(t => parseInt(t.id.replace('TK-', ''))).filter(n => !isNaN(n));
-    if (ids.length > 0) {
-      nextNum = Math.max(...ids) + 1;
-    }
-  }
-  
-  const nowStr = formatDate();
-  const newTicket = {
-    id: `TK-${nextNum}`,
-    title: ticketData.title || "Untitled Ticket",
-    description: ticketData.description || "",
-    category: ticketData.category || "General",
-    priority: ticketData.priority || "Medium",
-    status: "Open",
-    requesterName: ticketData.requesterName || "Anonymous User",
-    department: ticketData.department || "General",
-    email: ticketData.email || "",
-    assignedTo: "Unassigned",
-    resolutionNotes: "",
-    createdAt: nowStr,
-    updatedAt: nowStr,
-    resolvedAt: null
-  };
-
-  tickets.unshift(newTicket);
-  writeJSONFile(TICKETS_FILE, tickets);
-
-  logActivity({
-    ticketId: newTicket.id,
-    action: "TICKET_CREATED",
-    actor: newTicket.requesterName,
-    details: `Created ticket '${newTicket.title}' (${newTicket.category} / ${newTicket.priority} Priority)`
-  });
-
-  return newTicket;
-}
-
-export function updateTicket(id, updates, actor = "Support Agent") {
-  const tickets = getAllTickets();
-  const index = tickets.findIndex(t => t.id.toLowerCase() === id.toLowerCase().trim());
-  if (index === -1) return null;
-
-  const oldTicket = tickets[index];
-  const nowStr = formatDate();
-  
-  const isResolving = (updates.status === 'Resolved' || updates.status === 'Closed') && oldTicket.status !== 'Resolved' && oldTicket.status !== 'Closed';
-
-  const updatedTicket = {
-    ...oldTicket,
-    ...updates,
-    updatedAt: nowStr,
-    resolvedAt: isResolving ? nowStr : (updates.status === 'Open' || updates.status === 'In Progress' ? null : oldTicket.resolvedAt)
-  };
-
-  tickets[index] = updatedTicket;
-  writeJSONFile(TICKETS_FILE, tickets);
-
-  let action = "TICKET_UPDATED";
-  let detailMsg = `Updated ticket ${id}`;
-
-  if (updates.status && updates.status !== oldTicket.status) {
-    if (updates.status === 'Resolved' || updates.status === 'Closed') {
-      action = "TICKET_RESOLVED";
-      detailMsg = `Marked ticket ${id} as ${updates.status}. ${updates.resolutionNotes ? 'Resolution: ' + updates.resolutionNotes : ''}`;
-    } else {
-      action = "STATUS_UPDATED";
-      detailMsg = `Changed status of ${id} from ${oldTicket.status} to ${updates.status}`;
-    }
-  } else if (updates.assignedTo && updates.assignedTo !== oldTicket.assignedTo) {
-    action = "AGENT_ASSIGNED";
-    detailMsg = `Assigned ticket ${id} to ${updates.assignedTo}`;
-  } else if (updates.resolutionNotes && updates.resolutionNotes !== oldTicket.resolutionNotes) {
-    action = "RESOLUTION_UPDATED";
-    detailMsg = `Updated resolution notes for ticket ${id}`;
-  }
-
-  logActivity({
-    ticketId: id,
-    action,
-    actor,
-    details: detailMsg
-  });
-
-  return updatedTicket;
-}
-
-export function deleteTicket(id, actor = "Admin User") {
-  const tickets = getAllTickets();
-  const ticket = tickets.find(t => t.id.toLowerCase() === id.toLowerCase().trim());
-  if (!ticket) return false;
-
-  const filtered = tickets.filter(t => t.id.toLowerCase() !== id.toLowerCase().trim());
-  writeJSONFile(TICKETS_FILE, filtered);
-
-  logActivity({
-    ticketId: id,
-    action: "TICKET_DELETED",
-    actor,
-    details: `Deleted ticket ${id} ('${ticket.title}')`
-  });
-
-  return true;
-}
-
-export function getAllActivity() {
-  return readJSONFile(ACTIVITY_FILE, defaultActivity);
-}
-
-export function logActivity({ ticketId = "SYSTEM", action, actor = "System", details }) {
-  const activityList = getAllActivity();
-  
-  let nextNum = 1001;
-  if (activityList.length > 0) {
-    const ids = activityList.map(a => parseInt(a.id.replace('ACT-', ''))).filter(n => !isNaN(n));
-    if (ids.length > 0) {
-      nextNum = Math.max(...ids) + 1;
-    }
-  }
-
-  const newLog = {
-    id: `ACT-${nextNum}`,
-    timestamp: formatDate(),
-    ticketId,
-    action,
-    actor,
-    details
-  };
-
-  activityList.unshift(newLog);
-  writeJSONFile(ACTIVITY_FILE, activityList);
-  return newLog;
-}
-
-export function getStats() {
-  const tickets = getAllTickets();
-  
-  const total = tickets.length;
-  const open = tickets.filter(t => t.status === 'Open').length;
-  const inProgress = tickets.filter(t => t.status === 'In Progress').length;
-  const resolved = tickets.filter(t => t.status === 'Resolved' || t.status === 'Closed').length;
-
-  const categories = {};
-  const priorities = { Low: 0, Medium: 0, High: 0, Urgent: 0 };
-  const statuses = { Open: 0, "In Progress": 0, Resolved: 0, Closed: 0 };
-
-  tickets.forEach(t => {
-    categories[t.category] = (categories[t.category] || 0) + 1;
-    if (priorities[t.priority] !== undefined) priorities[t.priority]++;
-    if (statuses[t.status] !== undefined) statuses[t.status]++;
-  });
-
-  const categoryList = Object.keys(categories).map(cat => ({ name: cat, count: categories[cat] }));
-  const priorityList = Object.keys(priorities).map(p => ({ name: p, count: priorities[p] }));
-  const statusList = Object.keys(statuses).map(s => ({ name: s, count: statuses[s] }));
-
-  const dateCounts = {};
-  tickets.forEach(t => {
-    const dateStr = t.createdAt ? t.createdAt.substring(0, 10) : 'Unknown';
-    dateCounts[dateStr] = (dateCounts[dateStr] || 0) + 1;
-  });
-
-  const trendList = Object.keys(dateCounts).sort().map(d => ({ date: d, tickets: dateCounts[d] }));
-
-  return {
-    total,
-    open,
-    inProgress,
-    resolved,
-    resolutionRate: total > 0 ? Math.round((resolved / total) * 100) : 0,
-    categoryList,
-    priorityList,
-    statusList,
-    trendList
-  };
-}
-
-// Work Tracker & Updater Database Methods
-const WORK_ITEMS_FILE = path.join(DATA_DIR, 'work_items.json');
-
 const defaultWorkItems = [
   {
     id: "WRK-1001",
@@ -655,20 +357,615 @@ const defaultWorkItems = [
   }
 ];
 
+// Helper: JSON File IO
+function readJSONFile(filePath, defaultContent) {
+  try {
+    if (!fs.existsSync(filePath)) {
+      fs.writeFileSync(filePath, JSON.stringify(defaultContent, null, 2), 'utf-8');
+      return defaultContent;
+    }
+    const content = fs.readFileSync(filePath, 'utf-8');
+    return JSON.parse(content);
+  } catch (err) {
+    console.error(`Error reading ${filePath}:`, err.message);
+    return defaultContent;
+  }
+}
+
+function writeJSONFile(filePath, data) {
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+    return true;
+  } catch (err) {
+    console.error(`Error writing ${filePath}:`, err.message);
+    return false;
+  }
+}
+
+// In-Memory Storage Caches for Ultra-Fast Instant Queries
+let cachedTickets = readJSONFile(TICKETS_FILE, defaultTickets);
+let cachedActivity = readJSONFile(ACTIVITY_FILE, defaultActivity);
+let cachedUsers = readJSONFile(USERS_FILE, defaultUsers);
+let cachedWorkItems = readJSONFile(WORK_ITEMS_FILE, defaultWorkItems);
+
+// Database Engine State
+let dbEngine = 'json'; // 'postgres' | 'mongodb' | 'json'
+let dbConnected = false;
+let dbStatusMessage = 'Running on Local / Ephemeral Storage';
+let pgPool = null;
+let mongoClient = null;
+let mongoDb = null;
+
+// Initialize Database Connection
+export async function initDatabase() {
+  const pgUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.PGURI;
+  const mongoUrl = process.env.MONGODB_URI || process.env.MONGO_URL;
+
+  // 1. Check PostgreSQL Connection
+  if (pgUrl) {
+    try {
+      console.log('[Database] Connecting to PostgreSQL Database...');
+      const sslConfig = pgUrl.includes('localhost') || pgUrl.includes('127.0.0.1')
+        ? false
+        : { rejectUnauthorized: false };
+
+      pgPool = new pg.Pool({
+        connectionString: pgUrl,
+        ssl: sslConfig,
+        max: 10,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 10000
+      });
+
+      // Test connection
+      await pgPool.query('SELECT NOW()');
+
+      // Create Tables if not exist
+      await pgPool.query(`
+        CREATE TABLE IF NOT EXISTS helpdesk_tickets (
+          id VARCHAR(100) PRIMARY KEY,
+          data JSONB NOT NULL,
+          created_at TIMESTAMPTZ DEFAULT NOW(),
+          updated_at TIMESTAMPTZ DEFAULT NOW()
+        );
+        CREATE TABLE IF NOT EXISTS helpdesk_activity (
+          id VARCHAR(100) PRIMARY KEY,
+          data JSONB NOT NULL,
+          created_at TIMESTAMPTZ DEFAULT NOW()
+        );
+        CREATE TABLE IF NOT EXISTS helpdesk_work_items (
+          id VARCHAR(100) PRIMARY KEY,
+          data JSONB NOT NULL,
+          created_at TIMESTAMPTZ DEFAULT NOW(),
+          updated_at TIMESTAMPTZ DEFAULT NOW()
+        );
+        CREATE TABLE IF NOT EXISTS helpdesk_users (
+          id VARCHAR(100) PRIMARY KEY,
+          data JSONB NOT NULL
+        );
+      `);
+
+      // Load existing records from Postgres or Seed from JSON
+      const ticketsRes = await pgPool.query('SELECT data FROM helpdesk_tickets ORDER BY (data->>\'id\') DESC');
+      if (ticketsRes.rows.length > 0) {
+        cachedTickets = ticketsRes.rows.map(r => r.data);
+        console.log(`[Database] Loaded ${cachedTickets.length} tickets from PostgreSQL.`);
+      } else {
+        console.log('[Database] Seeding initial tickets to PostgreSQL...');
+        for (const t of cachedTickets) {
+          await pgPool.query(
+            'INSERT INTO helpdesk_tickets (id, data, updated_at) VALUES ($1, $2, NOW()) ON CONFLICT (id) DO UPDATE SET data = $2',
+            [t.id, JSON.stringify(t)]
+          );
+        }
+      }
+
+      const activityRes = await pgPool.query('SELECT data FROM helpdesk_activity ORDER BY (data->>\'id\') DESC');
+      if (activityRes.rows.length > 0) {
+        cachedActivity = activityRes.rows.map(r => r.data);
+      } else {
+        for (const a of cachedActivity) {
+          await pgPool.query(
+            'INSERT INTO helpdesk_activity (id, data) VALUES ($1, $2) ON CONFLICT (id) DO UPDATE SET data = $2',
+            [a.id, JSON.stringify(a)]
+          );
+        }
+      }
+
+      const workRes = await pgPool.query('SELECT data FROM helpdesk_work_items ORDER BY (data->>\'id\') DESC');
+      if (workRes.rows.length > 0) {
+        cachedWorkItems = workRes.rows.map(r => r.data);
+      } else {
+        for (const w of cachedWorkItems) {
+          await pgPool.query(
+            'INSERT INTO helpdesk_work_items (id, data, updated_at) VALUES ($1, $2, NOW()) ON CONFLICT (id) DO UPDATE SET data = $2',
+            [w.id, JSON.stringify(w)]
+          );
+        }
+      }
+
+      const usersRes = await pgPool.query('SELECT data FROM helpdesk_users');
+      if (usersRes.rows.length > 0) {
+        cachedUsers = usersRes.rows.map(r => r.data);
+      } else {
+        for (const u of cachedUsers) {
+          await pgPool.query(
+            'INSERT INTO helpdesk_users (id, data) VALUES ($1, $2) ON CONFLICT (id) DO UPDATE SET data = $2',
+            [u.id, JSON.stringify(u)]
+          );
+        }
+      }
+
+      dbEngine = 'postgres';
+      dbConnected = true;
+      dbStatusMessage = 'Connected to PostgreSQL Cloud Database (100% Persistent across restarts)';
+      console.log('[Database] ✅ PostgreSQL Cloud Database connected successfully! All data is permanently saved.');
+      return;
+    } catch (err) {
+      console.error('[Database] ⚠️ PostgreSQL connection failed:', err.message);
+      dbStatusMessage = `PostgreSQL error: ${err.message}. Falling back to file storage.`;
+    }
+  }
+
+  // 2. Check MongoDB Connection
+  if (mongoUrl) {
+    try {
+      console.log('[Database] Connecting to MongoDB Atlas Database...');
+      mongoClient = new MongoClient(mongoUrl, { serverSelectionTimeoutMS: 5000 });
+      await mongoClient.connect();
+      mongoDb = mongoClient.db('sihpl_helpdesk');
+
+      const ticketsCol = mongoDb.collection('tickets');
+      const count = await ticketsCol.countDocuments();
+      if (count > 0) {
+        const docs = await ticketsCol.find({}).toArray();
+        cachedTickets = docs.map(({ _id, ...rest }) => rest);
+        console.log(`[Database] Loaded ${cachedTickets.length} tickets from MongoDB.`);
+      } else {
+        for (const t of cachedTickets) {
+          await ticketsCol.updateOne({ id: t.id }, { $set: t }, { upsert: true });
+        }
+      }
+
+      const activityCol = mongoDb.collection('activity');
+      const actCount = await activityCol.countDocuments();
+      if (actCount > 0) {
+        const docs = await activityCol.find({}).toArray();
+        cachedActivity = docs.map(({ _id, ...rest }) => rest);
+      } else {
+        for (const a of cachedActivity) {
+          await activityCol.updateOne({ id: a.id }, { $set: a }, { upsert: true });
+        }
+      }
+
+      const workCol = mongoDb.collection('work_items');
+      const workCount = await workCol.countDocuments();
+      if (workCount > 0) {
+        const docs = await workCol.find({}).toArray();
+        cachedWorkItems = docs.map(({ _id, ...rest }) => rest);
+      } else {
+        for (const w of cachedWorkItems) {
+          await workCol.updateOne({ id: w.id }, { $set: w }, { upsert: true });
+        }
+      }
+
+      const usersCol = mongoDb.collection('users');
+      const usersCount = await usersCol.countDocuments();
+      if (usersCount > 0) {
+        const docs = await usersCol.find({}).toArray();
+        cachedUsers = docs.map(({ _id, ...rest }) => rest);
+      } else {
+        for (const u of cachedUsers) {
+          await usersCol.updateOne({ id: u.id }, { $set: u }, { upsert: true });
+        }
+      }
+
+      dbEngine = 'mongodb';
+      dbConnected = true;
+      dbStatusMessage = 'Connected to MongoDB Atlas Cloud Database (100% Persistent across restarts)';
+      console.log('[Database] ✅ MongoDB Cloud Database connected successfully! All data is permanently saved.');
+      return;
+    } catch (err) {
+      console.error('[Database] ⚠️ MongoDB connection failed:', err.message);
+      dbStatusMessage = `MongoDB error: ${err.message}. Falling back to file storage.`;
+    }
+  }
+
+  // 3. Fallback: Local JSON Storage
+  dbEngine = 'json';
+  dbConnected = true;
+  dbStatusMessage = process.env.DATA_DIR 
+    ? `Running on Mounted Persistent Storage: ${process.env.DATA_DIR}`
+    : 'Running on Local/Ephemeral Storage (Add DATABASE_URL on Render for cloud persistence)';
+  console.log(`[Database] ℹ️ Storage Engine: ${dbStatusMessage}`);
+}
+
+// Background Async Sync Helpers
+async function persistTicket(ticket, isDelete = false) {
+  writeJSONFile(TICKETS_FILE, cachedTickets);
+  if (dbEngine === 'postgres' && pgPool) {
+    try {
+      if (isDelete) {
+        await pgPool.query('DELETE FROM helpdesk_tickets WHERE id = $1', [ticket.id]);
+      } else {
+        await pgPool.query(
+          'INSERT INTO helpdesk_tickets (id, data, updated_at) VALUES ($1, $2, NOW()) ON CONFLICT (id) DO UPDATE SET data = $2, updated_at = NOW()',
+          [ticket.id, JSON.stringify(ticket)]
+        );
+      }
+    } catch (err) {
+      console.error('[Database Error] Postgres ticket sync:', err.message);
+    }
+  } else if (dbEngine === 'mongodb' && mongoDb) {
+    try {
+      const col = mongoDb.collection('tickets');
+      if (isDelete) {
+        await col.deleteOne({ id: ticket.id });
+      } else {
+        await col.updateOne({ id: ticket.id }, { $set: ticket }, { upsert: true });
+      }
+    } catch (err) {
+      console.error('[Database Error] MongoDB ticket sync:', err.message);
+    }
+  }
+}
+
+async function persistActivity(activityLog) {
+  writeJSONFile(ACTIVITY_FILE, cachedActivity);
+  if (dbEngine === 'postgres' && pgPool) {
+    try {
+      await pgPool.query(
+        'INSERT INTO helpdesk_activity (id, data) VALUES ($1, $2) ON CONFLICT (id) DO UPDATE SET data = $2',
+        [activityLog.id, JSON.stringify(activityLog)]
+      );
+    } catch (err) {
+      console.error('[Database Error] Postgres activity sync:', err.message);
+    }
+  } else if (dbEngine === 'mongodb' && mongoDb) {
+    try {
+      await mongoDb.collection('activity').updateOne(
+        { id: activityLog.id },
+        { $set: activityLog },
+        { upsert: true }
+      );
+    } catch (err) {
+      console.error('[Database Error] MongoDB activity sync:', err.message);
+    }
+  }
+}
+
+async function persistWorkItem(workItem, isDelete = false) {
+  writeJSONFile(WORK_ITEMS_FILE, cachedWorkItems);
+  if (dbEngine === 'postgres' && pgPool) {
+    try {
+      if (isDelete) {
+        await pgPool.query('DELETE FROM helpdesk_work_items WHERE id = $1', [workItem.id]);
+      } else {
+        await pgPool.query(
+          'INSERT INTO helpdesk_work_items (id, data, updated_at) VALUES ($1, $2, NOW()) ON CONFLICT (id) DO UPDATE SET data = $2, updated_at = NOW()',
+          [workItem.id, JSON.stringify(workItem)]
+        );
+      }
+    } catch (err) {
+      console.error('[Database Error] Postgres work item sync:', err.message);
+    }
+  } else if (dbEngine === 'mongodb' && mongoDb) {
+    try {
+      const col = mongoDb.collection('work_items');
+      if (isDelete) {
+        await col.deleteOne({ id: workItem.id });
+      } else {
+        await col.updateOne({ id: workItem.id }, { $set: workItem }, { upsert: true });
+      }
+    } catch (err) {
+      console.error('[Database Error] MongoDB work item sync:', err.message);
+    }
+  }
+}
+
+export function getDatabaseStatus() {
+  const isCloudPersistent = dbEngine === 'postgres' || dbEngine === 'mongodb' || !!process.env.DATA_DIR;
+  return {
+    engine: dbEngine,
+    connected: dbConnected,
+    isCloudPersistent,
+    statusMessage: dbStatusMessage,
+    counts: {
+      tickets: cachedTickets.length,
+      activity: cachedActivity.length,
+      workItems: cachedWorkItems.length,
+      users: cachedUsers.length
+    },
+    cloudPersistenceGuide: {
+      isReady: isCloudPersistent,
+      renderPostgresRecommended: true,
+      setupInstruction: "To make your data 100% persistent forever on Render Free Tier: Create a free PostgreSQL database on Neon.tech, Supabase, or Render, and add DATABASE_URL into your Render Web Service Environment Variables."
+    }
+  };
+}
+
+// User Authentication Methods
+export function getAllUsers() {
+  return cachedUsers;
+}
+
+export function authenticateUser(username, password) {
+  const cleanUsername = (username || '').trim();
+  const cleanPassword = (password || '').trim();
+
+  if (!cleanUsername) {
+    return { success: false, message: 'Username / Name is required' };
+  }
+
+  // Admin Login: Username must be 'Admin.rk' or 'admin.rk' and password 'admin@rk06'
+  if (cleanUsername.toLowerCase() === 'admin.rk') {
+    if (cleanPassword === 'admin@rk06') {
+      const adminUser = {
+        id: "USR-ADMIN",
+        username: "Admin.rk",
+        name: "Mr. Ramesh (IT Admin)",
+        role: "admin",
+        email: "rk.ramesh@sujanindustries.com",
+        department: "IT"
+      };
+
+      logActivity({
+        ticketId: "AUTH",
+        action: "USER_LOGIN",
+        actor: adminUser.name,
+        details: `Logged into system as role [ADMIN]`
+      });
+
+      return { success: true, user: adminUser };
+    } else {
+      return { success: false, message: 'Invalid username or password' };
+    }
+  }
+
+  // User Login: Any entered name with password 'user@123'
+  if (cleanPassword === 'user@123') {
+    const users = getAllUsers();
+    let existingUser = users.find(u => 
+      u.username.toLowerCase() === cleanUsername.toLowerCase() ||
+      u.name.toLowerCase() === cleanUsername.toLowerCase()
+    );
+
+    let userObj;
+    if (existingUser) {
+      const { password: _, ...rest } = existingUser;
+      userObj = rest;
+    } else {
+      userObj = {
+        id: `USR-${Date.now().toString().slice(-6)}`,
+        username: cleanUsername,
+        name: cleanUsername,
+        role: "user",
+        email: `${cleanUsername.toLowerCase().replace(/[^a-z0-9]/g, '') || 'user'}@sujanindustries.com`,
+        department: "General"
+      };
+    }
+
+    logActivity({
+      ticketId: "AUTH",
+      action: "USER_LOGIN",
+      actor: userObj.name,
+      details: `Logged into system as role [USER]`
+    });
+
+    return { success: true, user: userObj };
+  }
+
+  return { success: false, message: 'Invalid username or password' };
+}
+
+// Ticket Management Methods
+export function getAllTickets() {
+  return cachedTickets;
+}
+
+export function getUserTickets(userEmail, userName) {
+  const emailLower = (userEmail || '').toLowerCase().trim();
+  const nameLower = (userName || '').toLowerCase().trim();
+
+  return cachedTickets.filter(t => 
+    (emailLower && t.email && t.email.toLowerCase().trim() === emailLower) ||
+    (nameLower && t.requesterName && t.requesterName.toLowerCase().trim() === nameLower)
+  );
+}
+
+export function getTicketById(id) {
+  return cachedTickets.find(t => t.id.toLowerCase() === id.toLowerCase().trim()) || null;
+}
+
+export function createTicket(ticketData) {
+  let nextNum = 1001;
+  if (cachedTickets.length > 0) {
+    const ids = cachedTickets.map(t => parseInt(t.id.replace('TK-', ''))).filter(n => !isNaN(n));
+    if (ids.length > 0) {
+      nextNum = Math.max(...ids) + 1;
+    }
+  }
+  
+  const nowStr = formatDate();
+  const newTicket = {
+    id: `TK-${nextNum}`,
+    title: ticketData.title || "Untitled Ticket",
+    description: ticketData.description || "",
+    category: ticketData.category || "General",
+    priority: ticketData.priority || "Medium",
+    status: "Open",
+    requesterName: ticketData.requesterName || "Anonymous User",
+    department: ticketData.department || "General",
+    email: ticketData.email || "",
+    assignedTo: "Unassigned",
+    resolutionNotes: "",
+    createdAt: nowStr,
+    updatedAt: nowStr,
+    resolvedAt: null
+  };
+
+  cachedTickets.unshift(newTicket);
+  persistTicket(newTicket);
+
+  logActivity({
+    ticketId: newTicket.id,
+    action: "TICKET_CREATED",
+    actor: newTicket.requesterName,
+    details: `Created ticket '${newTicket.title}' (${newTicket.category} / ${newTicket.priority} Priority)`
+  });
+
+  return newTicket;
+}
+
+export function updateTicket(id, updates, actor = "Support Agent") {
+  const index = cachedTickets.findIndex(t => t.id.toLowerCase() === id.toLowerCase().trim());
+  if (index === -1) return null;
+
+  const oldTicket = cachedTickets[index];
+  const nowStr = formatDate();
+  
+  const isResolving = (updates.status === 'Resolved' || updates.status === 'Closed') && oldTicket.status !== 'Resolved' && oldTicket.status !== 'Closed';
+
+  const updatedTicket = {
+    ...oldTicket,
+    ...updates,
+    updatedAt: nowStr,
+    resolvedAt: isResolving ? nowStr : (updates.status === 'Open' || updates.status === 'In Progress' ? null : oldTicket.resolvedAt)
+  };
+
+  cachedTickets[index] = updatedTicket;
+  persistTicket(updatedTicket);
+
+  let action = "TICKET_UPDATED";
+  let detailMsg = `Updated ticket ${id}`;
+
+  if (updates.status && updates.status !== oldTicket.status) {
+    if (updates.status === 'Resolved' || updates.status === 'Closed') {
+      action = "TICKET_RESOLVED";
+      detailMsg = `Marked ticket ${id} as ${updates.status}. ${updates.resolutionNotes ? 'Resolution: ' + updates.resolutionNotes : ''}`;
+    } else {
+      action = "STATUS_UPDATED";
+      detailMsg = `Changed status of ${id} from ${oldTicket.status} to ${updates.status}`;
+    }
+  } else if (updates.assignedTo && updates.assignedTo !== oldTicket.assignedTo) {
+    action = "AGENT_ASSIGNED";
+    detailMsg = `Assigned ticket ${id} to ${updates.assignedTo}`;
+  } else if (updates.resolutionNotes && updates.resolutionNotes !== oldTicket.resolutionNotes) {
+    action = "RESOLUTION_UPDATED";
+    detailMsg = `Updated resolution notes for ticket ${id}`;
+  }
+
+  logActivity({
+    ticketId: id,
+    action,
+    actor,
+    details: detailMsg
+  });
+
+  return updatedTicket;
+}
+
+export function deleteTicket(id, actor = "Admin User") {
+  const ticket = cachedTickets.find(t => t.id.toLowerCase() === id.toLowerCase().trim());
+  if (!ticket) return false;
+
+  cachedTickets = cachedTickets.filter(t => t.id.toLowerCase() !== id.toLowerCase().trim());
+  persistTicket(ticket, true);
+
+  logActivity({
+    ticketId: id,
+    action: "TICKET_DELETED",
+    actor,
+    details: `Deleted ticket ${id} ('${ticket.title}')`
+  });
+
+  return true;
+}
+
+// Activity Log Methods
+export function getAllActivity() {
+  return cachedActivity;
+}
+
+export function logActivity({ ticketId = "SYSTEM", action, actor = "System", details }) {
+  let nextNum = 1001;
+  if (cachedActivity.length > 0) {
+    const ids = cachedActivity.map(a => parseInt(a.id.replace('ACT-', ''))).filter(n => !isNaN(n));
+    if (ids.length > 0) {
+      nextNum = Math.max(...ids) + 1;
+    }
+  }
+
+  const newLog = {
+    id: `ACT-${nextNum}`,
+    timestamp: formatDate(),
+    ticketId,
+    action,
+    actor,
+    details
+  };
+
+  cachedActivity.unshift(newLog);
+  persistActivity(newLog);
+  return newLog;
+}
+
+export function getStats() {
+  const tickets = cachedTickets;
+  
+  const total = tickets.length;
+  const open = tickets.filter(t => t.status === 'Open').length;
+  const inProgress = tickets.filter(t => t.status === 'In Progress').length;
+  const resolved = tickets.filter(t => t.status === 'Resolved' || t.status === 'Closed').length;
+
+  const categories = {};
+  const priorities = { Low: 0, Medium: 0, High: 0, Urgent: 0 };
+  const statuses = { Open: 0, "In Progress": 0, Resolved: 0, Closed: 0 };
+
+  tickets.forEach(t => {
+    categories[t.category] = (categories[t.category] || 0) + 1;
+    if (priorities[t.priority] !== undefined) priorities[t.priority]++;
+    if (statuses[t.status] !== undefined) statuses[t.status]++;
+  });
+
+  const categoryList = Object.keys(categories).map(cat => ({ name: cat, count: categories[cat] }));
+  const priorityList = Object.keys(priorities).map(p => ({ name: p, count: priorities[p] }));
+  const statusList = Object.keys(statuses).map(s => ({ name: s, count: statuses[s] }));
+
+  const dateCounts = {};
+  tickets.forEach(t => {
+    const dateStr = t.createdAt ? t.createdAt.substring(0, 10) : 'Unknown';
+    dateCounts[dateStr] = (dateCounts[dateStr] || 0) + 1;
+  });
+
+  const trendList = Object.keys(dateCounts).sort().map(d => ({ date: d, tickets: dateCounts[d] }));
+
+  return {
+    total,
+    open,
+    inProgress,
+    resolved,
+    resolutionRate: total > 0 ? Math.round((resolved / total) * 100) : 0,
+    categoryList,
+    priorityList,
+    statusList,
+    trendList
+  };
+}
+
+// Work Tracker & Updater Database Methods
 export function getAllWorkItems() {
-  return readJSONFile(WORK_ITEMS_FILE, defaultWorkItems);
+  return cachedWorkItems;
 }
 
 export function getWorkItemById(id) {
-  const items = getAllWorkItems();
-  return items.find(w => w.id.toLowerCase() === id.toLowerCase().trim()) || null;
+  return cachedWorkItems.find(w => w.id.toLowerCase() === id.toLowerCase().trim()) || null;
 }
 
 export function createWorkItem(data) {
-  const items = getAllWorkItems();
   let nextNum = 1001;
-  if (items.length > 0) {
-    const ids = items.map(w => parseInt(w.id.replace('WRK-', ''))).filter(n => !isNaN(n));
+  if (cachedWorkItems.length > 0) {
+    const ids = cachedWorkItems.map(w => parseInt(w.id.replace('WRK-', ''))).filter(n => !isNaN(n));
     if (ids.length > 0) {
       nextNum = Math.max(...ids) + 1;
     }
@@ -704,8 +1001,8 @@ export function createWorkItem(data) {
     ]
   };
 
-  items.unshift(newItem);
-  writeJSONFile(WORK_ITEMS_FILE, items);
+  cachedWorkItems.unshift(newItem);
+  persistWorkItem(newItem);
 
   logActivity({
     ticketId: newItem.id,
@@ -718,11 +1015,10 @@ export function createWorkItem(data) {
 }
 
 export function updateWorkItem(id, updates, actor = "Support Agent") {
-  const items = getAllWorkItems();
-  const index = items.findIndex(w => w.id.toLowerCase() === id.toLowerCase().trim());
+  const index = cachedWorkItems.findIndex(w => w.id.toLowerCase() === id.toLowerCase().trim());
   if (index === -1) return null;
 
-  const oldItem = items[index];
+  const oldItem = cachedWorkItems[index];
   const nowStr = formatDate();
 
   const updatedItem = {
@@ -731,8 +1027,8 @@ export function updateWorkItem(id, updates, actor = "Support Agent") {
     updatedAt: nowStr
   };
 
-  items[index] = updatedItem;
-  writeJSONFile(WORK_ITEMS_FILE, items);
+  cachedWorkItems[index] = updatedItem;
+  persistWorkItem(updatedItem);
 
   logActivity({
     ticketId: id,
@@ -745,11 +1041,10 @@ export function updateWorkItem(id, updates, actor = "Support Agent") {
 }
 
 export function addWorkUpdateLog(id, updateData, actor = "Support Agent") {
-  const items = getAllWorkItems();
-  const index = items.findIndex(w => w.id.toLowerCase() === id.toLowerCase().trim());
+  const index = cachedWorkItems.findIndex(w => w.id.toLowerCase() === id.toLowerCase().trim());
   if (index === -1) return null;
 
-  const item = items[index];
+  const item = cachedWorkItems[index];
   const nowStr = formatDate();
   const hoursSpent = parseFloat(updateData.hoursSpent) || 0;
   const newProgress = Math.min(100, Math.max(0, parseInt(updateData.progress) ?? item.progress));
@@ -772,8 +1067,8 @@ export function addWorkUpdateLog(id, updateData, actor = "Support Agent") {
   item.updatedAt = nowStr;
   item.updates.unshift(updateEntry);
 
-  items[index] = item;
-  writeJSONFile(WORK_ITEMS_FILE, items);
+  cachedWorkItems[index] = item;
+  persistWorkItem(item);
 
   logActivity({
     ticketId: id,
@@ -786,12 +1081,11 @@ export function addWorkUpdateLog(id, updateData, actor = "Support Agent") {
 }
 
 export function deleteWorkItem(id, actor = "Admin User") {
-  const items = getAllWorkItems();
-  const item = items.find(w => w.id.toLowerCase() === id.toLowerCase().trim());
+  const item = cachedWorkItems.find(w => w.id.toLowerCase() === id.toLowerCase().trim());
   if (!item) return false;
 
-  const filtered = items.filter(w => w.id.toLowerCase() !== id.toLowerCase().trim());
-  writeJSONFile(WORK_ITEMS_FILE, filtered);
+  cachedWorkItems = cachedWorkItems.filter(w => w.id.toLowerCase() !== id.toLowerCase().trim());
+  persistWorkItem(item, true);
 
   logActivity({
     ticketId: id,
@@ -804,7 +1098,7 @@ export function deleteWorkItem(id, actor = "Admin User") {
 }
 
 export function getWorkStats() {
-  const items = getAllWorkItems();
+  const items = cachedWorkItems;
   const total = items.length;
   const pending = items.filter(w => w.status === 'Pending').length;
   const inProgress = items.filter(w => w.status === 'In Progress').length;
@@ -826,4 +1120,3 @@ export function getWorkStats() {
     totalEstHours: Math.round(totalEstHours * 10) / 10
   };
 }
-
