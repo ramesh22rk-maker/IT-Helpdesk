@@ -241,6 +241,15 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
 
       if (data.success) {
         setSubmittedTicket(data.data);
+        try {
+          const savedIds = JSON.parse(localStorage.getItem('it_helpdesk_my_tickets') || '[]');
+          if (data.data?.id) {
+            const updated = [data.data.id, ...savedIds.filter(id => id !== data.data.id)].slice(0, 50);
+            localStorage.setItem('it_helpdesk_my_tickets', JSON.stringify(updated));
+          }
+        } catch (e) {
+          console.warn('Could not save my tickets history:', e);
+        }
         // Reset issue-specific fields while keeping name/dept
         setFormData(prev => ({
           ...prev,

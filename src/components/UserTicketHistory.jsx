@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Clock, CheckCircle2, AlertCircle, FileText, UserCheck, RefreshCw, ChevronRight } from 'lucide-react';
+import { Search, Clock, CheckCircle2, AlertCircle, RefreshCw, User, Mail, Tag, Filter } from 'lucide-react';
+
+const SAVED_PROFILE_KEY = 'it_helpdesk_saved_profile';
+const MY_TICKETS_KEY = 'it_helpdesk_my_tickets';
 
 export default function UserTicketHistory({ user, onRaiseTicketClick }) {
   const [userTickets, setUserTickets] = useState([]);
@@ -7,11 +10,46 @@ export default function UserTicketHistory({ user, onRaiseTicketClick }) {
   const [searchId, setSearchId] = useState('');
   const [trackedTicket, setTrackedTicket] = useState(null);
   const [trackError, setTrackError] = useState('');
+  
+  // Requester Name / Email search filter
+  const [nameFilter, setNameFilter] = useState(() => {
+    try {
+      const saved = localStorage.getItem(SAVED_PROFILE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return parsed.requesterName || user?.name || '';
+      }
+    } catch (e) {}
+    return user?.name || '';
+  });
 
   const fetchMyTickets = async (showLoading = false) => {
     if (showLoading) setLoading(true);
     try {
-      const res = await fetch(`/api/tickets/my?email=${encodeURIComponent(user.email || '')}&name=${encodeURIComponent(user.name || '')}`);
+      const queryName = nameFilter.trim() || user?.name || '';
+      const queryEmail = user?.email || '';
+
+      // If we have a query name or email, fetch by name/email
+      let res;
+      if (queryName || queryEmail) {
+        res = await fetch(`/api/tickets/my?name=${encodeURIComponent(queryName)}&email=${encodeURIComponent(queryEmail)}`);
+      } else {
+        // Otherwise check if we have saved local ticket IDs
+        const savedIds = JSON.parse(localStorage.getItem(MY_TICKETS_KEY) || '[]');
+        if (savedIds.length > 0) {
+          // Fetch all and filter by saved IDs
+          const allRes = await fetch('/api/tickets');
+          const allData = await allRes.json();
+          if (allData.success) {
+            const filtered = allData.data.filter(t => savedIds.includes(t.id));
+            setUserTickets(filtered);
+            setLoading(false);
+            return;
+          }
+        }
+        res = await fetch(`/api/tickets/my?name=&email=`);
+      }
+
       const data = await res.json();
       if (data.success) {
         setUserTickets(data.data);
@@ -29,10 +67,10 @@ export default function UserTicketHistory({ user, onRaiseTicketClick }) {
 
     const timer = setInterval(() => {
       fetchMyTickets(false);
-    }, 3000);
+    }, 3500);
 
     return () => clearInterval(timer);
-  }, [user]);
+  }, [nameFilter, user]);
 
   const handleTrackSearch = async (e) => {
     e?.preventDefault();
@@ -59,8 +97,9 @@ export default function UserTicketHistory({ user, onRaiseTicketClick }) {
       
       {/* Search / Track Ticket Card */}
       <div className="glass-panel" style={{ padding: '1.75rem' }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>
-          🔍 Track Ticket Status by Ticket ID
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Search size={22} color="var(--accent-primary)" />
+          <span>Track Ticket Status by Ticket ID</span>
         </h2>
         <p style={{ color: '#64748b', fontSize: '0.875rem', marginBottom: '1.25rem' }}>
           Enter your unique Ticket ID (e.g. <code>TK-1001</code>) to check live real-time status, assigned IT agent, and resolution fix notes.
@@ -166,18 +205,18 @@ export default function UserTicketHistory({ user, onRaiseTicketClick }) {
 
       {/* My Submitted Ticket History List */}
       <div className="glass-panel" style={{ padding: '1.75rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem' }}>
           <div>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800 }}>My Ticket History (Live Real-Time Updates)</h2>
-            <p style={{ color: '#64748b', fontSize: '0.85rem' }}>
-              Showing tickets submitted under {user.name} ({user.email || user.username})
+            <p style={{ color: '#64748b', fontSize: '0.85rem', margin: 0 }}>
+              Showing tickets submitted {nameFilter ? `under "${nameFilter}"` : 'from this browser session'}
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <button onClick={() => fetchMyTickets(true)} className="btn btn-secondary btn-sm">
               <RefreshCw size={14} />
-              <span>Refresh Now</span>
+              <span>Refresh</span>
             </button>
             <button onClick={onRaiseTicketClick} className="btn btn-primary btn-sm">
               <span>+ Raise New IT Ticket</span>
@@ -185,9 +224,45 @@ export default function UserTicketHistory({ user, onRaiseTicketClick }) {
           </div>
         </div>
 
+        {/* Filter by Requester Name Box */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.75rem',
+          background: '#f8fafc',
+          padding: '0.75rem 1rem',
+          borderRadius: '10px',
+          border: '1px solid #e2e8f0',
+          marginBottom: '1.25rem',
+          flexWrap: 'wrap'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#475569', fontSize: '0.85rem', fontWeight: 600 }}>
+            <User size={15} /> Filter by Your Name:
+          </div>
+          <div style={{ flex: 1, minWidth: '220px' }}>
+            <input
+              type="text"
+              className="form-control"
+              style={{ fontSize: '0.85rem', padding: '0.4rem 0.75rem', height: 'auto' }}
+              placeholder="Type your name to view your tickets..."
+              value={nameFilter}
+              onChange={e => setNameFilter(e.target.value)}
+            />
+          </div>
+          {nameFilter && (
+            <button
+              onClick={() => setNameFilter('')}
+              className="btn btn-secondary btn-sm"
+              style={{ padding: '0.35rem 0.65rem', fontSize: '0.75rem' }}
+            >
+              Clear Filter
+            </button>
+          )}
+        </div>
+
         {loading ? (
           <div style={{ padding: '2rem', textAlign: 'center', color: '#64748b' }}>
-            Loading your ticket history...
+            Loading ticket history...
           </div>
         ) : (
           <div className="table-container">
@@ -196,6 +271,7 @@ export default function UserTicketHistory({ user, onRaiseTicketClick }) {
                 <tr>
                   <th>Ticket ID</th>
                   <th>Creation Date & Time</th>
+                  <th>Requester</th>
                   <th>Issue Summary</th>
                   <th>Category</th>
                   <th>Priority</th>
@@ -207,8 +283,10 @@ export default function UserTicketHistory({ user, onRaiseTicketClick }) {
               <tbody>
                 {userTickets.length === 0 ? (
                   <tr>
-                    <td colSpan={8} style={{ textAlign: 'center', padding: '3rem', color: '#64748b' }}>
-                      You have not submitted any IT tickets yet. Click "Raise New IT Ticket" to submit your first issue or doubt.
+                    <td colSpan={9} style={{ textAlign: 'center', padding: '3rem', color: '#64748b' }}>
+                      {nameFilter 
+                        ? `No tickets found under name "${nameFilter}". You can raise a new ticket or search by Ticket ID above.`
+                        : 'No submitted tickets recorded yet. Click "+ Raise New IT Ticket" or enter your Name above to load your tickets.'}
                     </td>
                   </tr>
                 ) : (
@@ -221,6 +299,11 @@ export default function UserTicketHistory({ user, onRaiseTicketClick }) {
                           <Clock size={13} />
                           <span>{t.createdAt}</span>
                         </div>
+                      </td>
+
+                      <td>
+                        <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>{t.requesterName}</div>
+                        <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{t.department}</div>
                       </td>
 
                       <td>

@@ -15,11 +15,12 @@ import {
   X,
   Copy,
   Check,
-  Server
+  Server,
+  Lock
 } from 'lucide-react';
 import logoImg from '../assets/logo.webp';
 
-export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout }) {
+export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout, onOpenAdminLogin }) {
   const [dbStatus, setDbStatus] = useState(null);
   const [showDbModal, setShowDbModal] = useState(false);
   const [copiedKey, setCopiedKey] = useState(null);
@@ -210,45 +211,68 @@ export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout 
               </span>
             </div>
 
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.35rem 0.75rem',
-              background: '#f8fafc',
-              borderRadius: '999px',
-              border: '1px solid #e2e8f0',
-              fontSize: '0.825rem'
-            }}>
-              <div style={{
-                width: '26px',
-                height: '26px',
-                borderRadius: '50%',
-                background: isAdmin ? '#7c3aed' : '#4f46e5',
-                color: 'white',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '0.75rem',
-                fontWeight: 700
-              }}>
-                {user.name.charAt(0).toUpperCase()}
-              </div>
-              <span style={{ fontWeight: 600, color: '#0f172a' }}>{user.name}</span>
-              <span className={`badge ${isAdmin ? 'badge-urgent' : 'badge-low'}`} style={{ fontSize: '0.65rem' }}>
-                {isAdmin ? 'ADMIN' : 'USER'}
-              </span>
-            </div>
+            {isAdmin ? (
+              <>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.35rem 0.75rem',
+                  background: '#f8fafc',
+                  borderRadius: '999px',
+                  border: '1px solid #e2e8f0',
+                  fontSize: '0.825rem'
+                }}>
+                  <div style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: '#7c3aed',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.75rem',
+                    fontWeight: 700
+                  }}>
+                    {user?.name?.charAt(0).toUpperCase() || 'A'}
+                  </div>
+                  <span style={{ fontWeight: 600, color: '#0f172a' }}>{user?.name || 'IT Admin'}</span>
+                  <span className="badge badge-urgent" style={{ fontSize: '0.65rem' }}>
+                    ADMIN
+                  </span>
+                </div>
 
-            <button
-              onClick={onLogout}
-              className="btn btn-secondary btn-sm"
-              style={{ padding: '0.45rem 0.75rem', color: '#e11d48' }}
-              title="Logout"
-            >
-              <LogOut size={15} />
-              <span>Logout</span>
-            </button>
+                <button
+                  onClick={onLogout}
+                  className="btn btn-secondary btn-sm"
+                  style={{ padding: '0.45rem 0.75rem', color: '#e11d48' }}
+                  title="Logout from Admin Mode"
+                >
+                  <LogOut size={15} />
+                  <span>Logout</span>
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={onOpenAdminLogin}
+                className="btn btn-primary btn-sm"
+                style={{
+                  padding: '0.45rem 0.95rem',
+                  borderRadius: '999px',
+                  fontSize: '0.825rem',
+                  fontWeight: 600,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  boxShadow: '0 2px 8px rgba(79, 70, 229, 0.25)'
+                }}
+                title="IT Admin Login"
+              >
+                <Lock size={14} />
+                <span>Admin Login</span>
+              </button>
+            )}
 
           </div>
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import AuthScreen from './components/AuthScreen';
+import AdminLoginModal from './components/AdminLoginModal';
 import DashboardOverview from './components/DashboardOverview';
 import TicketSubmission from './components/TicketSubmission';
 import TicketQueue from './components/TicketQueue';
@@ -11,33 +11,50 @@ import WorkTracker from './components/WorkTracker';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(() => {
-    const saved = localStorage.getItem('it_helpdesk_user');
-    return saved ? JSON.parse(saved) : null;
+    try {
+      const saved = localStorage.getItem('it_helpdesk_admin') || localStorage.getItem('it_helpdesk_user');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.role === 'admin') {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('Could not load saved admin user:', e);
+    }
+    return null;
   });
 
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState(() => {
+    const saved = localStorage.getItem('it_helpdesk_admin') || localStorage.getItem('it_helpdesk_user');
+    try {
+      if (saved && JSON.parse(saved)?.role === 'admin') return 'dashboard';
+    } catch (e) {}
+    return 'submit';
+  });
+
+  const [isAdminLoginModalOpen, setIsAdminLoginModalOpen] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [stats, setStats] = useState(null);
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const isAdmin = currentUser?.role === 'admin';
+
   const handleLoginSuccess = (user) => {
     setCurrentUser(user);
-    localStorage.setItem('it_helpdesk_user', JSON.stringify(user));
-    if (user.role === 'admin') {
-      setActiveTab('dashboard');
-    } else {
-      setActiveTab('submit');
-    }
+    localStorage.setItem('it_helpdesk_admin', JSON.stringify(user));
+    setActiveTab('dashboard');
   };
 
   const handleLogout = () => {
     setCurrentUser(null);
+    localStorage.removeItem('it_helpdesk_admin');
     localStorage.removeItem('it_helpdesk_user');
+    setActiveTab('submit');
   };
 
   const fetchData = async () => {
-    if (!currentUser) return;
     try {
       const [ticketsRes, statsRes, activityRes] = await Promise.all([
         fetch('/api/tickets'),
@@ -61,27 +78,25 @@ export default function App() {
 
   // Initial fetch and Real-Time Live Auto-Polling every 4 seconds
   useEffect(() => {
-    if (currentUser) {
-      if (currentUser.role === 'admin' && (activeTab === 'my-tickets')) {
+    fetchData();
+    const timer = setInterval(() => {
+      fetchData();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Sync tab when admin state changes
+  useEffect(() => {
+    if (isAdmin) {
+      if (activeTab === 'my-tickets') {
         setActiveTab('dashboard');
-      } else if (currentUser.role === 'user' && (activeTab === 'dashboard' || activeTab === 'reports' || activeTab === 'activity' || activeTab === 'tickets')) {
+      }
+    } else {
+      if (['dashboard', 'reports', 'activity', 'tickets'].includes(activeTab)) {
         setActiveTab('submit');
       }
-      fetchData();
-
-      const timer = setInterval(() => {
-        fetchData();
-      }, 4000);
-
-      return () => clearInterval(timer);
     }
-  }, [currentUser]);
-
-  if (!currentUser) {
-    return <AuthScreen onLoginSuccess={handleLoginSuccess} />;
-  }
-
-  const isAdmin = currentUser.role === 'admin';
+  }, [isAdmin]);
 
   return (
     <div className="app-container">
@@ -93,6 +108,7 @@ export default function App() {
         setActiveTab={setActiveTab}
         stats={stats}
         onLogout={handleLogout}
+        onOpenAdminLogin={() => setIsAdminLoginModalOpen(true)}
       />
 
       {/* Main Workspace */}
@@ -110,7 +126,7 @@ export default function App() {
           </div>
         ) : (
           <>
-            {/* Common Raise IT Ticket Tab for both roles */}
+            {/* Common Raise IT Ticket Tab for all users */}
             {activeTab === 'submit' && (
               <TicketSubmission
                 currentUser={currentUser}
@@ -119,7 +135,7 @@ export default function App() {
               />
             )}
 
-            {/* Common Work Tracker Tab for both roles */}
+            {/* Common Work Tracker Tab for all users */}
             {activeTab === 'work-tracker' && (
               <WorkTracker
                 currentUser={currentUser}
@@ -177,6 +193,13 @@ export default function App() {
         )}
       </main>
 
+      {/* Admin Login Modal */}
+      <AdminLoginModal
+        isOpen={isAdminLoginModalOpen}
+        onClose={() => setIsAdminLoginModalOpen(false)}
+        onLoginSuccess={handleLoginSuccess}
+      />
+
       {/* Footer */}
       <footer style={{
         marginTop: '3rem',
@@ -186,7 +209,11 @@ export default function App() {
         color: 'var(--text-muted)',
         fontSize: '0.825rem'
       }}>
-        SIHPL Helpdesk System • Logged in as <strong>{currentUser.name}</strong> ({currentUser.role.toUpperCase()}) • LAN Access Live
+        {isAdmin ? (
+          <>SIHPL Helpdesk System • Logged in as <strong>{currentUser.name}</strong> (ADMIN) • LAN Access Live</>
+        ) : (
+          <>SIHPL Helpdesk System • Operations & User Support Portal • LAN Access Live</>
+        )}
       </footer>
 
     </div>

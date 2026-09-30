@@ -693,69 +693,32 @@ export function authenticateUser(username, password) {
   const cleanUsername = (username || '').trim();
   const cleanPassword = (password || '').trim();
 
-  if (!cleanUsername) {
-    return { success: false, message: 'Username / Name is required' };
+  if (!cleanUsername || !cleanPassword) {
+    return { success: false, message: 'Admin username and password are required' };
   }
 
   // Admin Login: Username must be 'Admin.rk' or 'admin.rk' and password 'admin@rk06'
-  if (cleanUsername.toLowerCase() === 'admin.rk') {
-    if (cleanPassword === 'admin@rk06') {
-      const adminUser = {
-        id: "USR-ADMIN",
-        username: "Admin.rk",
-        name: "Mr. Ramesh (IT Admin)",
-        role: "admin",
-        email: "rk.ramesh@sujanindustries.com",
-        department: "IT"
-      };
-
-      logActivity({
-        ticketId: "AUTH",
-        action: "USER_LOGIN",
-        actor: adminUser.name,
-        details: `Logged into system as role [ADMIN]`
-      });
-
-      return { success: true, user: adminUser };
-    } else {
-      return { success: false, message: 'Invalid username or password' };
-    }
-  }
-
-  // User Login: Any entered name with password 'user@123'
-  if (cleanPassword === 'user@123') {
-    const users = getAllUsers();
-    let existingUser = users.find(u => 
-      u.username.toLowerCase() === cleanUsername.toLowerCase() ||
-      u.name.toLowerCase() === cleanUsername.toLowerCase()
-    );
-
-    let userObj;
-    if (existingUser) {
-      const { password: _, ...rest } = existingUser;
-      userObj = rest;
-    } else {
-      userObj = {
-        id: `USR-${Date.now().toString().slice(-6)}`,
-        username: cleanUsername,
-        name: cleanUsername,
-        role: "user",
-        email: `${cleanUsername.toLowerCase().replace(/[^a-z0-9]/g, '') || 'user'}@sujanindustries.com`,
-        department: "General"
-      };
-    }
+  if (cleanUsername.toLowerCase() === 'admin.rk' && cleanPassword === 'admin@rk06') {
+    const adminUser = {
+      id: "USR-ADMIN",
+      username: "Admin.rk",
+      name: "Mr. Ramesh (IT Admin)",
+      role: "admin",
+      email: "rk.ramesh@sujanindustries.com",
+      department: "IT"
+    };
 
     logActivity({
       ticketId: "AUTH",
-      action: "USER_LOGIN",
-      actor: userObj.name,
-      details: `Logged into system as role [USER]`
+      action: "ADMIN_LOGIN",
+      actor: adminUser.name,
+      details: `Logged into system as IT Admin`
     });
 
-    return { success: true, user: userObj };
+    return { success: true, user: adminUser };
   }
 
-  return { success: false, message: 'Invalid username or password' };
+  return { success: false, message: 'Invalid Admin Username or Password' };
 }
 
 // Ticket Management Methods
