@@ -52,7 +52,7 @@ app.use(cors());
 app.use(express.json());
 
 // Initialize Database connection on start
-initDatabase().catch(err => {
+export const initDbPromise = initDatabase().catch(err => {
   console.error('[Server] Failed to initialize database:', err);
 });
 
@@ -295,7 +295,7 @@ app.get('/api/health', (req, res) => {
       persistent: dbStatus.isCloudPersistent,
       statusMessage: dbStatus.statusMessage
     },
-    host: process.env.RENDER_EXTERNAL_HOSTNAME || req.headers.host || 'Render Cloud'
+    host: process.env.VERCEL_URL || process.env.RENDER_EXTERNAL_HOSTNAME || req.headers.host || 'Vercel / Cloud'
   });
 });
 
@@ -311,8 +311,13 @@ if (fs.existsSync(distPath)) {
   });
 }
 
-app.listen(PORT, HOST, () => {
-  console.log(`=============================================================`);
-  console.log(` 🚀 SIHPL HELPDESK SERVER RUNNING (PORT: ${PORT})`);
-  console.log(`=============================================================`);
-});
+// Start listening if run directly (local / Node server)
+if (!process.env.VERCEL) {
+  app.listen(PORT, HOST, () => {
+    console.log(`=============================================================`);
+    console.log(` 🚀 SIHPL HELPDESK SERVER RUNNING (PORT: ${PORT})`);
+    console.log(`=============================================================`);
+  });
+}
+
+export default app;

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { fileURLToPath } from 'url';
 import pg from 'pg';
 import { MongoClient } from 'mongodb';
@@ -7,15 +8,19 @@ import { MongoClient } from 'mongodb';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
+const DATA_DIR = process.env.DATA_DIR || (process.env.VERCEL ? path.join(os.tmpdir(), 'sihpl_data') : path.join(__dirname, 'data'));
 const TICKETS_FILE = path.join(DATA_DIR, 'tickets.json');
 const ACTIVITY_FILE = path.join(DATA_DIR, 'activity.json');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
 const WORK_ITEMS_FILE = path.join(DATA_DIR, 'work_items.json');
 
 // Ensure data directory exists
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+} catch (err) {
+  console.warn('[Storage Notice] Could not create DATA_DIR:', err.message);
 }
 
 // Format local date string (YYYY-MM-DD HH:mm:ss)
@@ -361,8 +366,18 @@ const defaultWorkItems = [
 function readJSONFile(filePath, defaultContent) {
   try {
     if (!fs.existsSync(filePath)) {
-      fs.writeFileSync(filePath, JSON.stringify(defaultContent, null, 2), 'utf-8');
-      return defaultContent;
+      const baseName = path.basename(filePath);
+      const bundledPath = path.join(__dirname, 'data', baseName);
+      let initialData = defaultContent;
+      if (fs.existsSync(bundledPath)) {
+        try {
+          initialData = JSON.parse(fs.readFileSync(bundledPath, 'utf-8'));
+        } catch (_) {}
+      }
+      try {
+        fs.writeFileSync(filePath, JSON.stringify(initialData, null, 2), 'utf-8');
+      } catch (_) {}
+      return initialData;
     }
     const content = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(content);
@@ -377,7 +392,7 @@ function writeJSONFile(filePath, data) {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
     return true;
   } catch (err) {
-    console.error(`Error writing ${filePath}:`, err.message);
+    // In serverless / read-only environment, file writes might fail silently while memory cache still retains updates
     return false;
   }
 }
