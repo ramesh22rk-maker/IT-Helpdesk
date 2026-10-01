@@ -79,37 +79,38 @@ app.post('/api/auth/login', (req, res) => {
 });
 
 // Ticket API Routes
-app.get('/api/tickets', (req, res) => {
-  let tickets = getAllTickets();
+app.get('/api/tickets', async (req, res) => {
+  let tickets = await getAllTickets();
   const { status, priority, category, search } = req.query;
 
   if (status && status !== 'All') {
-    tickets = tickets.filter(t => t.status.toLowerCase() === status.toLowerCase());
+    tickets = tickets.filter(t => (t.status || '').toLowerCase() === status.toLowerCase());
   }
 
   if (priority && priority !== 'All') {
-    tickets = tickets.filter(t => t.priority.toLowerCase() === priority.toLowerCase());
+    tickets = tickets.filter(t => (t.priority || '').toLowerCase() === priority.toLowerCase());
   }
 
   if (category && category !== 'All') {
-    tickets = tickets.filter(t => t.category.toLowerCase() === category.toLowerCase());
+    tickets = tickets.filter(t => (t.category || '').toLowerCase() === category.toLowerCase());
   }
 
   if (search) {
-    const s = search.toLowerCase();
+    const s = search.toLowerCase().trim();
     tickets = tickets.filter(t => 
-      t.id.toLowerCase().includes(s) ||
-      t.title.toLowerCase().includes(s) ||
-      t.description.toLowerCase().includes(s) ||
-      t.requesterName.toLowerCase().includes(s) ||
-      t.department.toLowerCase().includes(s)
+      (t.id || '').toLowerCase().includes(s) ||
+      (t.title || '').toLowerCase().includes(s) ||
+      (t.description || '').toLowerCase().includes(s) ||
+      (t.requesterName || '').toLowerCase().includes(s) ||
+      (t.department || '').toLowerCase().includes(s) ||
+      (t.email || '').toLowerCase().includes(s)
     );
   }
 
   res.json({ success: true, count: tickets.length, data: tickets });
 });
 
-app.get('/api/tickets/my', (req, res) => {
+app.get('/api/tickets/my', async (req, res) => {
   const { email, name } = req.query;
   const userTickets = getUserTickets(email, name);
   res.json({ success: true, count: userTickets.length, data: userTickets });
@@ -126,7 +127,7 @@ app.get('/api/tickets/:id', (req, res) => {
 app.post('/api/tickets', async (req, res) => {
   const { title, description, category, priority, requesterName, department, email, attachment } = req.body;
 
-  const newTicket = createTicket({
+  const newTicket = await createTicket({
     title: (title || '').trim() || 'General Ticket / Issue',
     description: (description || '').trim(),
     category: category || 'Others',
@@ -145,14 +146,14 @@ app.post('/api/tickets', async (req, res) => {
   res.status(201).json({ success: true, message: 'Ticket created successfully', data: newTicket });
 });
 
-app.patch('/api/tickets/:id', (req, res) => {
+app.patch('/api/tickets/:id', async (req, res) => {
   const { id } = req.params;
   const updates = req.body;
   const actor = req.body.actor || 'Support Agent';
 
   delete updates.actor;
 
-  const updated = updateTicket(id, updates, actor);
+  const updated = await updateTicket(id, updates, actor);
   if (!updated) {
     return res.status(404).json({ success: false, message: 'Ticket not found' });
   }
@@ -160,11 +161,11 @@ app.patch('/api/tickets/:id', (req, res) => {
   res.json({ success: true, message: 'Ticket updated successfully', data: updated });
 });
 
-app.delete('/api/tickets/:id', (req, res) => {
+app.delete('/api/tickets/:id', async (req, res) => {
   const { id } = req.params;
   const actor = req.query.actor || 'Admin User';
 
-  const deleted = deleteTicket(id, actor);
+  const deleted = await deleteTicket(id, actor);
   if (!deleted) {
     return res.status(404).json({ success: false, message: 'Ticket not found' });
   }
@@ -172,14 +173,14 @@ app.delete('/api/tickets/:id', (req, res) => {
   res.json({ success: true, message: 'Ticket deleted successfully' });
 });
 
-app.get('/api/activity', (req, res) => {
-  const activity = getAllActivity();
+app.get('/api/activity', async (req, res) => {
+  const activity = await getAllActivity();
   res.json({ success: true, count: activity.length, data: activity });
 });
 
-app.post('/api/activity/log', (req, res) => {
+app.post('/api/activity/log', async (req, res) => {
   const { ticketId, action, actor, details } = req.body;
-  const log = logActivity({
+  const log = await logActivity({
     ticketId: ticketId || 'SYSTEM',
     action: action || 'USER_ACTION',
     actor: actor || 'User',

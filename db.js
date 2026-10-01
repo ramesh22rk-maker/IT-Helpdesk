@@ -760,7 +760,24 @@ export function authenticateUser(username, password) {
 }
 
 // Ticket Management Methods
-export function getAllTickets() {
+export async function getAllTickets() {
+  if (dbEngine === 'postgres' && pgPool) {
+    try {
+      const ticketsRes = await pgPool.query('SELECT data FROM helpdesk_tickets ORDER BY (data->>\'id\') DESC');
+      if (ticketsRes.rows.length > 0) {
+        cachedTickets = ticketsRes.rows.map(r => r.data);
+      }
+    } catch (err) {
+      console.error('[Database Error] Postgres getAllTickets:', err.message);
+    }
+  } else if (dbEngine === 'mongodb' && mongoDb) {
+    try {
+      const docs = await mongoDb.collection('tickets').find({}).sort({ id: -1 }).toArray();
+      if (docs.length > 0) {
+        cachedTickets = docs.map(({ _id, ...rest }) => rest);
+      }
+    } catch (err) {}
+  }
   return cachedTickets;
 }
 
@@ -778,7 +795,7 @@ export function getTicketById(id) {
   return cachedTickets.find(t => t.id.toLowerCase() === id.toLowerCase().trim()) || null;
 }
 
-export function createTicket(ticketData) {
+export async function createTicket(ticketData) {
   let nextNum = 1001;
   if (cachedTickets.length > 0) {
     const ids = cachedTickets.map(t => parseInt(t.id.replace('TK-', ''))).filter(n => !isNaN(n));
@@ -807,9 +824,9 @@ export function createTicket(ticketData) {
   };
 
   cachedTickets.unshift(newTicket);
-  persistTicket(newTicket);
+  await persistTicket(newTicket);
 
-  logActivity({
+  await logActivity({
     ticketId: newTicket.id,
     action: "TICKET_CREATED",
     actor: newTicket.requesterName,
@@ -819,7 +836,7 @@ export function createTicket(ticketData) {
   return newTicket;
 }
 
-export function updateTicket(id, updates, actor = "Support Agent") {
+export async function updateTicket(id, updates, actor = "Support Agent") {
   const index = cachedTickets.findIndex(t => t.id.toLowerCase() === id.toLowerCase().trim());
   if (index === -1) return null;
 
@@ -836,7 +853,7 @@ export function updateTicket(id, updates, actor = "Support Agent") {
   };
 
   cachedTickets[index] = updatedTicket;
-  persistTicket(updatedTicket);
+  await persistTicket(updatedTicket);
 
   let action = "TICKET_UPDATED";
   let detailMsg = `Updated ticket ${id}`;
@@ -857,7 +874,7 @@ export function updateTicket(id, updates, actor = "Support Agent") {
     detailMsg = `Updated resolution notes for ticket ${id}`;
   }
 
-  logActivity({
+  await logActivity({
     ticketId: id,
     action,
     actor,
@@ -867,14 +884,14 @@ export function updateTicket(id, updates, actor = "Support Agent") {
   return updatedTicket;
 }
 
-export function deleteTicket(id, actor = "Admin User") {
+export async function deleteTicket(id, actor = "Admin User") {
   const ticket = cachedTickets.find(t => t.id.toLowerCase() === id.toLowerCase().trim());
   if (!ticket) return false;
 
   cachedTickets = cachedTickets.filter(t => t.id.toLowerCase() !== id.toLowerCase().trim());
-  persistTicket(ticket, true);
+  await persistTicket(ticket, true);
 
-  logActivity({
+  await logActivity({
     ticketId: id,
     action: "TICKET_DELETED",
     actor,
@@ -885,11 +902,19 @@ export function deleteTicket(id, actor = "Admin User") {
 }
 
 // Activity Log Methods
-export function getAllActivity() {
+export async function getAllActivity() {
+  if (dbEngine === 'postgres' && pgPool) {
+    try {
+      const activityRes = await pgPool.query('SELECT data FROM helpdesk_activity ORDER BY (data->>\'id\') DESC');
+      if (activityRes.rows.length > 0) {
+        cachedActivity = activityRes.rows.map(r => r.data);
+      }
+    } catch (err) {}
+  }
   return cachedActivity;
 }
 
-export function logActivity({ ticketId = "SYSTEM", action, actor = "System", details }) {
+export async function logActivity({ ticketId = "SYSTEM", action, actor = "System", details }) {
   let nextNum = 1001;
   if (cachedActivity.length > 0) {
     const ids = cachedActivity.map(a => parseInt(a.id.replace('ACT-', ''))).filter(n => !isNaN(n));
@@ -908,7 +933,7 @@ export function logActivity({ ticketId = "SYSTEM", action, actor = "System", det
   };
 
   cachedActivity.unshift(newLog);
-  persistActivity(newLog);
+  await persistActivity(newLog);
   return newLog;
 }
 

@@ -19,20 +19,26 @@ export default function TicketQueue({ tickets, onRefreshTickets }) {
   const statuses = ['All', 'Open', 'In Progress', 'Resolved', 'Closed'];
 
   const filteredTickets = tickets.filter(t => {
-    const matchesSearch = 
-      t.id.toLowerCase().includes(search.toLowerCase()) ||
-      t.title.toLowerCase().includes(search.toLowerCase()) ||
-      t.requesterName.toLowerCase().includes(search.toLowerCase()) ||
-      t.department.toLowerCase().includes(search.toLowerCase()) ||
-      (t.email && t.email.toLowerCase().includes(search.toLowerCase()));
+    if (!t) return false;
+    const s = (search || '').toLowerCase().trim();
+    const matchesSearch = !s ||
+      (t.id || '').toLowerCase().includes(s) ||
+      (t.title || '').toLowerCase().includes(s) ||
+      (t.description || '').toLowerCase().includes(s) ||
+      (t.requesterName || '').toLowerCase().includes(s) ||
+      (t.department || '').toLowerCase().includes(s) ||
+      (t.email || '').toLowerCase().includes(s);
 
-    const matchesStatus = statusFilter === 'All' || t.status.toLowerCase() === statusFilter.toLowerCase();
-    const matchesPriority = priorityFilter === 'All' || t.priority.toLowerCase() === priorityFilter.toLowerCase();
+    const matchesStatus = statusFilter === 'All' || (t.status || '').toLowerCase() === statusFilter.toLowerCase();
+    const matchesPriority = priorityFilter === 'All' || (t.priority || '').toLowerCase() === priorityFilter.toLowerCase();
+    
+    const cat = (t.category || '').toLowerCase();
     const matchesCategory = categoryFilter === 'All' || 
-      t.category?.toLowerCase() === categoryFilter.toLowerCase() ||
-      (categoryFilter === 'Finsys Related' && t.category?.toLowerCase().includes('finsys')) ||
-      (categoryFilter === 'Internet Related' && t.category?.toLowerCase().includes('internet')) ||
-      (categoryFilter === 'Hardware/Network Related' && (t.category?.toLowerCase().includes('hardware') || t.category?.toLowerCase().includes('network')));
+      cat === categoryFilter.toLowerCase() ||
+      (categoryFilter === 'Finsys Related' && cat.includes('finsys')) ||
+      (categoryFilter === 'Internet Related' && (cat.includes('internet') || cat.includes('wifi') || cat.includes('wi-fi'))) ||
+      (categoryFilter === 'Hardware/Network Related' && (cat.includes('hardware') || cat.includes('network') || cat.includes('pc') || cat.includes('printer'))) ||
+      (categoryFilter === 'Others' && (cat === 'others' || (!cat.includes('finsys') && !cat.includes('internet') && !cat.includes('hardware') && !cat.includes('network'))));
 
     const ticketDate = t.createdAt ? t.createdAt.slice(0, 10) : '';
     const matchesStartDate = !startDate || ticketDate >= startDate;
