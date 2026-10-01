@@ -9,44 +9,12 @@ import {
   Search, 
   Globe, 
   CheckSquare,
-  Database,
-  CheckCircle2,
-  AlertTriangle,
-  X,
-  Copy,
-  Check,
-  Server,
   Lock
 } from 'lucide-react';
 import logoImg from '../assets/logo.webp';
 
 export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout, onOpenAdminLogin }) {
-  const [dbStatus, setDbStatus] = useState(null);
-  const [showDbModal, setShowDbModal] = useState(false);
-  const [copiedKey, setCopiedKey] = useState(null);
 
-  const fetchDbStatus = () => {
-    fetch('/api/db-status')
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          setDbStatus(data.data);
-        }
-      })
-      .catch(err => console.error('Error fetching DB status:', err));
-  };
-
-  useEffect(() => {
-    fetchDbStatus();
-    const interval = setInterval(fetchDbStatus, 10000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleCopy = (text, key) => {
-    navigator.clipboard.writeText(text);
-    setCopiedKey(key);
-    setTimeout(() => setCopiedKey(null), 2500);
-  };
 
   const isAdmin = user?.role === 'admin';
 
@@ -181,36 +149,9 @@ export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout,
             })}
           </nav>
 
-          {/* DB Status Pill, User Profile & Logout */}
+          {/* User Profile & Login/Logout */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
             
-            {/* Database Persistence Status Badge */}
-            <div 
-              onClick={() => setShowDbModal(true)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.35rem 0.75rem',
-                background: dbStatus?.isCloudPersistent ? '#ecfdf5' : '#fffbeb',
-                border: dbStatus?.isCloudPersistent ? '1px solid #a7f3d0' : '1px solid #fde68a',
-                borderRadius: '999px',
-                fontSize: '0.75rem',
-                color: dbStatus?.isCloudPersistent ? '#065f46' : '#92400e',
-                fontWeight: 700,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }} 
-              title="Click to view Database Persistence Status"
-            >
-              <Database size={13} color={dbStatus?.isCloudPersistent ? '#059669' : '#d97706'} />
-              <span>
-                {dbStatus?.isCloudPersistent 
-                  ? (dbStatus.engine === 'postgres' ? 'Cloud PostgreSQL Live' : (dbStatus.engine === 'mongodb' ? 'Cloud MongoDB Live' : 'Persistent Storage Live'))
-                  : 'Storage Settings'}
-              </span>
-            </div>
-
             {isAdmin ? (
               <>
                 <div style={{
@@ -278,171 +219,6 @@ export default function Navbar({ user, activeTab, setActiveTab, stats, onLogout,
 
         </div>
       </header>
-
-      {/* Database Persistence Info Modal */}
-      {showDbModal && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'rgba(15, 23, 42, 0.65)',
-          backdropFilter: 'blur(4px)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 9999,
-          padding: '1.5rem'
-        }}>
-          <div className="glass-panel" style={{
-            background: '#ffffff',
-            borderRadius: '16px',
-            maxWidth: '620px',
-            width: '100%',
-            padding: '2rem',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-            border: '1px solid #e2e8f0',
-            position: 'relative'
-          }}>
-            <button
-              onClick={() => setShowDbModal(false)}
-              style={{
-                position: 'absolute',
-                top: '1.25rem',
-                right: '1.25rem',
-                background: '#f1f5f9',
-                border: 'none',
-                borderRadius: '50%',
-                width: '32px',
-                height: '32px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#64748b'
-              }}
-            >
-              <X size={18} />
-            </button>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-              <div style={{
-                background: dbStatus?.isCloudPersistent ? '#dcfce7' : '#fef3c7',
-                padding: '0.6rem',
-                borderRadius: '12px',
-                color: dbStatus?.isCloudPersistent ? '#16a34a' : '#d97706'
-              }}>
-                <Server size={24} />
-              </div>
-              <div>
-                <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#0f172a' }}>Database & Data Persistence</h3>
-                <div style={{ fontSize: '0.825rem', color: '#64748b', marginTop: '2px' }}>
-                  Ensure your tickets and reports are preserved across all days and server restarts
-                </div>
-              </div>
-            </div>
-
-            {/* Current Engine Status */}
-            <div style={{
-              background: dbStatus?.isCloudPersistent ? '#f0fdf4' : '#fffbeb',
-              border: `1px solid ${dbStatus?.isCloudPersistent ? '#bbf7d0' : '#fde68a'}`,
-              borderRadius: '12px',
-              padding: '1rem',
-              marginBottom: '1.25rem'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-                {dbStatus?.isCloudPersistent ? (
-                  <CheckCircle2 size={18} color="#16a34a" />
-                ) : (
-                  <AlertTriangle size={18} color="#d97706" />
-                )}
-                <span style={{ fontWeight: 700, fontSize: '0.9rem', color: dbStatus?.isCloudPersistent ? '#15803d' : '#92400e' }}>
-                  {dbStatus?.isCloudPersistent ? 'Cloud Persistent Storage Active' : 'Ephemeral Local Storage Detected'}
-                </span>
-              </div>
-              <p style={{ margin: 0, fontSize: '0.825rem', color: '#475569', lineHeight: 1.5 }}>
-                {dbStatus?.statusMessage}
-              </p>
-            </div>
-
-            {/* Records Summary */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '0.75rem',
-              marginBottom: '1.5rem',
-              textAlign: 'center'
-            }}>
-              <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
-                <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#4f46e5' }}>{dbStatus?.counts?.tickets || 0}</div>
-                <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Tickets Saved</div>
-              </div>
-              <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
-                <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#059669' }}>{dbStatus?.counts?.workItems || 0}</div>
-                <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Work Items</div>
-              </div>
-              <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
-                <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#d97706' }}>{dbStatus?.counts?.activity || 0}</div>
-                <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Activity Logs</div>
-              </div>
-            </div>
-
-            {/* How to ensure 100% Persistence on Render */}
-            <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '1.25rem' }}>
-              <div style={{ fontWeight: 700, fontSize: '0.9rem', color: '#0f172a', marginBottom: '0.5rem' }}>
-                💡 How to make all data permanent on Render:
-              </div>
-              <ol style={{ fontSize: '0.825rem', color: '#334155', paddingLeft: '1.25rem', margin: 0, lineHeight: 1.6 }}>
-                <li>
-                  Create a free cloud database on <strong>Neon.tech</strong> (PostgreSQL) or <strong>Render PostgreSQL</strong> or <strong>MongoDB Atlas</strong>.
-                </li>
-                <li>
-                  Copy your Database Connection URI (e.g. <code>postgresql://...</code>).
-                </li>
-                <li>
-                  In your Render Dashboard &rarr; Environment &rarr; add variable:
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.35rem', marginBottom: '0.35rem' }}>
-                    <code style={{ background: '#f1f5f9', padding: '0.25rem 0.5rem', borderRadius: '6px', fontWeight: 700, color: '#4f46e5' }}>
-                      DATABASE_URL
-                    </code>
-                    <button
-                      onClick={() => handleCopy('DATABASE_URL', 'key')}
-                      style={{
-                        padding: '0.2rem 0.5rem',
-                        background: '#f8fafc',
-                        border: '1px solid #cbd5e1',
-                        borderRadius: '6px',
-                        fontSize: '0.75rem',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.25rem'
-                      }}
-                    >
-                      {copiedKey === 'key' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
-                      <span>{copiedKey === 'key' ? 'Copied' : 'Copy Key'}</span>
-                    </button>
-                  </div>
-                </li>
-                <li>
-                  Save changes. Render will automatically link to PostgreSQL and permanently keep every ticket, work update, and report up-to-date forever!
-                </li>
-              </ol>
-            </div>
-
-            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'flex-end' }}>
-              <button
-                onClick={() => setShowDbModal(false)}
-                className="btn btn-primary"
-                style={{ padding: '0.55rem 1.25rem' }}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Clock, CheckCircle2, AlertCircle, RefreshCw, User, Mail, Tag, Filter } from 'lucide-react';
+import { Search, Clock, CheckCircle2, AlertCircle, RefreshCw, User, Mail, Tag, Filter, Paperclip, Download } from 'lucide-react';
 
 const SAVED_PROFILE_KEY = 'it_helpdesk_saved_profile';
 const MY_TICKETS_KEY = 'it_helpdesk_my_tickets';
@@ -169,8 +169,18 @@ export default function UserTicketHistory({ user, onRaiseTicketClick }) {
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem' }}>{trackedTicket.title}</h3>
 
             <div style={{ fontSize: '0.85rem', color: '#64748b', marginBottom: '0.75rem' }}>
-              Created Date & Time: <strong>{trackedTicket.createdAt}</strong> • Requester: <strong>{trackedTicket.requesterName} ({trackedTicket.department})</strong>
+              Created Date & Time: <strong>{trackedTicket.createdAt}</strong> • Requester: <strong>{trackedTicket.requesterName} ({trackedTicket.department})</strong> {trackedTicket.email && `• ${trackedTicket.email}`}
             </div>
+
+            {trackedTicket.attachment && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', background: '#ffffff', padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #e2e8f0', width: 'fit-content' }}>
+                <Paperclip size={14} color="#4f46e5" />
+                <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>{trackedTicket.attachment.name}</span>
+                <a href={trackedTicket.attachment.data} download={trackedTicket.attachment.name} target="_blank" rel="noreferrer" style={{ fontSize: '0.75rem', color: '#4f46e5', textDecoration: 'underline', marginLeft: '0.25rem' }}>
+                  View / Download
+                </a>
+              </div>
+            )}
 
             {trackedTicket.assignedTo && trackedTicket.assignedTo !== 'Unassigned' && (
               <div style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600, marginBottom: '0.75rem' }}>
@@ -303,11 +313,18 @@ export default function UserTicketHistory({ user, onRaiseTicketClick }) {
 
                       <td>
                         <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>{t.requesterName}</div>
-                        <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{t.department}</div>
+                        <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{t.department} {t.email && `• ${t.email}`}</div>
                       </td>
 
                       <td>
-                        <div style={{ fontWeight: 600 }}>{t.title}</div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                          <span style={{ fontWeight: 600 }}>{t.title}</span>
+                          {t.attachment && (
+                            <a href={t.attachment.data} download={t.attachment.name} target="_blank" rel="noreferrer" title={`Attachment: ${t.attachment.name}`} style={{ color: '#4f46e5', display: 'inline-flex' }}>
+                              <Paperclip size={13} />
+                            </a>
+                          )}
+                        </div>
                         <div style={{ fontSize: '0.775rem', color: '#64748b' }}>{t.description}</div>
                       </td>
 

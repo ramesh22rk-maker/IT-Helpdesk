@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Download, Clock, Filter, CheckCircle2, ChevronRight, AlertCircle } from 'lucide-react';
+import { Search, Download, Clock, Filter, CheckCircle2, ChevronRight, AlertCircle, Paperclip } from 'lucide-react';
 import TicketDetailModal from './TicketDetailModal';
 import { downloadTicketsCSV } from '../utils/csvExporter';
 import { downloadTicketsWord } from '../utils/wordExporter';
@@ -14,7 +14,7 @@ export default function TicketQueue({ tickets, onRefreshTickets }) {
   const [endDate, setEndDate] = useState('');
   const [selectedTicket, setSelectedTicket] = useState(null);
 
-  const categories = ['All', 'Finsys issue', 'Internet issue', 'E-mail issue', 'Hardware issue', 'Others'];
+  const categories = ['All', 'Finsys Related', 'Internet Related', 'Hardware/Network Related', 'Others'];
   const priorities = ['All', 'Low', 'Medium', 'High', 'Urgent'];
   const statuses = ['All', 'Open', 'In Progress', 'Resolved', 'Closed'];
 
@@ -23,11 +23,16 @@ export default function TicketQueue({ tickets, onRefreshTickets }) {
       t.id.toLowerCase().includes(search.toLowerCase()) ||
       t.title.toLowerCase().includes(search.toLowerCase()) ||
       t.requesterName.toLowerCase().includes(search.toLowerCase()) ||
-      t.department.toLowerCase().includes(search.toLowerCase());
+      t.department.toLowerCase().includes(search.toLowerCase()) ||
+      (t.email && t.email.toLowerCase().includes(search.toLowerCase()));
 
     const matchesStatus = statusFilter === 'All' || t.status.toLowerCase() === statusFilter.toLowerCase();
     const matchesPriority = priorityFilter === 'All' || t.priority.toLowerCase() === priorityFilter.toLowerCase();
-    const matchesCategory = categoryFilter === 'All' || t.category.toLowerCase() === categoryFilter.toLowerCase();
+    const matchesCategory = categoryFilter === 'All' || 
+      t.category?.toLowerCase() === categoryFilter.toLowerCase() ||
+      (categoryFilter === 'Finsys Related' && t.category?.toLowerCase().includes('finsys')) ||
+      (categoryFilter === 'Internet Related' && t.category?.toLowerCase().includes('internet')) ||
+      (categoryFilter === 'Hardware/Network Related' && (t.category?.toLowerCase().includes('hardware') || t.category?.toLowerCase().includes('network')));
 
     const ticketDate = t.createdAt ? t.createdAt.slice(0, 10) : '';
     const matchesStartDate = !startDate || ticketDate >= startDate;
@@ -197,9 +202,16 @@ export default function TicketQueue({ tickets, onRefreshTickets }) {
                     </td>
 
                     <td>
-                      <div style={{ fontWeight: 600 }}>{t.title}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <span style={{ fontWeight: 600 }}>{t.title}</span>
+                        {t.attachment && (
+                          <span title={`Attached: ${t.attachment.name || 'File'}`} style={{ color: '#4f46e5', display: 'inline-flex', alignItems: 'center' }}>
+                            <Paperclip size={13} />
+                          </span>
+                        )}
+                      </div>
                       <div style={{ fontSize: '0.775rem', color: '#64748b' }}>
-                        By {t.requesterName} ({t.department})
+                        By {t.requesterName} ({t.department}) {t.email && `• ${t.email}`}
                       </div>
                     </td>
 

@@ -8,6 +8,29 @@ import { MongoClient } from 'mongodb';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Automatic .env file loader
+try {
+  const envPath = path.join(__dirname, '.env');
+  if (fs.existsSync(envPath)) {
+    const envContent = fs.readFileSync(envPath, 'utf-8');
+    for (const line of envContent.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const eqIndex = trimmed.indexOf('=');
+      if (eqIndex !== -1) {
+        const key = trimmed.slice(0, eqIndex).trim();
+        let val = trimmed.slice(eqIndex + 1).trim();
+        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+          val = val.slice(1, -1);
+        }
+        if (key && !process.env[key]) {
+          process.env[key] = val;
+        }
+      }
+    }
+  }
+} catch (_) {}
+
 const DATA_DIR = process.env.DATA_DIR || (process.env.VERCEL ? path.join(os.tmpdir(), 'sihpl_data') : path.join(__dirname, 'data'));
 const TICKETS_FILE = path.join(DATA_DIR, 'tickets.json');
 const ACTIVITY_FILE = path.join(DATA_DIR, 'activity.json');
@@ -413,13 +436,13 @@ let mongoDb = null;
 
 // Initialize Database Connection
 export async function initDatabase() {
-  const pgUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.PGURI;
+  const pgUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.PGURI || process.env.SUPABASE_DATABASE_URL || process.env.SUPABASE_DB_URL;
   const mongoUrl = process.env.MONGODB_URI || process.env.MONGO_URL;
 
-  // 1. Check PostgreSQL Connection
+  // 1. Check PostgreSQL (Supabase / Neon / Render Postgres) Connection
   if (pgUrl) {
     try {
-      console.log('[Database] Connecting to PostgreSQL Database...');
+      console.log('[Database] Connecting to PostgreSQL / Supabase Database...');
       const sslConfig = pgUrl.includes('localhost') || pgUrl.includes('127.0.0.1')
         ? false
         : { rejectUnauthorized: false };
@@ -720,7 +743,7 @@ export function authenticateUser(username, password) {
       name: "Mr. Ramesh (IT Admin)",
       role: "admin",
       email: "rk.ramesh@sujanindustries.com",
-      department: "IT"
+      department: "IT/Admin"
     };
 
     logActivity({
@@ -769,12 +792,13 @@ export function createTicket(ticketData) {
     id: `TK-${nextNum}`,
     title: ticketData.title || "Untitled Ticket",
     description: ticketData.description || "",
-    category: ticketData.category || "General",
+    category: ticketData.category || "Others",
     priority: ticketData.priority || "Medium",
     status: "Open",
     requesterName: ticketData.requesterName || "Anonymous User",
     department: ticketData.department || "General",
     email: ticketData.email || "",
+    attachment: ticketData.attachment || null,
     assignedTo: "Unassigned",
     resolutionNotes: "",
     createdAt: nowStr,

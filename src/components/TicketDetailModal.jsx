@@ -9,7 +9,10 @@ import {
   UserCheck, 
   AlertCircle,
   FileText,
-  Trash2
+  Trash2,
+  Paperclip,
+  Download,
+  Eye
 } from 'lucide-react';
 
 export default function TicketDetailModal({ ticket, onClose, onUpdateTicket, onDeleteTicket }) {
@@ -172,10 +175,10 @@ export default function TicketDetailModal({ ticket, onClose, onUpdateTicket, onD
         </div>
 
         {/* Description Box */}
-        <div style={{ marginBottom: '1.5rem' }}>
+        <div style={{ marginBottom: '1.25rem' }}>
           <label style={{ fontWeight: 600, fontSize: '0.875rem', color: '#64748b', marginBottom: '0.4rem', display: 'block' }}>
             <FileText size={15} style={{ verticalAlign: 'middle', marginRight: '0.3rem' }} />
-            Ticket Issue Description:
+            Ticket Description:
           </label>
           <div style={{
             background: '#ffffff',
@@ -189,6 +192,57 @@ export default function TicketDetailModal({ ticket, onClose, onUpdateTicket, onD
             {ticket.description || 'No detailed description provided.'}
           </div>
         </div>
+
+        {/* Attachment Box (if present) */}
+        {ticket.attachment && (
+          <div style={{
+            marginBottom: '1.5rem',
+            background: '#f8fafc',
+            border: '1px solid #e2e8f0',
+            borderRadius: '10px',
+            padding: '0.85rem 1rem'
+          }}>
+            <label style={{ fontWeight: 600, fontSize: '0.825rem', color: '#475569', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <Paperclip size={14} color="#4f46e5" /> Attached File / Screenshot:
+            </label>
+            
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                {ticket.attachment.type?.startsWith('image/') ? (
+                  <a href={ticket.attachment.data} target="_blank" rel="noreferrer" title="Click to view full image">
+                    <img 
+                      src={ticket.attachment.data} 
+                      alt="Attachment Preview" 
+                      style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '6px', border: '1px solid #cbd5e1', cursor: 'pointer' }}
+                    />
+                  </a>
+                ) : (
+                  <div style={{ width: '40px', height: '40px', borderRadius: '6px', background: '#e0e7ff', color: '#4338ca', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <FileText size={22} />
+                  </div>
+                )}
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: '0.875rem', color: '#0f172a' }}>{ticket.attachment.name}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#64748b' }}>
+                    {ticket.attachment.size ? `${(ticket.attachment.size / 1024).toFixed(1)} KB` : 'Attached'}
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href={ticket.attachment.data}
+                download={ticket.attachment.name || 'ticket_attachment'}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-secondary btn-sm"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', padding: '0.4rem 0.75rem', fontSize: '0.8rem' }}
+              >
+                <Download size={14} />
+                <span>Download / View</span>
+              </a>
+            </div>
+          </div>
+        )}
 
         {/* Admin Controls Form */}
         <div style={{
