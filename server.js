@@ -124,16 +124,17 @@ app.get('/api/tickets/:id', (req, res) => {
 });
 
 app.post('/api/tickets', async (req, res) => {
-  const { title, description, category, priority, requesterName, department, email } = req.body;
+  const { title, description, category, priority, requesterName, department, email, attachment } = req.body;
 
   const newTicket = createTicket({
     title: (title || '').trim() || 'General Ticket / Issue',
     description: (description || '').trim(),
-    category: category || 'General IT Doubt',
+    category: category || 'Others',
     priority: priority || 'Medium',
     requesterName: (requesterName || '').trim() || 'Anonymous User',
     department: department || 'General',
-    email: (email || '').trim()
+    email: (email || '').trim(),
+    attachment: attachment || null
   });
 
   // Asynchronously send email notification to User, Department HOD, and IT HOD

@@ -79,7 +79,7 @@ export const COMMON_ISSUE_CARDS = [
 
 // Company Departments listing
 export const COMPANY_DEPARTMENTS = [
-  'ACC',
+  'ACCOUNTS',
   'HRD',
   'IT/Admin',
   'MARKETING',
@@ -97,6 +97,7 @@ export const COMPANY_DEPARTMENTS = [
 ];
 
 export default function TicketSubmission({ currentUser, onTicketSubmitted, setActiveTab }) {
+  const isAdmin = currentUser?.role === 'admin';
   const [selectedCardId, setSelectedCardId] = useState('Finsys Related');
   const [rememberProfile, setRememberProfile] = useState(true);
   const [hasSavedProfile, setHasSavedProfile] = useState(false);
@@ -238,7 +239,7 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
     const title = formData.title.trim();
     const desc = formData.description.trim();
 
-    if (!email) {
+    if (!isAdmin && !email) {
       setErrorMsg('Please enter your email address.');
       return;
     }
@@ -559,18 +560,22 @@ export default function TicketSubmission({ currentUser, onTicketSubmitted, setAc
               </select>
             </div>
 
-            {/* Email is COMPULSORY and auto-filled */}
+            {/* Email is COMPULSORY for users, Optional for Admin */}
             <div className="form-group">
               <label>
-                <Mail size={15} /> Email Address <span style={{ color: '#dc2626' }}>*</span>
+                <Mail size={15} /> Email Address {isAdmin ? (
+                  <span style={{ color: '#64748b', fontSize: '0.75rem', fontWeight: 500 }}>(Optional for Admin)</span>
+                ) : (
+                  <span style={{ color: '#dc2626' }}>*</span>
+                )}
               </label>
               <input
                 type="email"
                 name="email"
-                required
+                required={!isAdmin}
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="e.g. name@sujanindustries.com"
+                placeholder={isAdmin ? "e.g. name@sujanindustries.com (Optional)" : "e.g. name@sujanindustries.com"}
                 className="form-control"
               />
             </div>
